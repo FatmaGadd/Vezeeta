@@ -1,3 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using Vezeeta.dbContext;
+using Vezeeta.IEntities;
+using Vezeeta.Models;
+using Vezeeta.Repository;
+
 namespace Vezeeta
 {
     public class Program
@@ -5,6 +12,48 @@ namespace Vezeeta
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            #region Cors
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder
+                    .WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+                });
+            });
+
+            #endregion
+
+            #region Json Serializer //cause we don't need to make DTOs for getting 
+            builder.Services.AddMvc()
+                .AddJsonOptions(option =>
+                {
+                    option.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                });
+            #endregion
+
+            #region db Connection
+            // Add services to the container.
+
+            builder.Services.AddDbContext<VezeetaContext>(db =>
+            db.UseSqlServer(
+                builder.Configuration.GetConnectionString("conn")
+                )
+            );
+            #endregion
+
+            #region JWT
+            #endregion
+
+            #region DI
+            builder.Services.AddScoped<IEntityRepository<Specialization>, SpecializationRepository>();
+            builder.Services.AddScoped<IEntityRepository<Question>, QuestionRepository>();
+
+            #endregion
 
             // Add services to the container.
 
@@ -28,6 +77,7 @@ namespace Vezeeta
 
 
             app.MapControllers();
+            app.UseCors("AllowAll");
 
             app.Run();
         }
