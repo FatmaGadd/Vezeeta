@@ -14,7 +14,7 @@ namespace Vezeeta.Models
         public Clinic()
         {
             Addresses = new HashSet<Address>();
-            Drs = new HashSet<Doctor>();
+            Clinic_Doctors = new HashSet<Clinic_Doctor>();
         }
 
         [Key]
@@ -28,9 +28,7 @@ namespace Vezeeta.Models
 
         [InverseProperty("clinicNavigation")]
         public virtual ICollection<Address> Addresses { get; set; }
-
-        [ForeignKey("clinic_id")]
-        [InverseProperty("clinics")]
-        public virtual ICollection<Doctor> Drs { get; set; }
+        [InverseProperty("clinic")]
+        public virtual ICollection<Clinic_Doctor> Clinic_Doctors { get; set; }
     }
 }

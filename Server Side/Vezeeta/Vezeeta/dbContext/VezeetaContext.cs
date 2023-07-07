@@ -10,9 +10,9 @@ namespace Vezeeta.dbContext
 {
     public partial class VezeetaContext : DbContext
     {
-        public VezeetaContext()
-        {
-        }
+        //public VezeetaContext()
+        //{
+        //}
 
         public VezeetaContext(DbContextOptions<VezeetaContext> options)
             : base(options)
@@ -24,6 +24,7 @@ namespace Vezeeta.dbContext
         public virtual DbSet<Appointment> Appointments { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Clinic> Clinics { get; set; }
+        public virtual DbSet<Clinic_Doctor> Clinic_Doctors { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<Doctors_Phone> Doctors_Phones { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
@@ -70,7 +71,9 @@ namespace Vezeeta.dbContext
 
             modelBuilder.Entity<Appointment>(entity =>
             {
-                entity.HasKey(e => new { e.Dr_id, e.appoint_id });
+                entity.HasKey(e => new { e.Dr_id, e.id });
+
+                entity.Property(e => e.id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Dr)
                     .WithMany(p => p.Appointments)
@@ -80,6 +83,7 @@ namespace Vezeeta.dbContext
                 entity.HasOne(d => d.appoint)
                     .WithMany(p => p.Appointments)
                     .HasForeignKey(d => d.appoint_id)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Appointments_Patient_Appoinment");
             });
 
@@ -91,11 +95,30 @@ namespace Vezeeta.dbContext
                     .HasConstraintName("FK_Cities_Regions");
             });
 
+            modelBuilder.Entity<Clinic_Doctor>(entity =>
+            {
+                entity.HasKey(e => new { e.Dr_id, e.clinic_id });
+
+                entity.HasOne(d => d.Dr)
+                    .WithMany(p => p.Clinic_Doctors)
+                    .HasForeignKey(d => d.Dr_id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Clinic_Doctor_Doctors");
+
+                entity.HasOne(d => d.clinic)
+                    .WithMany(p => p.Clinic_Doctors)
+                    .HasForeignKey(d => d.clinic_id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Clinic_Doctor_Clinics");
+            });
+
             modelBuilder.Entity<Doctor>(entity =>
             {
                 entity.Property(e => e.create_at).HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.gender).IsFixedLength();
+
+                entity.Property(e => e.status).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.update_at).HasDefaultValueSql("(getdate())");
 
@@ -104,19 +127,6 @@ namespace Vezeeta.dbContext
                     .HasForeignKey(d => d.id_specialize)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Doctors_Specializations");
-
-                entity.HasMany(d => d.clinics)
-                    .WithMany(p => p.Drs)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "Clinic_Doctor",
-                        l => l.HasOne<Clinic>().WithMany().HasForeignKey("clinic_id").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Clinic_Doctor_Clinics"),
-                        r => r.HasOne<Doctor>().WithMany().HasForeignKey("Dr_id").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Clinic_Doctor_Doctors"),
-                        j =>
-                        {
-                            j.HasKey("Dr_id", "clinic_id");
-
-                            j.ToTable("Clinic_Doctor");
-                        });
             });
 
             modelBuilder.Entity<Doctors_Phone>(entity =>

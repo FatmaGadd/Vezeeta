@@ -15,12 +15,14 @@ namespace Vezeeta.Models
         {
             Answers = new HashSet<Answer>();
             Appointments = new HashSet<Appointment>();
+            Clinic_Doctors = new HashSet<Clinic_Doctor>();
             Doctors_Phones = new HashSet<Doctors_Phone>();
             Prescriptions = new HashSet<Prescription>();
             Reviews = new HashSet<Review>();
-            clinics = new HashSet<Clinic>();
         }
 
+        [Column(TypeName = "decimal(8, 2)")]
+        public decimal? online_fees { get; set; }
         [Key]
         public int id { get; set; }
         [Required]
@@ -40,8 +42,7 @@ namespace Vezeeta.Models
         [Required]
         [StringLength(150)]
         public string verification { get; set; }
-        [StringLength(150)]
-        public string status { get; set; }
+        public bool? status { get; set; }
         public int id_specialize { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? create_at { get; set; }
@@ -64,14 +65,12 @@ namespace Vezeeta.Models
         [InverseProperty("Dr")]
         public virtual ICollection<Appointment> Appointments { get; set; }
         [InverseProperty("Dr")]
+        public virtual ICollection<Clinic_Doctor> Clinic_Doctors { get; set; }
+        [InverseProperty("Dr")]
         public virtual ICollection<Doctors_Phone> Doctors_Phones { get; set; }
         [InverseProperty("Dr")]
         public virtual ICollection<Prescription> Prescriptions { get; set; }
         [InverseProperty("Dr")]
         public virtual ICollection<Review> Reviews { get; set; }
-
-        [ForeignKey("Dr_id")]
-        [InverseProperty("Drs")]
-        public virtual ICollection<Clinic> clinics { get; set; }
     }
 }

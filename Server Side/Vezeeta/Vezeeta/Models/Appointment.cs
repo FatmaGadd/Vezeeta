@@ -20,7 +20,8 @@ namespace Vezeeta.Models
         [Key]
         public int Dr_id { get; set; }
         [Key]
-        public int appoint_id { get; set; }
+        public int id { get; set; }
+        public int? appoint_id { get; set; }
 
         [ForeignKey("Dr_id")]
         [InverseProperty("Appointments")]
