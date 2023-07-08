@@ -100,6 +100,8 @@ namespace Vezeeta
             builder.Services.AddScoped<IDoctor_phones, Doctor_phonesRepository>();
             builder.Services.AddScoped<IEntityRepository<Clinic>, ClinicRepository>();
             builder.Services.AddScoped<IDoctor_Clinic, Doctor_clinicRepository>();
+            builder.Services.AddScoped<IAnswer, AnswerRepository>();
+            builder.Services.AddScoped<IAppointment, AppointmentRepository>();
             #endregion
 
             // Add services to the container.

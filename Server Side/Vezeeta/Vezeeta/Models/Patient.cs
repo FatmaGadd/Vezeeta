@@ -38,8 +38,7 @@ namespace Vezeeta.Models
         public string gender { get; set; }
         [StringLength(150)]
         public string address { get; set; }
-        [StringLength(50)]
-        public string state { get; set; }
+        public bool? state { get; set; }
         [Required]
         [StringLength(150)]
         public string password { get; set; }

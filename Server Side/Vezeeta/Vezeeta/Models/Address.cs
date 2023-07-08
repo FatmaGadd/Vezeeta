@@ -25,13 +25,14 @@ namespace Vezeeta.Models
         public int flat_num { get; set; }
         [StringLength(150)]
         public string notes { get; set; }
+        public int? city_id { get; set; }
         public int clinic_id { get; set; }
 
+        [ForeignKey("city_id")]
+        [InverseProperty("Addresses")]
+        public virtual City city { get; set; }
         [ForeignKey("clinic_id")]
         [InverseProperty("Addresses")]
-        public virtual City clinic { get; set; }
-        [ForeignKey("clinic_id")]
-        [InverseProperty("Addresses")]
-        public virtual Clinic clinicNavigation { get; set; }
+        public virtual Clinic clinic { get; set; }
     }
 }

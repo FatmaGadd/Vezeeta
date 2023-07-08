@@ -27,7 +27,7 @@ namespace Vezeeta.Models
         [ForeignKey("region_id")]
         [InverseProperty("Cities")]
         public virtual Region region { get; set; }
-        [InverseProperty("clinic")]
+        [InverseProperty("city")]
         public virtual ICollection<Address> Addresses { get; set; }
     }
 }

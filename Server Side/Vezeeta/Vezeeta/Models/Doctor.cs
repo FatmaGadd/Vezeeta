@@ -21,7 +21,7 @@ namespace Vezeeta.Models
             Reviews = new HashSet<Review>();
         }
 
-        [Column(TypeName = "decimal(8, 2)")]
+        [Column(TypeName = "decimal(18, 0)")]
         public decimal? online_fees { get; set; }
         [Key]
         public int id { get; set; }

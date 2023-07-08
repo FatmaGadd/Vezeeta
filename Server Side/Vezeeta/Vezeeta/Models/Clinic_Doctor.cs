@@ -13,7 +13,7 @@ namespace Vezeeta.Models
     {
         [Key]
         public int Dr_id { get; set; }
-        [Column(TypeName = "decimal(8,2)")]
+        [Column(TypeName = "decimal(18, 0)")]
         public decimal? fees { get; set; }
         [Key]
         public int clinic_id { get; set; }

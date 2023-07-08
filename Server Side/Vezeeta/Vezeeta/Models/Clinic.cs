@@ -26,7 +26,7 @@ namespace Vezeeta.Models
         [StringLength(12)]
         public string phone { get; set; }
 
-        [InverseProperty("clinicNavigation")]
+        [InverseProperty("clinic")]
         public virtual ICollection<Address> Addresses { get; set; }
         [InverseProperty("clinic")]
         public virtual ICollection<Clinic_Doctor> Clinic_Doctors { get; set; }

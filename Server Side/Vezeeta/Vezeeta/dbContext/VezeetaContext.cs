@@ -10,9 +10,9 @@ namespace Vezeeta.dbContext
 {
     public partial class VezeetaContext : DbContext
     {
-        //public VezeetaContext()
-        //{
-        //}
+        public VezeetaContext()
+        {
+        }
 
         public VezeetaContext(DbContextOptions<VezeetaContext> options)
             : base(options)
@@ -39,12 +39,13 @@ namespace Vezeeta.dbContext
         {
             modelBuilder.Entity<Address>(entity =>
             {
-                entity.HasOne(d => d.clinic)
+                entity.HasOne(d => d.city)
                     .WithMany(p => p.Addresses)
-                    .HasForeignKey(d => d.clinic_id)
-                    .HasConstraintName("FK_Addresses_Cities");
+                    .HasForeignKey(d => d.city_id)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Addresses_Cities1");
 
-                entity.HasOne(d => d.clinicNavigation)
+                entity.HasOne(d => d.clinic)
                     .WithMany(p => p.Addresses)
                     .HasForeignKey(d => d.clinic_id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
@@ -142,6 +143,8 @@ namespace Vezeeta.dbContext
             modelBuilder.Entity<Patient>(entity =>
             {
                 entity.Property(e => e.create_at).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.state).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.update_at).HasDefaultValueSql("(getdate())");
             });

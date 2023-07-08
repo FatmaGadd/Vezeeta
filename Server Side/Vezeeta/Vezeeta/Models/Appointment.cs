@@ -10,9 +10,9 @@ namespace Vezeeta.Models
 {
     public partial class Appointment
     {
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime? start_date { get; set; }
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime? end_date { get; set; }
         public int? patients_per_day { get; set; }
         [StringLength(50)]
