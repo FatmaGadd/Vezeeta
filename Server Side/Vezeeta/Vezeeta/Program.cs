@@ -4,6 +4,10 @@ using Vezeeta.dbContext;
 using Vezeeta.IEntities;
 using Vezeeta.Models;
 using Vezeeta.Repository;
+using Vezeeta.Repository.clinics;
+using Vezeeta.Repository.Docotr_Clinic;
+using Vezeeta.Repository.doctor;
+using Vezeeta.Repository.doctor_phones;
 
 namespace Vezeeta
 {
@@ -50,9 +54,10 @@ namespace Vezeeta
             #endregion
 
             #region DI
-            builder.Services.AddScoped<IEntityRepository<Specialization>, SpecializationRepository>();
-            builder.Services.AddScoped<IEntityRepository<Question>, QuestionRepository>();
-
+            builder.Services.AddScoped<IEntityRepository<Doctor>, DoctorRepository>();
+            builder.Services.AddScoped<IDoctor_phones, Doctor_phonesRepository>();
+            builder.Services.AddScoped<IEntityRepository<Clinic>, ClinicRepository>();
+            builder.Services.AddScoped<IDoctor_Clinic, Doctor_clinicRepository>();
             #endregion
 
             // Add services to the container.
