@@ -95,8 +95,7 @@ namespace Vezeeta
             #endregion
 
             #region DI
-            builder.Services.AddScoped<IEntityRepository<Specialization>, SpecializationRepository>();
-            builder.Services.AddScoped<IEntityRepository<Question>, QuestionRepository>();
+            
 
             #endregion
 
