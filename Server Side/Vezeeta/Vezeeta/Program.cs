@@ -9,6 +9,10 @@ using Vezeeta.dbContext;
 using Vezeeta.IEntities;
 using Vezeeta.Models;
 using Vezeeta.Repository;
+using Vezeeta.Repository.clinics;
+using Vezeeta.Repository.Docotr_Clinic;
+using Vezeeta.Repository.doctor;
+using Vezeeta.Repository.doctor_phones;
 
 namespace Vezeeta
 {
@@ -93,8 +97,6 @@ namespace Vezeeta
             #region DI
             builder.Services.AddScoped<IEntityRepository<Specialization>, SpecializationRepository>();
             builder.Services.AddScoped<IEntityRepository<Question>, QuestionRepository>();
-            builder.Services.AddScoped<IAnswer, AnswerRepository>();
-            builder.Services.AddScoped<IAppointment, AppointmentRepository>();
 
             #endregion
 
