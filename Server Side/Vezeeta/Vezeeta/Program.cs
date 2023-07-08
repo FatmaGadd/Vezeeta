@@ -95,8 +95,11 @@ namespace Vezeeta
             #endregion
 
             #region DI
-            
 
+            builder.Services.AddScoped<IEntityRepository<Doctor>, DoctorRepository>();
+            builder.Services.AddScoped<IDoctor_phones, Doctor_phonesRepository>();
+            builder.Services.AddScoped<IEntityRepository<Clinic>, ClinicRepository>();
+            builder.Services.AddScoped<IDoctor_Clinic, Doctor_clinicRepository>();
             #endregion
 
             // Add services to the container.
