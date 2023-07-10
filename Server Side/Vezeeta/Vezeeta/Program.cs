@@ -13,6 +13,7 @@ using Vezeeta.Repository.clinics;
 using Vezeeta.Repository.Docotr_Clinic;
 using Vezeeta.Repository.doctor;
 using Vezeeta.Repository.doctor_phones;
+using Vezeeta.Repository;
 
 namespace Vezeeta
 {
@@ -102,6 +103,10 @@ namespace Vezeeta
             builder.Services.AddScoped<IDoctor_Clinic, Doctor_clinicRepository>();
             builder.Services.AddScoped<IAnswer, AnswerRepository>();
             builder.Services.AddScoped<IAppointment, AppointmentRepository>();
+            builder.Services.AddScoped<IEntityRepository<Patient>, patientRepo>();
+            builder.Services.AddScoped<IUpdateAccountRepo<Patient>, patientRepo>();
+            builder.Services.AddScoped<IPatientAppiont, patientAppointRepo>();
+           
             #endregion
 
             // Add services to the container.
