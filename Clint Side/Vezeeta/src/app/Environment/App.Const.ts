@@ -1,5 +1,9 @@
 //////////////////////* This is used to get the URLs of the api and to make it more maintainable *//////////////////////////////////
 
+import { IAddAppointToPatient } from "../Interfaces/iadd-appoint-to-patient";
+
+
+
 const Base_URl = "https://localhost:7018/api";
 //////////////////////////////////////////////
 

@@ -1,0 +1,9 @@
+nav .nav-link {
+    color: white !important;
+}
+nav {
+    font-size: 1.2rem;
+}
+nav ul {
+        direction: rtl;
+   }

@@ -97,7 +97,7 @@ namespace Vezeeta.Controllers
             try
             {
                 // Hash the password 
-           var hashedPassword =  contextUpdat.HashPassword(patientDTO.patientPassword);
+         //  var hashedPassword =  contextUpdat.HashPassword(patientDTO.patientPassword);
 
                 Patient p = new Patient() { 
                     name = patientDTO.patientName,
@@ -106,7 +106,8 @@ namespace Vezeeta.Controllers
                     phone = patientDTO.patientPhone,
                     birth_date = patientDTO.patientBirth_date,
                     address = patientDTO.patientAddress,
-                    password = hashedPassword,
+                  password=patientDTO.patientPassword,
+                    //  password = hashedPassword,
                 };
                 bool test = await contextUpdat.phoneValidation(p.phone);
                 if (test)
@@ -142,21 +143,25 @@ namespace Vezeeta.Controllers
         [HttpPost("{password}")]
         public async Task<ActionResult<Patient>> LoginPatient(patientLoginDTO userLog)
         { 
-            string LoginPasswordAfterHash = contextUpdat.HashPassword(userLog.Password);
+           // string LoginPasswordAfterHash = contextUpdat.HashPassword(userLog.Password);
 
             Patient patientByMail = await contextUpdat.GetByMail(userLog.Email);
-            Patient patientByPhone = await contextUpdat.GetByMail(userLog.Phone);
-            
-            if (patientByMail == null && patientByPhone == null) // login by mail or phone
-              return BadRequest("Invalid email or phone.");
-                
-            if (patientByMail != null && contextUpdat.VerifyPassword(patientByMail.password,LoginPasswordAfterHash) )
-                    return Ok();
-                
-            if (patientByPhone != null && contextUpdat.VerifyPassword(patientByPhone.password, LoginPasswordAfterHash))
+            Patient patientByPhone = await contextUpdat.GetByPhone(userLog.Phone);
 
-                return Ok();
-            return NotFound();
+            if (patientByMail != null || patientByPhone != null) // login by mail or phone  
+            {
+
+                if (patientByMail != null && patientByMail.password ==userLog.Password)
+                    return Ok();
+
+                if (patientByPhone != null && patientByPhone.password == userLog.Password)
+
+                    return Ok();
+                return NotFound("password don't matched");
+            }
+            else
+                return BadRequest("Invalid email or phone.");
+              
         }
 
     }
