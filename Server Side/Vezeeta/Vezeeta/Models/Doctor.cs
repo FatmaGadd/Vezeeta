@@ -31,7 +31,6 @@ namespace Vezeeta.Models
         [Required]
         [StringLength(150)]
         public string password { get; set; }
-        [StringLength(250)]
         public string image { get; set; }
         [Required]
         [StringLength(1)]
@@ -40,7 +39,6 @@ namespace Vezeeta.Models
         [Column(TypeName = "date")]
         public DateTime birth_date { get; set; }
         [Required]
-        [StringLength(150)]
         public string verification { get; set; }
         public bool? status { get; set; }
         public int id_specialize { get; set; }

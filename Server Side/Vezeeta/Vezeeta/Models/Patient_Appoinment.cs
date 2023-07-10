@@ -21,8 +21,7 @@ namespace Vezeeta.Models
         public DateTime? create_at { get; set; }
         [Key]
         public int id { get; set; }
-        [StringLength(50)]
-        public string state { get; set; }
+        public bool? state { get; set; }
 
         [ForeignKey("patient_id")]
         [InverseProperty("Patient_Appoinments")]

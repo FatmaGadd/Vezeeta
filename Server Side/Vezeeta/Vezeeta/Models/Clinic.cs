@@ -13,7 +13,6 @@ namespace Vezeeta.Models
     {
         public Clinic()
         {
-            Addresses = new HashSet<Address>();
             Clinic_Doctors = new HashSet<Clinic_Doctor>();
         }
 
@@ -27,7 +26,7 @@ namespace Vezeeta.Models
         public string phone { get; set; }
 
         [InverseProperty("clinic")]
-        public virtual ICollection<Address> Addresses { get; set; }
+        public virtual Address Address { get; set; }
         [InverseProperty("clinic")]
         public virtual ICollection<Clinic_Doctor> Clinic_Doctors { get; set; }
     }

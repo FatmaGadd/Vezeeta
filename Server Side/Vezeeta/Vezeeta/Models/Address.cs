@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Vezeeta.Models
 {
+    [Index("clinic_id", Name = "clinic_unique", IsUnique = true)]
     public partial class Address
     {
         [Key]
@@ -32,7 +33,7 @@ namespace Vezeeta.Models
         [InverseProperty("Addresses")]
         public virtual City city { get; set; }
         [ForeignKey("clinic_id")]
-        [InverseProperty("Addresses")]
+        [InverseProperty("Address")]
         public virtual Clinic clinic { get; set; }
     }
 }

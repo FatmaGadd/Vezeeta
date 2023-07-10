@@ -16,6 +16,8 @@ using Vezeeta.Repository.Docotr_Clinic;
 using Vezeeta.Repository.doctor;
 using Vezeeta.Repository.doctor_phones;
 using Vezeeta.Repository;
+using Vezeeta.Repository.Reigon;
+
 
 
 namespace Vezeeta
@@ -108,7 +110,19 @@ namespace Vezeeta
             builder.Services.AddScoped<IAnswer, AnswerRepository>();
             builder.Services.AddScoped<IAppointment, AppointmentRepository>();
             builder.Services.AddScoped<IReview, ReviewRepository>();
-            
+            builder.Services.AddScoped<IEntityRepository<Patient>, patientRepo>();
+            builder.Services.AddScoped<IUpdateAccountRepo<Patient>, patientRepo>();
+            builder.Services.AddScoped<IPatientAppiont, patientAppointRepo>();
+            builder.Services.AddScoped<IPrescription, PrescriptionRepository>();
+            builder.Services.AddScoped<IEntityRepository<Question>, QuestionRepository>();
+            builder.Services.AddScoped<IEntityRepository<Specialization>, SpecializationRepository>();
+            builder.Services.AddScoped<IEntityRepository<Region>, ReigonRepository>();
+            builder.Services.AddScoped<IEntityRepository<City>, CityRepository>();
+            builder.Services.AddScoped<IEntityRepository<Address>, AdressRepository>();
+
+
+
+
             #endregion
 
             // Add services to the container.

@@ -15,8 +15,7 @@ namespace Vezeeta.Models
         [Column(TypeName = "datetime")]
         public DateTime? end_date { get; set; }
         public int? patients_per_day { get; set; }
-        [StringLength(50)]
-        public string type { get; set; }
+        public bool? type { get; set; }
         [Key]
         public int Dr_id { get; set; }
         [Key]
