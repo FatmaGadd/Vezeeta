@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Vezeeta.DTO.AddressDTO;
+using Vezeeta.DTO;
 using Vezeeta.Models;
 
 namespace Vezeeta.DTO.ClinicDTO
