@@ -1,0 +1,74 @@
+<div class="container my-5 parent">
+    <div class="row">
+        <div class=" col-md-7 col-lg-5 m-auto">
+            <div class="joinNow">انضم الان</div>
+            <div class="bg-white p-5 rounded ">
+                <form asp-action="Create" class="mt-4">
+                    <div class="d-flex p-1 m-1">
+                        <label asp-for="name" class="control-label col-4">الاسم : </label>
+                        <div class="col-8">
+                            <input asp-for="name" placeholder="الإسم بالكامل" class="form-control">
+                            <span asp-validation-for="name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex p-1 m-1">
+                        <label asp-for="phone" class="control-label col-4">رقم الموبايل : </label>
+                        <div class="col-8">
+                            <input asp-for="phone" placeholder="رقم الموبايل" class="form-control">
+                            <span asp-validation-for="phone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex p-1 m-1">
+                        <label asp-for="email" class="control-label col-4">  البريد الالكتروني : </label>
+                        <div class="col-8">
+                            <input asp-for="email" placeholder="example@AppDomain.com" class="form-control">
+                            <span asp-validation-for="email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex p-1 m-1">
+                        <label asp-for="birth_date" class="control-label col-4">    تاريخ الميلاد : </label>
+                        <div class="col-8">
+                            <input asp-for="birth_date" placeholder="تاريخ الميلاد" class="form-control">
+                            <span asp-validation-for="birth_date" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex p-1 m-1">
+                        <label asp-for="address" class="control-label col-4">       العنوان : </label>
+                        <div class="col-8">
+                            <input asp-for="address" placeholder="العنوان" class="form-control">
+                            <span asp-validation-for="address" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex p-1 m-1">
+                        <label asp-for="gender" class="control-label col-4">   النوع : </label>
+                        <div class="col-8"> 
+                                <select asp-for="gender" class="form-control">
+                                <option value="">-- اختر --  </option>
+                                    <option value="M">ذكر</option>
+                                    <option value="F">انثى</option>
+                                </select>
+                            <span asp-validation-for="gender" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="d-flex p-1 m-1">
+                        <label asp-for="password" class="control-label col-4"> كلمة المرور : </label>
+                        <div class="col-8">
+                    <input asp-for="password" placeholder="كلمة المرور" class="form-control">
+                            <span asp-validation-for="password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-10 m-auto mt-3">بقيامك بالتسجيل فانت توافق على <a style="color: rgb(0, 112, 205);" href="#">الشروط و القوانين</a></div>
+
+                    <div class="form-group">
+                        <input type="submit" value="اشترك الان" class="btn btn-danger m-auto d-block px-4 mt-4" />
+                    </div>
+                </form>
+                <hr style="height:2px"/>
+                <div class="log m-3 m-auto ">مسجل بالفعل في فيزيتا ؟<a class="mx-3"  asp-action="login"  >دخول</a></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
