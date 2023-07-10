@@ -48,7 +48,7 @@ namespace Vezeeta.Controllers
 
         // PUT: api/Reviews/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{Dr_id}")]
+        [HttpPut("{Dr_id},{patient_id}")]
         public async Task<IActionResult> PutReview(int dr_id, int patient_id, Review review)
         {
             Review r = await _context.GetById(dr_id, patient_id);

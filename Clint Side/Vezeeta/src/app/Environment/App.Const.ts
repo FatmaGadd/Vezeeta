@@ -1,5 +1,4 @@
 //////////////////////* This is used to get the URLs of the api and to make it more maintainable *//////////////////////////////////
-//patient,auth,patient_appiontment,review,address,region,city
 
 const Base_URl = "https://localhost:7018/api";
 //////////////////////////////////////////////
@@ -8,7 +7,12 @@ export class AuthURLs{
     public static Admin_Login(){
         return `${Base_URl}/login/admin`;
     }
-    //patient & doctor auth
+    public static Doctor_Login(){
+        return `${Base_URl}/login/Doctor`;
+    }
+    public static Patient_Login(){
+        return `${Base_URl}/login/Patient`;
+    }
 }
 
 export class SpecializationURLs{
@@ -89,7 +93,7 @@ export class PrescriptionURLs{
         return `${Base_URl}/Prescriptions/Doctor/${Dr_id}`;
     }
     public static GetByPatient(Patient_id:number){
-        return `${Base_URl}/Prescriptions/Doctor/${Patient_id}`;
+        return `${Base_URl}/Prescriptions/patient/${Patient_id}`;
     }
     public static Post(){
         return `${Base_URl}/Prescriptions`;
@@ -99,3 +103,68 @@ export class PrescriptionURLs{
     }
 }
 
+export class PatientURLs{
+    public static Get_Post(){
+        return `${Base_URl}/Patients`;
+    }
+    public static GetById_Put_Delete(id:number){
+        return `${Base_URl}/Patients/${id}`;
+    }
+    public static PostByPassword(password:string){
+        return `${Base_URl}/Patients/${password}`;
+    }
+}
+
+export class ReviewURLs{
+    public static GetByDoctor(Dr_id:number){
+        return `${Base_URl}/Review/Doctor/${Dr_id}`;
+    }
+    public static GetByPatient(Patient_id:number){
+        return `${Base_URl}/Review/Patient/${Patient_id}`;
+    }
+    public static Post(){
+        return `${Base_URl}/Review`;
+    }
+    public static GetById_Put_Delete(Dr_id:number,patient_id:number){
+        return `${Base_URl}/Review/${Dr_id},${patient_id}`;
+    }//put has isseue and need to be modified in api  doesn't have the composit primary key
+}
+
+export class ReigonURLs{
+    public static Get_Post(){
+        return `${Base_URl}/Reigons`;
+    }
+    public static GetById_Put_Delete(id:number){
+        return `${Base_URl}/Reigons/${id}`;
+    }
+}
+
+export class CityURLs{
+    public static Get_Post(){
+        return `${Base_URl}/City`;
+    }
+    public static GetById_Put_Delete(id:number){
+        return `${Base_URl}/City/${id}`;
+    }
+}
+
+export class AddressURLs{
+    public static Get_Post(){
+        return `${Base_URl}/Address`;
+    }
+    public static GetById_Put_Delete(id:number){
+        return `${Base_URl}/Address/${id}`;
+    }
+}
+
+export class Patient_AppointmentURLs{
+    public static Post_Put(){
+        return `${Base_URl}/Patient_Appoinment`;
+    }
+    public static GetById(id:number){
+        return `${Base_URl}/Patient_Appoinment/${id}`;
+    }
+    public static Delete(appoint_id:number,patient_id:number){
+        return `${Base_URl}/Patient_Appoinment/${appoint_id}/${patient_id}`;
+    }
+}

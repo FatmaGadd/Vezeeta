@@ -3,13 +3,14 @@ using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using Vezeeta.Auth;
 using Vezeeta.dbContext;
 using Vezeeta.IEntities;
 using Vezeeta.Models;
 
 namespace Vezeeta.Repository
 {
-    public class patientRepo : IEntityRepository<Patient>, IUpdateAccountRepo<Patient>
+    public class patientRepo : IEntityRepository<Patient>, IUpdateAccountRepo<Patient>,IAuthentication<Patient>
     {
         private readonly VezeetaContext DB;
 
@@ -152,6 +153,22 @@ namespace Vezeeta.Repository
 
             return false;
         }
- 
+
+        public async Task<Patient> Login(LogInDTO loginDTO)
+        {
+            Patient?  patient=  await GetByMail(loginDTO.email);
+            if (patient == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (patient.email == loginDTO.email && patient.password == loginDTO.password)
+                {
+                    return patient;
+                }
+            }
+            return null;
+        }
     }
 }
