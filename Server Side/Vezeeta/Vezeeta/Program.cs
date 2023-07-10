@@ -95,6 +95,8 @@ namespace Vezeeta
             builder.Services.AddScoped<IJWT,JWTRepository>();
             builder.Services.AddScoped<IAuthentication<Admin>, AdminRepository>();
             builder.Services.AddScoped<IAuthentication<Doctor>, DoctorRepository>();
+            builder.Services.AddScoped<IAuthentication<Patient>, patientRepo>();
+
             //services of patient and doctor
 
             #endregion
