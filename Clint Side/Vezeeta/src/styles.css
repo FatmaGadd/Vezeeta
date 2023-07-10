@@ -36,7 +36,7 @@ html {
   
   
   body {
-      background-color: rgb(226, 230, 234);
+      background-color: rgb(226, 230, 234) !important;
       margin: 0px;
       height: -webkit-fill-available;
       font-family: TheSans !important;
