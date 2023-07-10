@@ -119,6 +119,7 @@ namespace Vezeeta
             builder.Services.AddScoped<IEntityRepository<Region>, ReigonRepository>();
             builder.Services.AddScoped<IEntityRepository<City>, CityRepository>();
             builder.Services.AddScoped<IEntityRepository<Address>, AdressRepository>();
+            builder.Services.AddScoped<ISearch, SearchReposatory>();
 
 
 
