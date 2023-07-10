@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Vezeeta.DTO.AddressDTO;
+using Vezeeta.Models;
 
 namespace Vezeeta.DTO.ClinicDTO
 {
@@ -11,5 +13,7 @@ namespace Vezeeta.DTO.ClinicDTO
         [Required]
         [StringLength(12)]
         public string phone { get; set; }
+
+        //public AddressDTO Address { get; set; }
     }
 }
