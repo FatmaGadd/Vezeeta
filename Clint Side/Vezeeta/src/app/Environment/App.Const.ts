@@ -172,3 +172,16 @@ export class Patient_AppointmentURLs{
         return `${Base_URl}/Patient_Appoinment/${appoint_id}/${patient_id}`;
     }
 }
+export class SearchURLs {
+    public static Get_Post() {
+        return `${Base_URl}/Values`;
+    }
+}
+export class Clinic_doctorURLs {
+    public static Get_Post() {
+      return `${Base_URl}/Clinic_Doctor`;
+    }
+    public static GetById_Put_Delete(id: number) {
+      return `${Base_URl}/Clinic_Doctor/${id}`;
+    }
+}
