@@ -67,7 +67,7 @@ namespace Vezeeta.Repository
             
         }
         public string HashPassword(string password)
-        {
+        {//method don't use ,pass can't restore again
             // Use a secure hashing algorithm, such as SHA256 or bcrypt, to hash the password
             byte[] salt = new byte[16];
             new RNGCryptoServiceProvider().GetBytes(salt);

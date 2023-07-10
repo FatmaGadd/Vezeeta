@@ -102,7 +102,7 @@ namespace Vezeeta.Controllers
                     return Ok();
             return BadRequest();
         }
-        [HttpPut]
+        [HttpPut("{appoint_id}/{patient_id}")]
         public async Task<IActionResult> UpdatePatientAppointState(int appoint_id, int patient_id)
         {
             bool isUpdated = await context.UpdateState(appoint_id, patient_id);

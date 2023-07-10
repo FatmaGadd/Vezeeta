@@ -14,9 +14,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { RegisterPatientComponent } from './components/register-patient/register-patient.component';
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
+    FooterComponent,
+    RegisterPatientComponent,
   ],
   imports: [
     BrowserModule,
