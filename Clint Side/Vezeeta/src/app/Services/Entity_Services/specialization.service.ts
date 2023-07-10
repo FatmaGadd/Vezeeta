@@ -20,7 +20,7 @@ export class SpecializationService {
     return this.http.get(SpecializationURLs.GetById_Put_Delete(id),this.options);
   }
   Add(spec:ISpecialization){
-    return this.http.post(SpecializationURLs.Get_Post(),spec);
+    return this.http.post(SpecializationURLs.Get_Post(),spec,this.options);
   }
   Update(id:number,spec:ISpecialization){
     return this.http.put(SpecializationURLs.GetById_Put_Delete(id),spec,this.options);
