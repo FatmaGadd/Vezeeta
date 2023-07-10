@@ -10,6 +10,7 @@ using Vezeeta.dbContext;
 using Vezeeta.IEntities;
 using Vezeeta.DTO.Adding_DTO;
 using Microsoft.AspNetCore.Authorization;
+using Vezeeta.DTO.patientDTO;
 
 namespace Vezeeta.Controllers
 {
@@ -37,9 +38,9 @@ namespace Vezeeta.Controllers
 
         // GET: api/Appointments/5
         [HttpGet("{id},{Dr_id}")]
-        public async Task<ActionResult<Appointment>> GetAppointment(int id, int Dr_id)
+        public async Task<ActionResult<AddpatienAppointToAppointTableDTO>> GetAppointment(int id, int Dr_id)
         {
-            Appointment? appointment = await _context.GetById(id, Dr_id);
+            var appointment = await _context.GetById(id, Dr_id);
             if (appointment == null) return NotFound();
 
             return Ok(appointment);

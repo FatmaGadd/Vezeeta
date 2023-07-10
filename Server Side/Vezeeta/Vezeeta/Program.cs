@@ -15,7 +15,7 @@ using Vezeeta.Repository.clinics;
 using Vezeeta.Repository.Docotr_Clinic;
 using Vezeeta.Repository.doctor;
 using Vezeeta.Repository.doctor_phones;
-using Vezeeta.Repository.Reigon;
+using Vezeeta.Repository;
 
 namespace Vezeeta
 {
