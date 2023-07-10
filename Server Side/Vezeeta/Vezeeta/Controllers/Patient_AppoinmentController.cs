@@ -86,7 +86,7 @@ namespace Vezeeta.Controllers
             Patient_Appoinment patientAppointToAdd = new Patient_Appoinment()
             {
                 patient_id = patient_Appoinment.patient_id,
-                state = "0",       // delete this props after update in DB
+                state = false,       // delete this props after update in DB
 
             };
             await context.Add(patientAppointToAdd, patient_id);

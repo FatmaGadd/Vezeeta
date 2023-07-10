@@ -108,6 +108,7 @@ namespace Vezeeta.Controllers
                 gender = doctor.gender,
                 experience = doctor.experience,
                 online_fees = doctor.online_fees,
+                Doctors_Phones=doctor.Doctors_Phones,
             };
             Doctor oldDr = await doctorRepository.Add(dr);
             if (oldDr != null)

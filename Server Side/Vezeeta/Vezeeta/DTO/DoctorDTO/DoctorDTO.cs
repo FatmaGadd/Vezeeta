@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Vezeeta.Models;
 
 namespace Vezeeta.DTO.DoctorDTO
 {
@@ -39,6 +40,8 @@ namespace Vezeeta.DTO.DoctorDTO
         [StringLength(50)]
         public string name { get; set; }
 
-        
+        public virtual ICollection<Doctors_Phone> Doctors_Phones { get; set; }
+
+
     }
 }
