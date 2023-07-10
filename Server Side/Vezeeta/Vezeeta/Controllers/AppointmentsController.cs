@@ -25,7 +25,7 @@ namespace Vezeeta.Controllers
         }
 
         // GET: api/Appointments
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet("{Dr_id}")]
         public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointments(int Dr_id)
         {
@@ -82,7 +82,7 @@ namespace Vezeeta.Controllers
         // POST: api/Appointments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<Appointment>> PostAppointment(AddAppointmentDTO appointment)
         {
             if (appointment == null) return BadRequest();

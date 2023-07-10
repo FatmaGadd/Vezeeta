@@ -9,10 +9,13 @@ using Vezeeta.dbContext;
 using Vezeeta.IEntities;
 using Vezeeta.Models;
 using Vezeeta.Repository;
+using Vezeeta.Repository.Adress;
+using Vezeeta.Repository.Cities;
 using Vezeeta.Repository.clinics;
 using Vezeeta.Repository.Docotr_Clinic;
 using Vezeeta.Repository.doctor;
 using Vezeeta.Repository.doctor_phones;
+using Vezeeta.Repository.Reigon;
 
 
 namespace Vezeeta
@@ -111,9 +114,10 @@ namespace Vezeeta
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+ 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

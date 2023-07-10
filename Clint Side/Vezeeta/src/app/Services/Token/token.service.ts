@@ -12,15 +12,15 @@ export class TokenService {
     return localStorage.getItem('Role');
   }
   GetUsername() {
-    return localStorage.getItem('Username');
+    return localStorage.getItem('UserEmail');
   }
   GetUserId() {
     return localStorage.getItem('UserId');
   }
-  SaveToken(id:number,token: string, role: string, username: string) {
+  SaveToken(id:number,token: string, role: string, useremail: string) {
     localStorage.setItem('Token', token);
     localStorage.setItem('Role', role);
-    localStorage.setItem('Username', username);
+    localStorage.setItem('UserEmail', useremail);
     localStorage.setItem('UserId', id.toString());
 
   }
