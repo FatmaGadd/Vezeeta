@@ -17,6 +17,7 @@ using Vezeeta.Repository.doctor;
 using Vezeeta.Repository.doctor_phones;
 using Vezeeta.Repository;
 
+
 namespace Vezeeta
 {
     public class Program
@@ -106,6 +107,8 @@ namespace Vezeeta
             builder.Services.AddScoped<IDoctor_Clinic, Doctor_clinicRepository>();
             builder.Services.AddScoped<IAnswer, AnswerRepository>();
             builder.Services.AddScoped<IAppointment, AppointmentRepository>();
+            builder.Services.AddScoped<IReview, ReviewRepository>();
+            
             #endregion
 
             // Add services to the container.
