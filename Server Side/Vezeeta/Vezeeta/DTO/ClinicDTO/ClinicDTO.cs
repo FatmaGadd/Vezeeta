@@ -14,6 +14,6 @@ namespace Vezeeta.DTO.ClinicDTO
         [StringLength(12)]
         public string phone { get; set; }
 
-        //public AddressDTO Address { get; set; }
+        public AddressDTO Address { get; set; }
     }
 }
