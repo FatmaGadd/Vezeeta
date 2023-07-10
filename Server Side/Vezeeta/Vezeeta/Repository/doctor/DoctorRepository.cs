@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Vezeeta.Auth;
 using Vezeeta.dbContext;
 using Vezeeta.DTO.DoctorDTO;
 using Vezeeta.IEntities;
@@ -6,7 +7,7 @@ using Vezeeta.Models;
 
 namespace Vezeeta.Repository.doctor
 {
-    public class DoctorRepository : IEntityRepository<Doctor>
+    public class DoctorRepository : IEntityRepository<Doctor>,IAuthentication<Doctor>
     {
 
         #region fields
@@ -61,6 +62,17 @@ namespace Vezeeta.Repository.doctor
                 return doctor;
          
         }
+
+        #region LoginMethod for authinitication 
+        public async Task<Doctor> Login(LogInDTO loginDTO)
+        {
+
+            //check dr in one line by email and password
+            Doctor dr = await db.Doctors.FirstOrDefaultAsync(d => d.email == loginDTO.email && d.password == loginDTO.password);
+            return dr;
+        }
+
+        #endregion
 
 
     }

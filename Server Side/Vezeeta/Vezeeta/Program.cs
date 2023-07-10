@@ -88,6 +88,7 @@ namespace Vezeeta
             #region JWT DI
             builder.Services.AddScoped<IJWT,JWTRepository>();
             builder.Services.AddScoped<IAuthentication<Admin>, AdminRepository>();
+            builder.Services.AddScoped<IAuthentication<Doctor>, DoctorRepository>();
             //services of patient and doctor
 
             #endregion

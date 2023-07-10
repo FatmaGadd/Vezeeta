@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Vezeeta.Auth;
 using Vezeeta.IEntities;
 using Microsoft.Extensions.Configuration;
+using Vezeeta.Models;
 
 namespace Vezeeta.Controllers
 {
@@ -18,13 +19,15 @@ namespace Vezeeta.Controllers
         #region Fields
         readonly IJWT _jwt;
         readonly IAuthentication<Admin> _authentication;
+        readonly IAuthentication<Doctor> _DoctorAuthentication;
         #endregion
 
         #region Constructor
-        public AuthController(IJWT jWT, IAuthentication<Admin> authentication)//Iauth of doctor&patient
+        public AuthController(IJWT jWT, IAuthentication<Admin> authentication, IAuthentication<Doctor> DoctorAuthentication)//Iauth of doctor&patient
         {
             _jwt = jWT;
             _authentication = authentication;
+            _DoctorAuthentication = DoctorAuthentication;
         }
         #endregion
 
@@ -86,6 +89,63 @@ namespace Vezeeta.Controllers
             #endregion
 
             return Ok(response);
+        }
+
+        [HttpPost("Doctor")]
+        public async Task<ActionResult> Doctor_Login(LogInDTO login)
+        {
+            #region objects for bad request 
+            var EmptyParametersObj = new
+            {
+                StatusCode = 400,
+                message = "Empty Parameters",
+            };
+            var InvalidDoctorEmail_OR_Pass = new
+            {
+                StatusCode = 400,
+                message = "invalid email or password",
+            };
+
+            #endregion
+
+
+            if (login == null) return BadRequest(EmptyParametersObj);
+
+            var doctor = await _DoctorAuthentication.Login(login);
+            if (doctor == null) return BadRequest(InvalidDoctorEmail_OR_Pass);
+
+            #region claims
+            List<Claim> claims = new List<Claim>()
+            {
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                new Claim(type: "name", value: doctor.email),
+                new Claim(ClaimTypes.Role , "Doctor")
+            };
+            #endregion
+
+            #region response 
+            var response = new
+            {
+
+                StatusCode = 200,
+                message = "Login successful",
+                response = new
+                {
+                    token = _jwt.GenerateToken(claims),
+                    role = "Doctor",
+                    doctor = new
+                    {
+                        email = doctor.email,
+
+                    }
+                }
+
+            };
+            #endregion
+
+            return Ok(response);
+
         }
 
         #endregion
