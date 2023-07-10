@@ -20,7 +20,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">دكتور</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" asp-controller="account" asp-action="login"> مريض </a></li>
+                            <li><a class="dropdown-item"  (click)="goToLogin()"> مريض </a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -30,7 +30,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">دكتور</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" asp-controller="account" asp-action="create"> مريض </a></li>
+                            <li><a class="dropdown-item"  (click)="goToRegisterPatient()"> مريض </a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

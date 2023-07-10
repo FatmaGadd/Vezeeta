@@ -24,7 +24,7 @@ export class PatientAppointService {
       return this.http.put(Patient_AppointmentURLs.Delete_Put(appoint_id,patient_id),this.options);
   }
   UpdatePatientAppointState(appoint_id:number,patient_id:number){
-    return this.http.put(Patient_AppointmentURLs.Delete_Put(appoint_id,patient_id),this.options);
-}
+      return this.http.put(Patient_AppointmentURLs.Delete_Put(appoint_id,patient_id),this.options);
+  }
 }
 
