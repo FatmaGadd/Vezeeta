@@ -1,5 +1,7 @@
 //////////////////////* This is used to get the URLs of the api and to make it more maintainable *//////////////////////////////////
 
+import { IAddAppointToPatient } from "../Interfaces/iadd-appoint-to-patient";
+
 const Base_URl = 'https://localhost:7018/api';
 //////////////////////////////////////////////
 
@@ -165,14 +167,20 @@ export class AddressURLs {
   }
 }
 
-export class Patient_AppointmentURLs {
-  public static Post_Put() {
-    return `${Base_URl}/Patient_Appoinment`;
-  }
-  public static GetById(id: number) {
-    return `${Base_URl}/Patient_Appoinment/${id}`;
-  }
-  public static Delete(appoint_id: number, patient_id: number) {
-    return `${Base_URl}/Patient_Appoinment/${appoint_id}/${patient_id}`;
-  }
+
+export class Patient_AppointmentURLs{
+    public static Post(patient_appoint:IAddAppointToPatient,patient_id:number){
+        return `${Base_URl}/Patient_Appoinment`;
+    }
+    public static GetById(id:number){
+        return `${Base_URl}/Patient_Appoinment/${id}`;
+    }
+    public static Delete_Put(appoint_id:number,patient_id:number){
+        return `${Base_URl}/Patient_Appoinment/${appoint_id}/${patient_id}`;
+    }
+}
+export class SearchURLs {
+    public static Get_Post() {
+        return `${Base_URl}/Values`;
+    }
 }

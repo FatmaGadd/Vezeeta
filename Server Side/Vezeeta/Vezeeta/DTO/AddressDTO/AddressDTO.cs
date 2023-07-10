@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Vezeeta.DTO.AddressDTO
+namespace Vezeeta.DTO
 {
     public class AddressDTO
     {

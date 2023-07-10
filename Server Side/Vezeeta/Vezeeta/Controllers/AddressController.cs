@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
 using Vezeeta.DTO;
-using Vezeeta.DTO.AddressDTO;
 using Vezeeta.IEntities;
 using Vezeeta.Models;
 using Region = Vezeeta.Models.Region;
