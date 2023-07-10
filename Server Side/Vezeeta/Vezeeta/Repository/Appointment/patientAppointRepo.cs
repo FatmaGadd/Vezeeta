@@ -39,7 +39,7 @@ namespace Vezeeta.Repository
            Patient_Appoinment p= await dp.Patient_Appoinments.Where(a=>a.id==id).FirstOrDefaultAsync(a=>a.patient_id==patient_id);
             if (p == null) return false;
             
-                p.state = "0";
+                p.state = false;
                 // p.state = 0;  ==>byte
                 await dp.SaveChangesAsync();
             return true;
@@ -73,7 +73,7 @@ namespace Vezeeta.Repository
         {
             Patient_Appoinment p = await dp.Patient_Appoinments.Where(a => a.id == id).FirstOrDefaultAsync(a => a.patient_id == patient_id);
             if (p == null) return false;
-            p.state = (p.state == "0") ? "1" : "0";
+            p.state = (p.state == false) ? true : false;
             //  p.state = (p.state == 0) ? 1 : 0;  ==>byte
             await dp.SaveChangesAsync();
             return true;
