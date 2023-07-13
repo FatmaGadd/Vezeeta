@@ -14,6 +14,8 @@ import { QuestionsComponent } from './components/questions/ask-question/question
 import { PatientQuestionsComponent } from './components/questions/patient-questions/patient-questions.component';
 import { HomeComponent } from './components/home/home.component';
 import { ClinicComponent } from './components/clinic/clinic.component';
+import { SearchComponent } from './components/home/Components/search/search.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
 
 
 const routes: Routes = [
@@ -31,6 +33,7 @@ const routes: Routes = [
   {path:'questions/ask',component:QuestionsComponent},
   {path:'questions/patient',component:PatientQuestionsComponent},
   { path: 'updateClinic/:id', component: ClinicComponent },
+  { path: 'search', component: SearchPageComponent },
   {path:'**',  component:ErrorComponent },
 ];
 @NgModule({
