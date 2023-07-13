@@ -13,6 +13,7 @@ using Vezeeta.IEntities;
 using System.Security.Cryptography;
 using Vezeeta.Repository.doctor;
 using System.Numerics;
+using System.Globalization;
 
 namespace Vezeeta.Controllers
 {
@@ -41,7 +42,7 @@ namespace Vezeeta.Controllers
            
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Patient>> GetPatient(int id)
         {
             Patient? patient = await context.GetById(id);
@@ -56,11 +57,11 @@ namespace Vezeeta.Controllers
         public async Task<IActionResult> updatePatient(int id, addPatientDTO patientdto)
         {
             if (patientdto == null)
-                return BadRequest();  
+                return BadRequest("لايوجد مستخدم للتعديل على بياناته");  
            
             Patient p = await context.GetById(id);
-            if (p==null) return BadRequest();
-            if (p.id != id) return NotFound();
+            if (p==null) return BadRequest("المستخدم غير موجود بقاعدة البيانات");
+           // if (p.id != id) return NotFound();
             try {
                 p.name = patientdto.patientName; 
 
@@ -76,12 +77,13 @@ namespace Vezeeta.Controllers
                 p.birth_date = patientdto.patientBirth_date;
                 p.gender = patientdto.patientGender;
                 p.address=patientdto.patientAddress;
-                p.password=patientdto.patientPassword; 
-                 Patient patientUpdate = await context.Update(id, p); 
+                p.password=patientdto.patientPassword;
+                p.update_at = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                Patient patientUpdate = await context.Update(id, p); 
 
                 if (patientUpdate != null)
                     return Ok(p);
-                return BadRequest();
+                return BadRequest("عفوا ,حدثت مشكله اثنائ تحديث البيانات ,من فضلك حاول في وقت لاحق ");
             }
             catch (Exception e) { return BadRequest(e.Message); }
         
@@ -109,17 +111,23 @@ namespace Vezeeta.Controllers
                   password=patientDTO.patientPassword,
                     //  password = hashedPassword,
                 };
-                bool test = await contextUpdat.phoneValidation(p.phone);
-                if (test)
+                bool phoneValidate = await contextUpdat.phoneValidation(p.phone);
+                var mailIsFound = await contextUpdat.GetByMail(p.email);
+                var phoneIsFound = await contextUpdat.GetByPhone(p.phone);
+                if (phoneValidate && mailIsFound == null && phoneIsFound == null)
                 {
-                  await  context.Add(p);
-               //     return Ok(p); 
-                 return CreatedAtAction("GetPatient", new { id = p.id }, p);
+                        await context.Add(p);
+                        return CreatedAtAction("GetPatient", new { id = p.id }, p);
 
-                }
-                else
+                }else
                 {
-                    return BadRequest();
+                if(phoneValidate == false)
+                          return BadRequest(" الرقم الموبايل غير صالح ,من فضلك ادخل رقم صحيح");
+                    if (phoneIsFound != null)
+                        return BadRequest(" رقم  الموبايل موجود بالفعل ");
+                //if (mailmailIsFound != null)
+                    return BadRequest("  البريد الإلكتروني موجود بالفعل");
+                   // return BadRequest();
                 }
             }
             catch (Exception e)
@@ -157,12 +165,22 @@ namespace Vezeeta.Controllers
                 if (patientByPhone != null && patientByPhone.password == userLog.Password)
 
                     return Ok();
-                return NotFound("password don't matched");
+                return BadRequest("كلمة المرور غير صحيحة");
             }
             else
-                return BadRequest("Invalid email or phone.");
+                return BadRequest("البريد الإلكتروني او رقم الموبايل غير صحيح ");
               
         }
 
+        [HttpGet("{email}")]
+        public async Task<ActionResult<Patient>> GetPatientByMail(string email)
+        {
+            Patient? patient = await contextUpdat.GetByMail(email);
+            if (patient == null)
+            {
+                return NotFound(" لم نتمكن من العثور على حسابك بإستخدام هذا البريد الإلكتروني");
+            }
+            return Ok(patient);
+        }
     }
 }

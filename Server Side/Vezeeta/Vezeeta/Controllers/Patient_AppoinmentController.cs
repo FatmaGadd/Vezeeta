@@ -59,15 +59,20 @@ namespace Vezeeta.Controllers
         public async Task<ActionResult<List<Appointment>>> GetPatient_Appoinments(int id)
         {
            List< Patient_Appoinment> patientHasAppoinment = await context.GetPatientWithAppointmentById(id);
-            if(patientHasAppoinment == null)
+   
+            if(patientHasAppoinment.Count ==0 )
             {
-                    return NotFound();
+                    return BadRequest("ليس لديك مواعيد مع اي دكتور");
             }
 
             List<Appointment> appointments = new List<Appointment>();
             foreach (var item in patientHasAppoinment)
             {
                List <Appointment> patient_appoinment = await context.GetByAppointmentId(item.id);
+                if(patient_appoinment.Count == 0)
+                {
+                    return BadRequest("ليس لديك مواعيد مع اي دكتور");
+                }
                 foreach (var item1 in patient_appoinment)
                 {
                     appointments.Add(item1);

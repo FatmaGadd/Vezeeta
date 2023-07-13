@@ -16,8 +16,15 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { RegisterPatientComponent } from './components/register-patient/register-patient.component';
+import { RegisterPatientComponent } from './components/patient/register-patient/register-patient.component';
 import { LoginComponent } from './components/login/login.component';
+import { PatientAccountComponent } from './components/Accounts/patient-account/patient-account.component';
+import { PatientProfileComponent } from './components/Accounts/patient-profile/patient-profile.component';
+import { PatientChangePasswordComponent } from './components/Accounts/patient-change-password/patient-change-password.component';
+import { PatientAppointmentComponent } from './components/patient/patient-appointment/patient-appointment.component';
+import { ErrorComponent } from './components/error/error.component';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +32,13 @@ import { LoginComponent } from './components/login/login.component';
     FooterComponent,
     RegisterPatientComponent,
     LoginComponent,
+    PatientAccountComponent,
+    PatientProfileComponent,
+    PatientChangePasswordComponent,
+    PatientAppointmentComponent,
+    ErrorComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

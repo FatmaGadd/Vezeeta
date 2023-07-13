@@ -22,6 +22,9 @@ export class PatientService {
   GetById(id:number){
     return this.http.get(PatientURLs.GetById_Put_Delete(id),this.options);
   }
+  GetByEmail(email:string){
+    return this.http.get(PatientURLs.GetByEmail(email),this.options);
+  }
   Add(spec:IPatientAdd){
     return this.http.post(PatientURLs.Get_Post(),spec);
   }

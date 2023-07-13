@@ -39,7 +39,7 @@ namespace Vezeeta.Controllers
         {
             IEnumerable<Clinic_Doctor> clinics = await Clinic_doctorRepos.GetById(id);
             if (clinics == null)
-                return NotFound();
+                return NotFound("الدكتور ليس لديه عياده ");
             return Ok(clinics);
         }
 

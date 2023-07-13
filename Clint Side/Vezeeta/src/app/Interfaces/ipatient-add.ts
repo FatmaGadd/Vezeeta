@@ -1,9 +1,15 @@
 export interface IPatientAdd {
-     patientName:string,
-    patientEmail :string,
-    patientPhone :string,
-     patientBirth_date :Date,
-     patientGender :string,
-     patientAddress :string,
-     patientPassword :string
+     
+     name:string,
+     address:string,
+     birth_date:Date,
+     create_at:Date,
+     email:string,
+     gender:string,
+     id:number,
+     is_deleted:boolean,
+     password:string, 
+     phone:string, 
+     state:boolean
+     
 }

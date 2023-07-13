@@ -111,6 +111,9 @@ export class PatientURLs {
   public static GetById_Put_Delete(id: number) {
     return `${Base_URl}/Patients/${id}`;
   }
+  public static GetByEmail(email: string) {
+    return `${Base_URl}/Patients/${email}`;
+  }
   public static PostByPassword(password: string) {
     return `${Base_URl}/Patients/${password}`;
   }

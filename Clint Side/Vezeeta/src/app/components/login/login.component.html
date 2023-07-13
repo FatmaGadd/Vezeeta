@@ -1,41 +1,81 @@
 <div class="container my-5 parent">
+    
     <div class="row">
         <div class=" col-md-7 col-lg-5 m-auto">
             <div class="joinNow"> دخول</div>
             <div class="bg-white p-5 rounded ">
-                <form asp-action="login" class="mt-4">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form  [formGroup]="formLogin"  class="mt-4">
                       
                     <div class="d-flex p-1 m-1">
-                        <label asp-for="phone" class="control-label col-4"> الموبايل : </label>
+                        <label  for="patientPhone" class="control-label col-4">رقم الموبايل : </label>
                         <div class="col-8">
-                            <input asp-for="phone" placeholder="رقم الموبايل" class="form-control">
-                            <span asp-validation-for="phone" class="text-danger"></span>
+                            <input  type="tel" name="patientPhone" placeholder="رقم الموبايل" id="patientPhone" class="form-control" formControlName="patientPhone">
+                            
+                            <ng-container *ngIf="getPhone.touched || showError">
+                              
+                                <div
+                                  *ngIf="getPhone.hasError('required')" 
+                                  class=" text-danger fs-6 mb-2"
+                                >
+                                يرجى  ادخال رقم الموبايل / الخط الأرضي
+                                </div>
+                              
+                              </ng-container>
+
                         </div>
                     </div>
                     <div class="d-flex p-1 m-1">
-                        <label asp-for="email" class="control-label col-4">  البريد الالكتروني : </label>
+                        <label asp-for="patientEmail" class="control-label col-4">  البريد الالكتروني : </label>
                         <div class="col-8">
-                            <input asp-for="email" placeholder="example@AppDomain.com" class="form-control">
-                            <span asp-validation-for="email" class="text-danger"></span>
+                            <input type="email" id="patientEmail" name="patientEmail" placeholder="example@AppDomain.com" class="form-control" formControlName="patientEmail">
+                            <ng-container *ngIf="getEmail.touched || showError">
+                                <div
+                                  *ngIf="getEmail.hasError('required')" 
+                                  class=" text-danger fs-6 mb-2"
+                                >
+                                يرجى  ادخال البريد الالكتروني
+                                </div>
+                              </ng-container>
                         </div>
                     </div>
-                      <div class="d-flex p-1 m-1">
-                    <label asp-for="password" class="control-label col-4"> كلمة المرور : </label>
-                    <div class="col-8">
-                    <input asp-for="password" placeholder="كلمة المرور" class="form-control">
-                    <span asp-validation-for="password" class="text-danger"></span>
+                    <div class="d-flex p-1 m-1">
+                        <label for="patientPassword" class="control-label col-4"> كلمة المرور : </label>
+                        <div class="col-8">
+                    <input type="password" name="patientPassword" id="patientPassword" placeholder="كلمة المرور" class="form-control"  formControlName="patientPassword" />
+                    <ng-container *ngIf="getPass.touched || showError">
+        
+                        <div
+                          *ngIf="getPass.hasError('required')" 
+                          class=" text-danger fs-6 mb-2"
+                        >
+                        يرجى  ادخال كلمة المرور
+                        </div>
+                  
+                      </ng-container>
+                        </div>
                     </div>
-                    </div>
-                     
                     <div class="form-group">
-                        <input type="submit" value=" دخول" class="btn btn-danger m-auto d-block col-8 px-4 mt-4" />
+                        <input type="submit" value=" دخول" class="btn btn-danger m-auto d-block px-4 mt-4 w-100"  (click)="Login($event)"/>
                     </div>
+                   <div class="d-flex flex-wrap justify-content-between align-items-center p-3" >
+                       
+                 <div>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                    <label class="form-check-label p-1" for="flexCheckIndeterminate">
+                      تذكرني
+                    </label>   
+                 </div>   
+                 <div> 
+                       <a href="/forgetPass"  style="text-decoration: none;">نسيت كلمة المرور؟</a>
+                </div> 
+                   </div>
                 </form>
+
                 <hr style="height:2px" />
-                <div class="log m-3 m-auto ">مستخدم جديد ؟<a class="mx-3"  (click)="goToRegister()">انضم الان</a></div>
+                <div class="log m-3 m-auto ">مستخدم جديد ؟<a class="mx-3"  [routerLink]="['/registerPatient']">انضم الان</a></div>
             </div>
         </div>
+
     </div>
 
 </div>

@@ -1,0 +1,32 @@
+.parent {
+    direction: rtl;
+    font-size: 1.2rem;
+    color: rgb(102, 102, 102);
+} 
+.pass-parent{
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    display: inline-block;
+}
+ 
+.pass-Change{
+    font-size: 1.2rem;
+    width: 100%;
+    line-height: 35px;
+    text-indent: 20px;
+    border-bottom: 1.5px solid rgb(238, 238, 238);
+}
+ 
+.linkActive{
+    background-color: rgb(0, 112, 205);
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 1.2rem; 
+    line-height: 35px;
+    text-indent: 20px;
+    text-align: right;
+    border-bottom: 2.5px solid rgb(238, 238, 238) ;
+} 
+

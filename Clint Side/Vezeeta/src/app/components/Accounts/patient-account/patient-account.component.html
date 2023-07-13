@@ -1,0 +1,41 @@
+<div class="container my-5 parent">
+    <div class="row mt-5 ">
+        
+     <div class="col-md-3 mb-3">
+          <div class="pass-parent ">
+    
+            <a style="color: rgb(153, 153, 153)"  class="d-block" 
+            [routerLinkActive]="'linkActive '"   
+           [routerLink]="['/account/profile']"     
+           [routerLinkActiveOptions]="{ exact: true }"  >
+               <div   class= "pass-Change">
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="d-inline-block mx-1">  صفحتي </span>
+               </div>
+            </a>
+
+           <a  style="color: rgb(153, 153, 153)"  class="d-block"
+            [routerLinkActive]="'linkActive '"   
+           [routerLink]="['/account/changePassword']"     
+           [routerLinkActiveOptions]="{ exact: true }"  >
+            
+           <div class="pass-Change"  >
+                <span class=" fa fa-users "></span>
+                <span class="d-inline-block mx-1">تغيير كلمة المرور </span>
+           </div>
+           </a>
+          </div>
+          
+     </div>
+    <div class=" col-md-9 col-lg-7 ">
+                  <router-outlet></router-outlet>
+    </div>
+      </div>
+
+</div>
+
+
+
+
+
+

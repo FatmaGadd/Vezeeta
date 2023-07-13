@@ -41,4 +41,9 @@ html {
       height: -webkit-fill-available;
       font-family: TheSans !important;
       margin-bottom: 60px;
+      direction: rtl;
+  }
+
+  .btn-danger{
+    background-color: rgb(239, 15, 15);
   }
