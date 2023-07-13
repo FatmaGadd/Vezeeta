@@ -25,7 +25,6 @@ import { PatientAppointmentComponent } from './components/patient/patient-appoin
 import { ErrorComponent } from './components/error/error.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { SearchComponent } from './components/search/search.component';
 import { QuestionsComponent } from './components/questions/ask-question/questions.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -34,6 +33,12 @@ import { ViewQuestionComponent } from './components/questions/view-question/view
 import { DialogModule } from 'primeng/dialog';
 import { PatientQuestionsComponent } from './components/questions/patient-questions/patient-questions.component';
 import { PaginatorModule } from 'primeng/paginator';
+import { SearchPageComponent } from './components/search-page/search-page.component';
+import { SearchTopBarComponent } from './components/search-page/components/search-top-bar/search-top-bar.component';
+import { HomeComponent } from './components/home/home.component';
+import { SearchComponent } from './components/home/Components/search/search.component';
+import { DoctorsListComponent } from './components/search-page/components/doctors-list/doctors-list.component';
+import { SideMenueComponent } from './components/search-page/components/side-menue/side-menue.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +46,23 @@ import { PaginatorModule } from 'primeng/paginator';
     FooterComponent,
     RegisterPatientComponent,
     LoginComponent,
-    SearchComponent,
+    PatientAccountComponent,
+    PatientAppointmentComponent,
+    PatientChangePasswordComponent,
+    PatientProfileComponent,
+    PatientQuestionsComponent,
+    ErrorComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
+    QuestionsComponent,
+    SpecilizationComponent,
+    ViewQuestionComponent,
+SearchComponent,
+SearchPageComponent,
+SearchTopBarComponent,
+HomeComponent,
+DoctorsListComponent,
+SideMenueComponent,
   ],
   imports: [
     PaginatorModule,
