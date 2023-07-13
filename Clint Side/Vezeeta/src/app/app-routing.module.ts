@@ -8,7 +8,10 @@ import { PatientAccountComponent } from './components/Accounts/patient-account/p
 import { PatientAppointmentComponent } from './components/patient/patient-appointment/patient-appointment.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
-import { AppComponent } from './app.component';
+import { ViewQuestionComponent } from './components/questions/view-question/view-question.component';
+import { SpecilizationComponent } from './components/questions/specilization/specilization.component';
+import { QuestionsComponent } from './components/questions/ask-question/questions.component';
+import { PatientQuestionsComponent } from './components/questions/patient-questions/patient-questions.component';
 
 
 const routes: Routes = [
@@ -20,6 +23,11 @@ const routes: Routes = [
   {path:'account' ,component:PatientAccountComponent },
   {path:'patientAppoint' , component:PatientAppointmentComponent},
   {path:'forgetPass' , component:ForgetPasswordComponent},
+  {path:'questions/view/:id',component:ViewQuestionComponent},
+  {path:'questions/specializations',component:SpecilizationComponent},
+  {path:'questions/ask',component:QuestionsComponent},
+  {path:'questions/patient',component:PatientQuestionsComponent},
+  // { path: 'updateClinic/:id', component: ClinicComponent },
   {path:'**',  component:ErrorComponent },
 ];
 @NgModule({

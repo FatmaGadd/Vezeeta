@@ -38,5 +38,7 @@ export class PatientService {
     
     return this.http.get(PatientURLs.PostByPassword(loginInfo.Password),this.options);
   }
-
+  GetPatientWithQuetions(id:number){
+    return this.http.get(PatientURLs.GetWithQuetions(id));
+  }
 }

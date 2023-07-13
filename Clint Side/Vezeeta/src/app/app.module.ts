@@ -26,6 +26,14 @@ import { ErrorComponent } from './components/error/error.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SearchComponent } from './components/search/search.component';
+import { QuestionsComponent } from './components/questions/ask-question/questions.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { SpecilizationComponent } from './components/questions/specilization/specilization.component';
+import { ViewQuestionComponent } from './components/questions/view-question/view-question.component';
+import { DialogModule } from 'primeng/dialog';
+import { PatientQuestionsComponent } from './components/questions/patient-questions/patient-questions.component';
+import { PaginatorModule } from 'primeng/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +49,16 @@ import { SearchComponent } from './components/search/search.component';
     ForgetPasswordComponent,
     ResetPasswordComponent,
     SearchComponent,
+    QuestionsComponent,
+    SpecilizationComponent,
+    ViewQuestionComponent,
+    PatientQuestionsComponent,
   ],
   imports: [
+    PaginatorModule,
+    DialogModule,
+    SelectButtonModule,
+    DropdownModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -55,7 +71,7 @@ import { SearchComponent } from './components/search/search.component';
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

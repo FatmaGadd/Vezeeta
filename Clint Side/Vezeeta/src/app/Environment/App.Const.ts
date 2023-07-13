@@ -117,6 +117,9 @@ export class PatientURLs {
   public static PostByPassword(password: string) {
     return `${Base_URl}/Patients/${password}`;
   }
+  public static GetWithQuetions(id:number){
+    return `${Base_URl}/Patients/Questions/${id}`
+  }
 }
 
 export class ReviewURLs {
