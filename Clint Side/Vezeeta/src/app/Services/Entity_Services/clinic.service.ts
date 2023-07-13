@@ -22,7 +22,7 @@ export class ClinicService {
   addNewClinic(clinic: any) {
     return this.http.post(ClinicURLs.Get_Post(), clinic, this.options);
   }
-  updateClinic(id: number, clinic: Iclinic) {
+  updateClinic(id: number, clinic: any) {
     return this.http.put(
       ClinicURLs.GetById_Put_Delete(id),
       clinic,

@@ -101,11 +101,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
         }
       });
 
-    //clinic url
-    this.getClinic();
-  }
-
-  getClinic() {
+    //get clinic url
     this.http
       .get(`https://localhost:7018/api/Dr_clinic/${this.id}`, this.options)
       .subscribe({
@@ -114,13 +110,15 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
             this.Dr_clinic = res.body;
             console.log(this.Dr_clinic);
             console.log(this.Dr_clinic?.clinic?.address?.street);
-            this.updatClinic();
+
             this.updateClinicFlag = true;
           }
         },
       });
   }
+
   // end of on init
+
   //start of forms
   CreatForm() {
     this.DoctorUpdateForm = new FormGroup({
@@ -198,33 +196,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
     appart: new FormControl('', [Validators.required]),
     descr: new FormControl(''),
   });
-  UpdateclinicForm: FormGroup | any;
-  updatClinic() {
-    this.UpdateclinicForm = new FormGroup({
-      ucity: new FormControl('', [Validators.required]),
-      ust: new FormControl(this.Dr_clinic?.clinic?.address?.street, [
-        Validators.required,
-      ]),
-      ubuilding: new FormControl(this.Dr_clinic?.clinic?.address?.building),
-      uClinicPhone: new FormControl(this.Dr_clinic?.clinic?.phone, [
-        Validators.required,
-      ]),
-      ufloor: new FormControl(this.Dr_clinic?.clinic?.address?.floor_num, [
-        Validators.required,
-      ]),
-      uregion: new FormControl(this.Dr_clinic?.clinic?.address?.building, [
-        Validators.required,
-      ]),
-      uclinicName: new FormControl(this.Dr_clinic?.clinic?.name, [
-        Validators.required,
-      ]),
-      u_sq: new FormControl(this.Dr_clinic?.clinic?.address?.building),
-      u_appart: new FormControl(this.Dr_clinic?.clinic?.address?.flat_num, [
-        Validators.required,
-      ]),
-      u_descr: new FormControl(this.Dr_clinic?.clinic?.address?.notes),
-    });
-  }
+
   // end of form group creation
 
   // update info
@@ -319,42 +291,6 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
     return this.clinicForm.controls.clinicName;
   }
   //------------------------------------------------------------------------------------
-  get usqController() {
-    return this.UpdateclinicForm.controls.u_sq;
-  }
-  get udescController() {
-    return this.UpdateclinicForm.controls.u_descr;
-  }
-  get uappartController() {
-    return this.UpdateclinicForm.controls.u_appart;
-  }
-  get ucityController() {
-    return this.UpdateclinicForm.controls.ucity;
-  }
-
-  get ustController() {
-    return this.UpdateclinicForm.controls.ust;
-  }
-
-  get ubuildingController() {
-    return this.UpdateclinicForm.controls.ubuilding;
-  }
-
-  get uclinicPhoneController() {
-    return this.UpdateclinicForm.controls.uClinicPhone;
-  }
-
-  get ufloorController() {
-    return this.UpdateclinicForm.controls.ufloor;
-  }
-
-  get uregionController() {
-    return this.UpdateclinicForm.controls.uregion;
-  }
-
-  get uclinicNameController() {
-    return this.UpdateclinicForm.controls.uclinicName;
-  }
 
   //------------------------------------------------------------------------------
   addAnotherPhone(inptval: any) {
@@ -513,9 +449,11 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
       this.clinicSer.addNewClinic(model).subscribe((res) => {
         if (res.status == 200) {
           console.log(res);
-          this.getClinic();
+          this.updateClinicFlag = true;
         }
       });
     }
   }
+
+  updateClinic() {}
 }
