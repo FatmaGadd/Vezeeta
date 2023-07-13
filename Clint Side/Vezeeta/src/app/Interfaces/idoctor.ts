@@ -1,3 +1,5 @@
+import { IdoctorPhone } from './idoctor-phone';
+
 export interface Idoctor {
   online_fees: number;
   email: string;
@@ -11,5 +13,5 @@ export interface Idoctor {
   description: string;
   waiting_time: string;
   name: string;
-  Doctors_Phones: any[];
+  Doctors_Phones: IdoctorPhone[];
 }

@@ -32,4 +32,10 @@ export class DoctorService {
   deleteDoctor(id: number) {
     return this.http.delete(DoctorURLs.GetById_Put_Delete(id), this.options);
   }
+  getByMail(email: string) {
+    return this.http.get(
+      `https://localhost:7018/api/Dr/${email}`,
+      this.options
+    );
+  }
 }

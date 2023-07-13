@@ -122,8 +122,8 @@ namespace Vezeeta
             builder.Services.AddScoped<IEntityRepository<City>, CityRepository>();
             builder.Services.AddScoped<IEntityRepository<Address>, AdressRepository>();
             builder.Services.AddScoped<ISearch, SearchReposatory>();
-
-
+            builder.Services.AddScoped<IdoctorAdd,DoctorRepository>();
+            builder.Services.AddScoped<IClinic,ClinicRepository>();
 
 
             #endregion

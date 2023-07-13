@@ -18,6 +18,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RegisterPatientComponent } from './components/register-patient/register-patient.component';
 import { LoginComponent } from './components/login/login.component';
+import { DoctorRegisterComponent } from './components/doctor-register/doctor-register.component';
+import { DoctorProfileComponent } from './components/doctor-profile/doctor-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,8 @@ import { LoginComponent } from './components/login/login.component';
     FooterComponent,
     RegisterPatientComponent,
     LoginComponent,
+    DoctorRegisterComponent,
+    DoctorProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ export class ClinicService {
   getClinicById(id: number) {
     return this.http.get(ClinicURLs.GetById_Put_Delete(id), this.options);
   }
-  addNewClinic(clinic: Iclinic) {
+  addNewClinic(clinic: any) {
     return this.http.post(ClinicURLs.Get_Post(), clinic, this.options);
   }
   updateClinic(id: number, clinic: Iclinic) {

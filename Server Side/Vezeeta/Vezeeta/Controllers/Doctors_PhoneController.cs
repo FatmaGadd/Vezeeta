@@ -104,6 +104,18 @@ namespace Vezeeta.Controllers
             await doctor_phoneRepository.DeleteById(id, phone);
             return NoContent();
         }
+        [HttpGet("/api/Dr_phone/{phone}")]
+        public async Task<IActionResult> getDrByPhone(string phone)
+        {
+            if (phone == null)
+            {
+                return BadRequest();
+            }
+            var dr_phone =await doctor_phoneRepository.getByPhoneIsExist(phone);
+            if (dr_phone == null)
+                return NoContent();
+            return Ok();
+        }
 
     }
 }

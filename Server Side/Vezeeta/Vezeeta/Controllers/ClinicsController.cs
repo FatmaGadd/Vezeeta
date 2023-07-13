@@ -9,6 +9,7 @@ using Vezeeta.Models;
 using Vezeeta.dbContext;
 using Vezeeta.IEntities;
 using Vezeeta.DTO.ClinicDTO;
+using Vezeeta.Repository.clinics;
 
 namespace Vezeeta.Controllers
 {
@@ -17,10 +18,12 @@ namespace Vezeeta.Controllers
     public class ClinicsController : ControllerBase
     {
         private readonly IEntityRepository<Clinic> ClinicRepos;
+        private readonly IClinic getDrRepo;
 
-        public ClinicsController(IEntityRepository<Clinic> _ClinicRepos)
+        public ClinicsController(IEntityRepository<Clinic> _ClinicRepos, IClinic _getDrRepo)
         {
             ClinicRepos = _ClinicRepos;
+            getDrRepo= _getDrRepo;
         }
 
         // GET: api/Clinics
@@ -75,17 +78,44 @@ namespace Vezeeta.Controllers
         [HttpPost]
         public async Task<ActionResult<Clinic>> PostClinic(ClinicDTO clinicDTO)
         {
-            if (clinicDTO == null) return BadRequest();
-            Clinic clinic = new Clinic()
+            if (clinicDTO == null) return BadRequest("null");
+            ICollection<Clinic_Doctor>cl_dr=new HashSet<Clinic_Doctor>();
+            try
             {
-                id = clinicDTO.id,
-                name = clinicDTO.name,
-                phone = clinicDTO.phone,
-            };
-            Clinic returnedClinic = await ClinicRepos.Add(clinic);
-            if (returnedClinic == null)
-                return BadRequest();
-            return Ok(returnedClinic);
+                foreach (var cllinicDr in clinicDTO.Clinic_Doctors)
+                {
+                    Clinic_Doctor c = new Clinic_Doctor()
+                    {
+                        Dr_id = cllinicDr.Dr_id,
+                        clinic_id = cllinicDr.clinic_id,
+                    };
+                    cl_dr.Add(c);
+                }
+                Address Address = new Address();
+                {
+                    Address.building = clinicDTO.Address.building;
+                    Address.street = clinicDTO.Address.street;
+                    Address.notes = clinicDTO.Address.notes;
+                    Address.flat_num = clinicDTO.Address.flat_num;
+                    Address.floor_num = clinicDTO.Address.floor_num;
+                    Address.square = clinicDTO.Address.square;
+                    Address.city_id = clinicDTO.Address.city_id;
+                }
+                Clinic clinic = new Clinic()
+                {
+                    id = clinicDTO.id,
+                    name = clinicDTO.name,
+                    phone = clinicDTO.phone,
+                    Clinic_Doctors = cl_dr,
+                    Address = Address,
+                };
+                Clinic returnedClinic = await ClinicRepos.Add(clinic);
+                return Ok(returnedClinic);
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+            //if (returnedClinic == null)
+            //    return BadRequest();
+            //return Ok(returnedClinic);
 
         }
 
@@ -94,6 +124,17 @@ namespace Vezeeta.Controllers
         public async Task<IActionResult> DeleteClinic(int id)
         {
             await ClinicRepos.DeleteById(id);
+            return NoContent();
+        }
+
+        [HttpGet("/api/Dr_clinic/{D_id}") ]
+        public async Task<IActionResult> getByDr(int D_id)
+        {
+            var cl = await getDrRepo.getByDr(D_id);
+            if (cl != null)
+            {
+                return Ok(cl);
+            }
             return NoContent();
         }
 
