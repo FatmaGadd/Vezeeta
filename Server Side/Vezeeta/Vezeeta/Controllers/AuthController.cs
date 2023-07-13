@@ -138,7 +138,7 @@ namespace Vezeeta.Controllers
                     role = "Doctor",
                     doctor = new
                     {
-                        email = doctor.email,
+                        id = doctor.id,
 
                     }
                 }
@@ -194,7 +194,7 @@ namespace Vezeeta.Controllers
                     role = "Patient",
                     doctor = new
                     {
-                        email = patient.email,
+                        id = patient.id,
 
                     }
                 }

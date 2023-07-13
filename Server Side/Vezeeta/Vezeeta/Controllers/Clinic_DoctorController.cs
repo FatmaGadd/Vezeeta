@@ -57,7 +57,7 @@ namespace Vezeeta.Controllers
         // PUT: api/Clinic_Doctor/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}/{C_id}")]
-        public async Task<IActionResult> PutClinic_Doctor(int id, int C_id, Clinic_DoctorDTO clinic_Doctor)
+        public async Task<IActionResult> PutClinic_Doctor(int id, int C_id, Clinics_DoctorDTO clinic_Doctor)
         {
             Clinic_Doctor oldClinic_Dr = await Clinic_doctorRepos.GetByDr_cl(id, C_id);
             if (oldClinic_Dr == null) return BadRequest();
@@ -74,7 +74,7 @@ namespace Vezeeta.Controllers
         // POST: api/Clinic_Doctor
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Clinic_Doctor>> PostClinic_Doctor(Clinic_DoctorDTO clinic_DoctorDTO)
+        public async Task<ActionResult<Clinic_Doctor>> PostClinic_Doctor(Clinics_DoctorDTO clinic_DoctorDTO)
         {
             if (clinic_DoctorDTO == null) return BadRequest();
             Clinic_Doctor clinic_Doctor = new Clinic_Doctor()

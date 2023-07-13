@@ -57,6 +57,12 @@ namespace Vezeeta.Repository.doctor_phones
             return Dr_Phone;
         }
 
+        public async Task<Doctors_Phone> getByPhoneIsExist(string phone)
+        {
+          return await db.Doctors_Phones.FirstOrDefaultAsync(d=>d.phone == phone);
+         
+        }
+
         public async Task<Doctors_Phone> Update(int id, Doctors_Phone entity)
         {
             db.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;

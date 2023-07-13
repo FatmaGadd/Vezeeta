@@ -5,7 +5,7 @@ using Vezeeta.Models;
 
 namespace Vezeeta.Repository.clinics
 {
-    public class ClinicRepository:IEntityRepository<Clinic>
+    public class ClinicRepository:IEntityRepository<Clinic>,IClinic
     {
         #region fields
         private readonly VezeetaContext db;
@@ -57,6 +57,16 @@ namespace Vezeeta.Repository.clinics
                 db.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 await db.SaveChangesAsync();
                 return entity;
+            }
+            return null;
+        }
+        public async Task<Clinic_Doctor> getByDr(int id)
+        {
+            var cl = db.Clinic_Doctors.Include(d => d.clinic).ThenInclude(c => c.Address).ThenInclude(c=>c.city);
+            foreach (var item in cl)
+            {
+                if (item.Dr_id == id)
+                    return item;
             }
             return null;
         }

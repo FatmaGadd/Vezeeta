@@ -4,6 +4,6 @@ export interface ISearch {
     City: number | null,
     Name: string | null,
     Gender: string | null,
-    Fese: string | null,
+    Fese: number | null,
 
 }
