@@ -25,6 +25,7 @@ import { PatientAppointmentComponent } from './components/patient/patient-appoin
 import { ErrorComponent } from './components/error/error.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { SearchComponent } from './components/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,13 +33,14 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     FooterComponent,
     RegisterPatientComponent,
     LoginComponent,
+    PatientAppointmentComponent,
     PatientAccountComponent,
     PatientProfileComponent,
     PatientChangePasswordComponent,
-    PatientAppointmentComponent,
     ErrorComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

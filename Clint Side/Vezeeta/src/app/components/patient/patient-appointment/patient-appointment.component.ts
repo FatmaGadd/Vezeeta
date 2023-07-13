@@ -30,6 +30,7 @@ export class PatientAppointmentComponent implements OnInit {
   temp:any;
   isLoading = false;
   isBooking=true;
+  // isBooking=false;
   patientId=2; // get from local storage
 constructor(private patientAppoint:PatientAppointService,private DrService:DoctorService , private clinicService:ClinicDoctorService) {}  // must change service
 
@@ -64,7 +65,7 @@ constructor(private patientAppoint:PatientAppointService,private DrService:Docto
             next:(res)=>{
                 this.temp=res.body;
                 this.clinic=this.temp; // get clinic 
-                console.log(this.clinic[0].dr_id);
+                console.log(this.clinic[0].Dr_id);
                 console.log(this.clinic[0].clinic_id);
 ///// get address using dr_id , clinic_id 
             },

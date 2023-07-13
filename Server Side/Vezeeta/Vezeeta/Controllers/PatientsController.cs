@@ -172,15 +172,6 @@ namespace Vezeeta.Controllers
               
         }
 
-        [HttpGet("{email}")]
-        public async Task<ActionResult<Patient>> GetPatientByMail(string email)
-        {
-            Patient? patient = await contextUpdat.GetByMail(email);
-            if (patient == null)
-            {
-                return NotFound(" لم نتمكن من العثور على حسابك بإستخدام هذا البريد الإلكتروني");
-            }
-            return Ok(patient);
-        }
+      
     }
 }
