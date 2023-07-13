@@ -10,7 +10,7 @@ using Vezeeta.Models;
 
 namespace Vezeeta.Repository
 {
-    public class patientRepo : IEntityRepository<Patient>, IUpdateAccountRepo<Patient>,IAuthentication<Patient>
+    public class patientRepo : IEntityRepository<Patient>, IUpdateAccountRepo<Patient>,IAuthentication<Patient>,IPatientQuetions
     {
         private readonly VezeetaContext DB;
 
@@ -169,6 +169,16 @@ namespace Vezeeta.Repository
                 }
             }
             return null;
+        }
+
+        public async Task<Patient> GetPatientWithQuetions(int id)
+        {
+            return await DB.Patients
+                .Include(p => p.Questions)
+                .ThenInclude(q => q.Answers)
+                .ThenInclude(a => a.Dr)
+                .ThenInclude(d => d.id_specializeNavigation)
+                .FirstOrDefaultAsync(p => p.id == id);
         }
     }
 }

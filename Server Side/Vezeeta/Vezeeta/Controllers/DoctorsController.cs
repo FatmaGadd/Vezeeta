@@ -17,10 +17,11 @@ namespace Vezeeta.Controllers
     public class DoctorsController : ControllerBase
     {
         IEntityRepository<Doctor> doctorRepository;
-
-        public DoctorsController(IEntityRepository<Doctor> _doctorRepository)
+        IdoctorAdd byMail;
+        public DoctorsController(IEntityRepository<Doctor> _doctorRepository, IdoctorAdd _byMail)
         {
             doctorRepository = _doctorRepository;
+            byMail = _byMail;
         }
 
         // GET: api/Doctors
@@ -92,28 +93,42 @@ namespace Vezeeta.Controllers
         public async Task<ActionResult<Doctor>> PostDoctor(DoctorDTO doctor)
         {
             if (doctor == null)
-                return BadRequest();
-
-            Doctor dr = new Doctor()
+                return BadRequest("ddata is null");
+            try
             {
-                id = doctor.id,
-                name = doctor.name,
-                email = doctor.email,
-                verification = doctor.verification,
-                image = doctor.image,
-                id_specialize = doctor.id_specialize,
-                waiting_time = doctor.waiting_time,
-                description = doctor.description,
-                password = doctor.password,
-                gender = doctor.gender,
-                experience = doctor.experience,
-                online_fees = doctor.online_fees,
-                Doctors_Phones=doctor.Doctors_Phones,
-            };
-            Doctor oldDr = await doctorRepository.Add(dr);
-            if (oldDr != null)
+                ICollection<Doctors_Phone> dr_phone = new HashSet<Doctors_Phone>();
+                foreach (var item in doctor.Doctors_Phones)
+                {
+                    Doctors_Phone d = new Doctors_Phone()
+                    {
+                        phone = item.phone,
+                    };
+                    dr_phone.Add(d);
+                }
+                Doctor dr = new Doctor()
+                {
+                    id = doctor.id,
+                    name = doctor.name,
+                    email = doctor.email,
+                    verification = doctor.verification,
+                    image = doctor.image,
+                    id_specialize = doctor.id_specialize,
+                    waiting_time = doctor.waiting_time,
+                    description = doctor.description,
+                    password = doctor.password,
+                    gender = doctor.gender,
+                    experience = doctor.experience,
+                    online_fees = doctor.online_fees,
+                    Doctors_Phones = dr_phone,
+                };
+                await doctorRepository.Add(dr);
                 return Ok(dr);
-            return BadRequest();
+            }
+               // Doctor oldDr = await doctorRepository.Add(dr);
+               catch(Exception ex) { return BadRequest(ex.Message); }
+            //if (oldDr != null)
+            //    return Ok(dr);
+            //return BadRequest();
         }
 
         // DELETE: api/Doctors/5
@@ -122,6 +137,16 @@ namespace Vezeeta.Controllers
         {
             await doctorRepository.DeleteById(id);
             return Ok();
+        }
+
+        [HttpGet("/api/Dr/{email}")]
+        public async Task<IActionResult>getDoctorByMail(string email)
+        {
+            if(email==null)
+                return BadRequest();
+            var dr = await byMail.getByMail(email);
+            if(dr != null) return Ok();
+            return NoContent();
         }
 
     }

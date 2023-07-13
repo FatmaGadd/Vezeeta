@@ -18,7 +18,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RegisterPatientComponent } from './components/register-patient/register-patient.component';
 import { LoginComponent } from './components/login/login.component';
-import { SearchComponent } from './components/search/search.component';
+import { DoctorRegisterComponent } from './components/doctor-register/doctor-register.component';
+import { DoctorProfileComponent } from './components/doctor-profile/doctor-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,6 @@ import { SearchComponent } from './components/search/search.component';
     FooterComponent,
     RegisterPatientComponent,
     LoginComponent,
-    SearchComponent,
   ],
   imports: [
     BrowserModule,

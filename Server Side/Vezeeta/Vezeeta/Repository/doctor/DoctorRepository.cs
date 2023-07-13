@@ -7,7 +7,7 @@ using Vezeeta.Models;
 
 namespace Vezeeta.Repository.doctor
 {
-    public class DoctorRepository : IEntityRepository<Doctor>,IAuthentication<Doctor>
+    public class DoctorRepository : IEntityRepository<Doctor>,IAuthentication<Doctor>,IdoctorAdd
     {
 
         #region fields
@@ -51,7 +51,7 @@ namespace Vezeeta.Repository.doctor
         public async Task<Doctor> GetById(int id)
         {
 
-            return await db.Doctors.FirstOrDefaultAsync(d => d.id == id);
+            return await db.Doctors.Include(d=>d.Doctors_Phones).Include(d=>d.id_specializeNavigation).FirstOrDefaultAsync(d => d.id == id);
         }
 
         public async Task<Doctor> Update(int id, Doctor doctor)
@@ -70,6 +70,11 @@ namespace Vezeeta.Repository.doctor
             //check dr in one line by email and password
             Doctor dr = await db.Doctors.FirstOrDefaultAsync(d => d.email == loginDTO.email && d.password == loginDTO.password);
             return dr;
+        }
+
+        public async Task<Doctor> getByMail(string email)
+        {
+            return await db.Doctors.FirstOrDefaultAsync(d=>d.email == email);
         }
 
         #endregion

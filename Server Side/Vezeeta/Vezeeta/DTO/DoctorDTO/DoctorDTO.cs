@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Vezeeta.Models;
+using Vezeeta.DTO.Doctor_phones_DTO;
 
 namespace Vezeeta.DTO.DoctorDTO
 {
@@ -17,7 +18,7 @@ namespace Vezeeta.DTO.DoctorDTO
         [Required]
         [StringLength(150)]
         public string password { get; set; }
-        [StringLength(250)]
+       
         public string image { get; set; }
         [Required]
         [StringLength(1)]
@@ -26,7 +27,7 @@ namespace Vezeeta.DTO.DoctorDTO
         [Column(TypeName = "date")]
         public DateTime birth_date { get; set; }
         [Required]
-        [StringLength(150)]
+       
         public string verification { get; set; }
         
         public int id_specialize { get; set; }
@@ -40,7 +41,7 @@ namespace Vezeeta.DTO.DoctorDTO
         [StringLength(50)]
         public string name { get; set; }
 
-        public virtual ICollection<Doctors_Phone> Doctors_Phones { get; set; }
+        public  ICollection<Doctor_PhonesDTO> Doctors_Phones { get; set; }
 
 
     }

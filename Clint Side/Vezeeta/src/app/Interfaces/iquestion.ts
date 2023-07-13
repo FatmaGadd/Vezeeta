@@ -4,7 +4,7 @@ export interface IQuestion {
     title:string|null,
     age?:number|null,
     gender?:string|null,
-    spec_id:number|null,
+    spec_id?:number|null,
     patient_id?:number|null,
     type?:string|null
 }

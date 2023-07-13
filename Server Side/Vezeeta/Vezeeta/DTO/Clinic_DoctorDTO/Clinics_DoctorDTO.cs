@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vezeeta.DTO.Clinic_DoctorDTO
 {
-    public class Clinic_DoctorDTO
+    public class Clinics_DoctorDTO
     {
         public int Dr_id { get; set; }
         [Column(TypeName = "decimal(8,2)")]
