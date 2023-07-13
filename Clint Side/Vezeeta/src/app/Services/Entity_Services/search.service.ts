@@ -15,7 +15,7 @@ export class SearchService {
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
   };
 
-  search(search: ISearch) {
+  Search(search: ISearch) {
     return this.http.post(SearchURLs.Get_Post(), search);
   }
 }
