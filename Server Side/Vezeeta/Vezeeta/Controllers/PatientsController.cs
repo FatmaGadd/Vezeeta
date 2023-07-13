@@ -22,12 +22,14 @@ namespace Vezeeta.Controllers
     public class PatientsController : ControllerBase
     {
         private readonly IEntityRepository<Patient> context;
-        private readonly IUpdateAccountRepo<Patient> contextUpdat; 
+        private readonly IUpdateAccountRepo<Patient> contextUpdat;
+        IPatientQuetions pqcontext;
 
-        public PatientsController(IEntityRepository<Patient> _context ,IUpdateAccountRepo<Patient> _contextUpdat)
+        public PatientsController(IEntityRepository<Patient> _context , IUpdateAccountRepo<Patient> _contextUpdat, IPatientQuetions _pqcontext)
         {
             context = _context;
             contextUpdat = _contextUpdat;
+            pqcontext = _pqcontext;
         }
 
         // GET: api/Patients
@@ -172,6 +174,27 @@ namespace Vezeeta.Controllers
               
         }
 
-      
+        [HttpGet]
+        [Route("Questions/{id}")]
+        public async Task<ActionResult<Patient>> GetPatientWithQuestions(int id)
+        {
+            Patient? patient = await pqcontext.GetPatientWithQuetions(id);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+            return Ok(patient);
+        }
+        [HttpGet("{email}")]
+        public async Task<ActionResult<Patient>> GetPatientByMail(string email)
+        {
+            Patient? patient = await contextUpdat.GetByMail(email);
+            if (patient == null)
+            {
+                return NotFound(" لم نتمكن من العثور على حسابك بإستخدام هذا البريد الإلكتروني");
+            }
+            return Ok(patient);
+        }
+
     }
 }
