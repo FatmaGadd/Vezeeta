@@ -39,6 +39,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/home/Components/search/search.component';
 import { DoctorsListComponent } from './components/search-page/components/doctors-list/doctors-list.component';
 import { SideMenueComponent } from './components/search-page/components/side-menue/side-menue.component';
+import { ClinicComponent } from './components/clinic/clinic.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,12 +58,13 @@ import { SideMenueComponent } from './components/search-page/components/side-men
     QuestionsComponent,
     SpecilizationComponent,
     ViewQuestionComponent,
-SearchComponent,
-SearchPageComponent,
-SearchTopBarComponent,
-HomeComponent,
-DoctorsListComponent,
-SideMenueComponent,
+    SearchComponent,
+    SearchPageComponent,
+    SearchTopBarComponent,
+    HomeComponent,
+    DoctorsListComponent,
+    SideMenueComponent,
+    ClinicComponent,
   ],
   imports: [
     PaginatorModule,

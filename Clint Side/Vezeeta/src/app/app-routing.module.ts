@@ -12,10 +12,13 @@ import { ViewQuestionComponent } from './components/questions/view-question/view
 import { SpecilizationComponent } from './components/questions/specilization/specilization.component';
 import { QuestionsComponent } from './components/questions/ask-question/questions.component';
 import { PatientQuestionsComponent } from './components/questions/patient-questions/patient-questions.component';
+import { HomeComponent } from './components/home/home.component';
+import { ClinicComponent } from './components/clinic/clinic.component';
 
 
 const routes: Routes = [
-  {path:'',component:RouterModule },
+  {path:'',component:HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registerPatient', component: RegisterPatientComponent },
   {path:'account/profile' , component:PatientProfileComponent},
@@ -27,7 +30,7 @@ const routes: Routes = [
   {path:'questions/specializations',component:SpecilizationComponent},
   {path:'questions/ask',component:QuestionsComponent},
   {path:'questions/patient',component:PatientQuestionsComponent},
-  // { path: 'updateClinic/:id', component: ClinicComponent },
+  { path: 'updateClinic/:id', component: ClinicComponent },
   {path:'**',  component:ErrorComponent },
 ];
 @NgModule({
