@@ -42,7 +42,7 @@ namespace Vezeeta.Repository
 
         public async Task<Specialization> GetById(int id)
         {
-            return await dbContext.Specializations.FirstOrDefaultAsync(spec => spec.id == id);
+            return await dbContext.Specializations.Include(s => s.Questions).ThenInclude(q => q.Answers).ThenInclude(a => a.Dr).FirstOrDefaultAsync(spec => spec.id == id);
         }
 
         public async Task<Specialization> Update(int id, Specialization spec)
