@@ -27,8 +27,6 @@ import { DoctorProfileComponent } from './components/doctor-profile/doctor-profi
     FooterComponent,
     RegisterPatientComponent,
     LoginComponent,
-    DoctorRegisterComponent,
-    DoctorProfileComponent,
   ],
   imports: [
     BrowserModule,
