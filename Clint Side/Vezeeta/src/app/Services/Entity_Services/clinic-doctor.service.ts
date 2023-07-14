@@ -37,9 +37,9 @@ export class ClinicDoctorService {
       this.options
     );
   }
-  updateDoctor_Clinic(id: number, clinic_dr: IclinicDoctor) {
+  updateDoctor_Clinic(id: number, Cl_id: number, clinic_dr: any) {
     return this.http.put(
-      Clinic_doctorURLs.GetById_Put_Delete(id),
+      `${Clinic_doctorURLs.GetById_Put_Delete(id)}/${Cl_id}`,
       clinic_dr,
       this.options
     );

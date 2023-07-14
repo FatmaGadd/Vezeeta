@@ -53,38 +53,38 @@ namespace Vezeeta.Controllers
         // PUT: api/Clinics/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClinic(int id, ClinicDTO clinic)
+        public async Task<IActionResult> PutClinic(int id, ClinicUpdateDTO clinic)
         {
             Clinic ReturnedClinic;
             Clinic oldClinic = await ClinicRepos.GetById(id);
-            ICollection<Clinic_Doctor> cl_dr = new HashSet<Clinic_Doctor>();
-            foreach (var cllinicDr in clinic.Clinic_Doctors)
-            {
-                Clinic_Doctor c = new Clinic_Doctor()
-                {
-                    Dr_id = cllinicDr.Dr_id,
-                    clinic_id = cllinicDr.clinic_id,
-                };
-                cl_dr.Add(c);
-            }
-            Address Address = new Address();
-            {
-                Address.building = clinic.Address.building;
-                Address.street = clinic.Address.street;
-                Address.notes = clinic.Address.notes;
-                Address.flat_num = clinic.Address.flat_num;
-                Address.floor_num = clinic.Address.floor_num;
-                Address.square = clinic.Address.square;
-                Address.city_id = clinic.Address.city_id;
-            }
+            //ICollection<Clinic_Doctor> cl_dr = new List<Clinic_Doctor>();
+            //foreach (var cllinicDr in clinic.Clinic_Doctors)
+            //{
+            //    Clinic_Doctor c = new Clinic_Doctor()
+            //    {
+            //        Dr_id = cllinicDr.Dr_id,
+            //        clinic_id = cllinicDr.clinic_id,
+            //    };
+            //    cl_dr.Add(c);
+            //}
+            //Address Address = new Address();
+            //{
+            //    Address.building = clinic.Address.building;
+            //    Address.street = clinic.Address.street;
+            //    Address.notes = clinic.Address.notes;
+            //    Address.flat_num = clinic.Address.flat_num;
+            //    Address.floor_num = clinic.Address.floor_num;
+            //    Address.square = clinic.Address.square;
+            //    Address.city_id = clinic.Address.city_id;
+            //}
             
             if (oldClinic == null) { return BadRequest(); }
             try
             {
                 oldClinic.name = clinic.name;
                 oldClinic.phone = clinic.phone;
-                oldClinic.Clinic_Doctors = cl_dr;
-                oldClinic.Address = Address;
+                //oldClinic.Clinic_Doctors = cl_dr;
+               // oldClinic.Address = Address;
                 ReturnedClinic = await ClinicRepos.Update(id, oldClinic);
             }
             catch (DbUpdateException e)

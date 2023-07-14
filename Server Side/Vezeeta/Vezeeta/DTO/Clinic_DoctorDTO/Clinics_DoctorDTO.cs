@@ -8,7 +8,7 @@ namespace Vezeeta.DTO.Clinic_DoctorDTO
     {
         public int Dr_id { get; set; }
         [Column(TypeName = "decimal(8,2)")]
-        [Required]
+        
         public decimal? fees { get; set; }
 
         public int clinic_id { get; set; }
