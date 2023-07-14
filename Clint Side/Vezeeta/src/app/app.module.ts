@@ -44,6 +44,12 @@ import { DoctorRegisterComponent } from './components/doctor-register/doctor-reg
 import { DoctorProfileComponent } from './components/doctor-profile/doctor-profile.component';
 import { LoginDoctorComponent } from './components/login/login-doctor/login-doctor.component';
 import { LoginAdminComponent } from './components/login/login-admin/login-admin.component';
+import { CarouselModule } from 'primeng/carousel';
+import { ScrollerModule } from 'primeng/scroller';
+import { TimeTableComponent } from './components/search-page/components/doctors-list/components/time-table/time-table.component';
+import { ConfirmCodeComponent } from './components/confirm-code/confirm-code.component';
+import { ChangePasswordComponent } from './components/Doctor/change-password/change-password.component';
+import { DoctorDataComponent } from './components/Doctor/doctor-data/doctor-data.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +79,10 @@ import { LoginAdminComponent } from './components/login/login-admin/login-admin.
     DoctorRegisterComponent,
     LoginDoctorComponent,
     LoginAdminComponent,
+    TimeTableComponent,
+    ConfirmCodeComponent,
+    ChangePasswordComponent,
+    DoctorDataComponent
   ],
   imports: [
     PaginatorModule,
@@ -92,6 +102,8 @@ import { LoginAdminComponent } from './components/login/login-admin/login-admin.
     BrowserAnimationsModule,
     MatSlideToggleModule,
     ProgressSpinnerModule,
+    CarouselModule,
+    ScrollerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

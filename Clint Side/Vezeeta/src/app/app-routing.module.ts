@@ -19,6 +19,12 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { LoginAdminComponent } from './components/login/login-admin/login-admin.component';
 import { LoginDoctorComponent } from './components/login/login-doctor/login-doctor.component';
 import { DoctorRegisterComponent } from './components/doctor-register/doctor-register.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ConfirmCodeComponent } from './components/confirm-code/confirm-code.component';
+import { ChangePasswordComponent } from './components/Doctor/change-password/change-password.component';
+import { DoctorProfileComponent } from './components/doctor-profile/doctor-profile.component';
+import { DoctorDataComponent } from './components/Doctor/doctor-data/doctor-data.component';
+
 
 
 const routes: Routes = [
@@ -40,7 +46,13 @@ const routes: Routes = [
   {path:'questions/patient',component:PatientQuestionsComponent},
   { path: 'updateClinic/:id', component: ClinicComponent },
   { path: 'search', component: SearchPageComponent },
+  {path:'resetPassword' , component:ResetPasswordComponent},
+  {path:'confirmCode' , component:ConfirmCodeComponent},
+  { path: 'doctor/changePassword', component: ChangePasswordComponent },
+  { path: 'doctor/profile', component: DoctorProfileComponent },
+  { path: 'doctor/data/:id', component: DoctorDataComponent },
   {path:'**',  component:ErrorComponent },
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
