@@ -40,6 +40,8 @@ import { SearchComponent } from './components/home/Components/search/search.comp
 import { DoctorsListComponent } from './components/search-page/components/doctors-list/doctors-list.component';
 import { SideMenueComponent } from './components/search-page/components/side-menue/side-menue.component';
 import { ClinicComponent } from './components/clinic/clinic.component';
+import { DoctorRegisterComponent } from './components/doctor-register/doctor-register.component';
+import { DoctorProfileComponent } from './components/doctor-profile/doctor-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +67,8 @@ import { ClinicComponent } from './components/clinic/clinic.component';
     DoctorsListComponent,
     SideMenueComponent,
     ClinicComponent,
+    DoctorProfileComponent,
+    DoctorRegisterComponent,
   ],
   imports: [
     PaginatorModule,
