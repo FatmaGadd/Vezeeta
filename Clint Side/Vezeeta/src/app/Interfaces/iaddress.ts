@@ -1,25 +1,14 @@
 export interface IAddress {
-    clinic_Doctors:
-        {
-          clinic: {
-            address: {
-                clinic_id:number,
-                Dr_id:number,
-              street: string,
-              square: string,
-              building: string,
-              floor_num: number,
-              flat_num: number,
-              notes: string,
-              city: {
-                name:string,
-                region: {
-                  name: string,
-                }
-            }
-        }
-    }
-}
+  building:string,
+  city:{
+   name:string,
+ }
+   flat_num:number,
+ floor_num:number,
+ notes:string|null,
+ square:string,
+ street:string,
+         
         
 }
 
