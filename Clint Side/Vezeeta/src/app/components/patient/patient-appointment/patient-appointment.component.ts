@@ -4,6 +4,7 @@ import { IAddress } from 'src/app/Interfaces/iaddress';
 import { IclinicDoctor } from 'src/app/Interfaces/iclinic-doctor';
 import { Idoctor } from 'src/app/Interfaces/idoctor';
 import { IPatientAppoint } from 'src/app/Interfaces/ipatient-appoint';
+import { AddressService } from 'src/app/Services/Entity_Services/address.service';
 import { ClinicDoctorService } from 'src/app/Services/Entity_Services/clinic-doctor.service';
 import { ClinicService } from 'src/app/Services/Entity_Services/clinic.service';
 import { DoctorService } from 'src/app/Services/Entity_Services/doctor.service';
@@ -17,6 +18,7 @@ import { PatientService } from 'src/app/Services/Entity_Services/patient.service
 })
 export class PatientAppointmentComponent implements OnInit {
 
+  patientId=2; // get from local storage
   appointment:IPatientAppoint[]=[];
   Doctors:Idoctor|undefined;
   clinic:IclinicDoctor[]=[];
@@ -30,9 +32,11 @@ export class PatientAppointmentComponent implements OnInit {
   temp:any;
   isLoading = false;
   isBooking=true;
-  // isBooking=false;
-  patientId=2; // get from local storage
-constructor(private patientAppoint:PatientAppointService,private DrService:DoctorService , private clinicService:ClinicDoctorService) {}  // must change service
+   words = ['الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن', 'التاسع', 
+  'العاشر','الحادي عشر ', ' الثاني عشر', 'الثالث عشر', ' الرابع عشر', 'الخامس عشر', ' السادس عشر', 'السابع عشر' , 'الثامن عشر', 'التاسع عشر', 
+  'العشرون'];
+  
+constructor(private patientAppoint:PatientAppointService,private DrService:DoctorService , private clinicService:ClinicDoctorService,private adressService:AddressService) {}  
 
   ngOnInit(): void {
     this.patientAppoint.getAllAppointForPatient(this.patientId).subscribe({ 
@@ -65,9 +69,26 @@ constructor(private patientAppoint:PatientAppointService,private DrService:Docto
             next:(res)=>{
                 this.temp=res.body;
                 this.clinic=this.temp; // get clinic 
-                console.log(this.clinic[0].Dr_id);
+                this.clinic.forEach(clinic => {
+                      ///// get address using dr_id , clinic_id 
+              this.adressService.GetById(clinic.dr_id).subscribe(
+                {
+                  next:(res)=>{
+                    this.temp=res.body;
+                    this.Address=this.temp;
+                    
+                    
+                    
+                  },
+                  error:(e)=>console.log(e.error)
+                  
+                }
+              )
+              
+                });
+                console.log(this.clinic[0].dr_id);
                 console.log(this.clinic[0].clinic_id);
-///// get address using dr_id , clinic_id 
+
             },
             error:(e)=>console.log(e.error )
             
