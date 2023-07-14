@@ -77,6 +77,7 @@ namespace Vezeeta.Controllers
                 oldDr.verification = doctor.verification;
                 oldDr.experience = doctor.experience;
                 oldDr.online_fees = doctor.online_fees;
+                oldDr.image = doctor.image;
                 
             }
             catch (DbUpdateException e) { return BadRequest(e.Message); }

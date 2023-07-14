@@ -101,3 +101,26 @@ h1,h2,h3,h4,h5{
   font-weight: 600;
   color: #0062cc;
 }
+
+/* fatma change pass form  */
+.parent {
+  direction: rtl;
+  font-size: 1.2rem;
+  color: rgb(102, 102, 102);
+}
+.pass-parent{
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.pass-Change{
+  font-size: 1.2rem;
+  width: 100%;
+  line-height: 35px;
+  text-indent: 20px;
+  border-bottom: 1.5px solid rgb(238, 238, 238);
+}
+
