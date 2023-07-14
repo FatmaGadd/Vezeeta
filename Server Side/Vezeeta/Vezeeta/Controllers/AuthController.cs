@@ -139,6 +139,7 @@ namespace Vezeeta.Controllers
                     doctor = new
                     {
                         id = doctor.id,
+                        name = doctor.name,
 
                     }
                 }
@@ -192,10 +193,10 @@ namespace Vezeeta.Controllers
                 {
                     token = _jwt.GenerateToken(claims),
                     role = "Patient",
-                    doctor = new
+                    patient = new
                     {
                         id = patient.id,
-
+                        name = patient.name,
                     }
                 }
 

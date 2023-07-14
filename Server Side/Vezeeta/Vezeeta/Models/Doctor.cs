@@ -51,6 +51,7 @@ namespace Vezeeta.Models
         [StringLength(50)]
         public string waiting_time { get; set; }
         public bool is_deleted { get; set; }
+        public int? code { get; set; }
         [Required]
         [StringLength(50)]
         public string name { get; set; }

@@ -156,14 +156,22 @@ namespace Vezeeta.Repository
 
         public async Task<Patient> Login(LogInDTO loginDTO)
         {
-            Patient?  patient=  await GetByMail(loginDTO.email);
+            Patient? patient;
+            if (await phoneValidation(loginDTO?.email))
+            {
+                 patient=  await GetByPhone(loginDTO.email);
+            }
+            else
+            {
+                patient = await GetByMail(loginDTO.email);
+            }
             if (patient == null)
             {
                 return null;
             }
             else
             {
-                if (patient.email == loginDTO.email && patient.password == loginDTO.password)
+                if ((patient.email == loginDTO.email || patient.phone == loginDTO.email) && patient.password == loginDTO.password)
                 {
                     return patient;
                 }

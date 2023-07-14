@@ -46,6 +46,7 @@ namespace Vezeeta.Models
         public DateTime? create_at { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? update_at { get; set; }
+        public int? code { get; set; }
         public bool is_deleted { get; set; }
 
         [InverseProperty("patient")]
