@@ -6,7 +6,7 @@
             <div class="bg-white p-5 rounded ">
                 <form  [formGroup]="formLogin"  class="mt-4">
                     <div class="d-flex p-1 m-1">
-                        <label asp-for="patientEmail" class="control-label col-4">  الموبايل أو البريد الالكتروني : </label>
+                        <label asp-for="patientEmail" class="control-label col-4">   البريد الالكتروني : </label>
                         <div class="col-8">
                             <input type="email" id="patientEmail" name="patientEmail" placeholder="example@AppDomain.com" class="form-control" formControlName="patientEmail">
                             <ng-container *ngIf="getEmail.touched || showError">
@@ -14,8 +14,7 @@
                                   *ngIf="getEmail.hasError('required')" 
                                   class=" text-danger fs-6 mb-2"
                                 >
-                                يرجى  ادخال البريد الالكتروني / رقم الموبايل
-                                </div>
+                                يرجى  ادخال البريد الالكتروني                                 </div>
                               </ng-container>
                         </div>
                     </div>
@@ -53,12 +52,12 @@
                 </form>
                 <ng-container *ngIf="showError && formLogin.valid">
                   <div class="text-danger fs-6 text-center">
-                    رقم المحمول/ البريد الإلكتروني او كلمة المرور التي ادخلتها غير صحيحة، يرجى المحاولة مرة اخرى
+                     البريد الإلكتروني او كلمة المرور التي ادخلتها غير صحيحة، يرجى المحاولة مرة اخرى
                   </div>
                 </ng-container>
 
                 <hr style="height:2px" />
-                <div class="log m-3 m-auto ">مستخدم جديد ؟<a class="mx-3"  [routerLink]="['/registerPatient']">انضم الان</a></div>
+                <div class="log m-3 m-auto ">مستخدم جديد ؟<a class="mx-3"  [routerLink]="['/register/doctor']">انضم الان</a></div>
             </div>
         </div>
 

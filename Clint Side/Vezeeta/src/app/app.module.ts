@@ -42,6 +42,8 @@ import { SideMenueComponent } from './components/search-page/components/side-men
 import { ClinicComponent } from './components/clinic/clinic.component';
 import { DoctorRegisterComponent } from './components/doctor-register/doctor-register.component';
 import { DoctorProfileComponent } from './components/doctor-profile/doctor-profile.component';
+import { LoginDoctorComponent } from './components/login/login-doctor/login-doctor.component';
+import { LoginAdminComponent } from './components/login/login-admin/login-admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +71,8 @@ import { DoctorProfileComponent } from './components/doctor-profile/doctor-profi
     ClinicComponent,
     DoctorProfileComponent,
     DoctorRegisterComponent,
+    LoginDoctorComponent,
+    LoginAdminComponent,
   ],
   imports: [
     PaginatorModule,

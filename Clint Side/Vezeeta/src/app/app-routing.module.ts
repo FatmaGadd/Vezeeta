@@ -16,12 +16,18 @@ import { HomeComponent } from './components/home/home.component';
 import { ClinicComponent } from './components/clinic/clinic.component';
 import { SearchComponent } from './components/home/Components/search/search.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
+import { LoginAdminComponent } from './components/login/login-admin/login-admin.component';
+import { LoginDoctorComponent } from './components/login/login-doctor/login-doctor.component';
+import { DoctorRegisterComponent } from './components/doctor-register/doctor-register.component';
 
 
 const routes: Routes = [
   {path:'',component:HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'login/admin', component: LoginAdminComponent },
+  { path: 'login/doctor', component: LoginDoctorComponent },
+  { path: 'register/doctor', component: DoctorRegisterComponent },
   { path: 'registerPatient', component: RegisterPatientComponent },
   {path:'account/profile' , component:PatientProfileComponent},
   {path:'account/changePassword' , component:PatientChangePasswordComponent},
