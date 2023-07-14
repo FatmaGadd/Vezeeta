@@ -36,7 +36,17 @@
                     <ng-container *ngFor="let appoint of appointment ; let i= index">
                             <tr>
                                 <td>{{DoctorsName[i]}}</td> 
-                                <td>addressss</td>
+                                <td *ngIf="Address !=null">
+                                    <span *ngIf="Address.city.name" >{{Address.city.name}} -  </span>
+                                    <span *ngIf="Address.street" >{{Address.street}} -  </span>
+                                    <span *ngIf="Address.square"> {{Address.square}} - </span>
+                                    <span *ngIf="Address.building"> {{Address.building}} - </span>
+                                    <span *ngIf="Address.floor_num"> الدور {{words[Address.floor_num]}}  - </span>
+                                    <span *ngIf="Address.flat_num">  شقه رقم {{  Address.flat_num}} </span>
+                                    <br>
+                                    
+                                    <span *ngIf="Address.notes">{{Address.notes}}</span>
+                                </td>
                                 <td>{{appointDate[i]}}</td>
                               
                                 <ng-container *ngIf="!appoint.type">

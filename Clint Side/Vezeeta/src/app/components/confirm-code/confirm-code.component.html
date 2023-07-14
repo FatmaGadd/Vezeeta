@@ -1,0 +1,45 @@
+<div class="container my-5 parent">
+    
+    <div class="row">
+        <div class=" col-md-7 col-lg-5 m-auto">
+            <div class="joinNow"> ادخل الكود </div>
+            <div class="bg-white p-5 rounded "> 
+                <form  [formGroup]="formConfirmCode"  class="mt-4">
+                      
+                    <div class="d-flex p-1 m-1">
+                        
+                        <div class="col-11">
+                            <input type="number" id="patientCode" name="patientCode"  class="form-control" formControlName="patientCode">
+                            <ng-container class="m-2" *ngIf="getCode.touched || showError">
+                                <div
+                                  *ngIf="getCode.hasError('required')" 
+                                  class=" text-danger fs-6 mb-2"
+                                >
+                                يرجى  ادخال   الكود
+                                </div>
+                               
+                              <div
+                              *ngIf="erorrFromServer!=''" 
+                              class=" text-danger fs-6 mb-2"
+                            >
+                           هذا الكود غير صحيح 
+                            </div>
+                              </ng-container>
+                        </div>
+                    </div>
+               
+                </form>
+                <hr style="height:2px" />
+                <div class="log m-3 m-auto ">  <a class="mx-3"  [routerLink]="['/resetPassword']">  تغيير كلمة المرور </a></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+

@@ -20,7 +20,6 @@ export class PatientProfileComponent implements OnInit{
     patientId:number =4; // get from session after login
   
         ngOnInit() :void{ 
-
           this.formProfile =   new FormGroup({
             patientName: new FormControl( '', [Validators.required, Validators.minLength(3)]),
             patientEmail :new FormControl( '',[Validators.required ,Validators.email]),
