@@ -35,7 +35,11 @@ namespace Vezeeta.Repository
 
         public async Task<List<Appointment>> GetAll(int Dr_id)
         {
-           return await dbContext.Appointments.Include(a => a.Dr).Include(a => a.appoint).Where(a => a.Dr_id == Dr_id).ToListAsync();
+            var temp = await dbContext.Appointments.Include(a => a.Dr).Include(a => a.appoint).Where(a => a.Dr_id == Dr_id).ToListAsync();
+         temp=temp.OrderBy(a=>a.start_date).ToList();
+            temp = temp.Where(a => a.start_date >= DateTime.Now).ToList(); 
+            return temp;
+
         }
 
         public async Task<Appointment> GetById(int id, int Dr_id)
