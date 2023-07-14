@@ -51,7 +51,7 @@ namespace Vezeeta.Repository.doctor
         public async Task<Doctor> GetById(int id)
         {
 
-            return await db.Doctors.Include(d=>d.Doctors_Phones).Include(d=>d.id_specializeNavigation).FirstOrDefaultAsync(d => d.id == id);
+            return await db.Doctors.Include(d=>d.Doctors_Phones).Include(d=>d.id_specializeNavigation).Include(d=>d.id_specializeNavigation).FirstOrDefaultAsync(d => d.id == id);
         }
 
         public async Task<Doctor> Update(int id, Doctor doctor)

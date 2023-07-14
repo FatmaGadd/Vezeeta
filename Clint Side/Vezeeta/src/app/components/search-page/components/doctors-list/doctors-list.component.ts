@@ -5,6 +5,7 @@ import { SearchTemp } from 'src/app/Environment/SearchTemp';
 import { SearchService } from 'src/app/Services/Entity_Services/search.service';
 import { SpecializationService } from 'src/app/Services/Entity_Services/specialization.service';
 import { ISearch } from './../../../../Interfaces/i-search';
+import { AppoinmentService } from './../../../../Services/Entity_Services/appoinment.service';
 
 @Component({
   selector: 'app-doctors-list',
@@ -18,7 +19,8 @@ export class DoctorsListComponent implements OnInit {
   load: boolean = true;
   flag: boolean = true;
 
-  constructor(private activatedrot: ActivatedRoute, private search: SearchService, private specialization: SpecializationService) {
+  apointmentslist: any;
+  constructor(private activatedrot: ActivatedRoute, private search: SearchService, private specialization: SpecializationService, private appointment: AppoinmentService) {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -40,12 +42,11 @@ export class DoctorsListComponent implements OnInit {
 
       this.doctorslist = this.holderlist
 
-
     })
   }
   ngOnInit(): void {
-    this.activatedrot.queryParams.subscribe(params => {
 
+    this.activatedrot.queryParams.subscribe(params => {
       let temp: ISearch = {
         City: params["city"],
         Reigon: params["reigon"],
@@ -54,10 +55,14 @@ export class DoctorsListComponent implements OnInit {
         Name: params["name"],
         Specialization: params["special"]
       }
+
       console.log(temp)
+
+
       this.search.Search(temp).subscribe(res => {
 
         this.doctorslist = res;
+
         this.specialization.GetAll().subscribe(res => {
           this.specalizationlist = res.body
           this.load = false
@@ -77,19 +82,34 @@ export class DoctorsListComponent implements OnInit {
           this.flag = false
         console.log(this.doctorslist)
 
+
       })
-      // this.specialization.GetAll().subscribe(res => {
-      //   this.specalizationlist = res.body
-      //   console.log(this.specalizationlist)
-      // })
+
 
     })
   }
 
-  // -----------methods
   getSpecialById(id: Number) {
-    // console.log("id" + this.specalizationlist)
     return this.specalizationlist.filter((a: any) => a["id"] == id)[0].name
+  }
+
+  // constructor(private productService: SpecializationService, private router: Router) { }
+
+
+
+  navigate(id: any) {
+    alert(id)
+    // this.router.navigate(
+    //   ['/search'],
+    //     { queryParams: { type: "b", city: 0, reigon: 0, name: "", special: id } }
+    // );
+  }
+  getappointement(id: number) {
+    let x;
+    this.appointment.GetAllByDoctor(id).subscribe(res => {
+      x = res.body;
+    })
+    return x;
   }
 
 }

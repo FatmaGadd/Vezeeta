@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { error } from 'jquery';
+import { AddressService } from 'src/app/Services/Entity_Services/address.service';
+import { ClinicDoctorService } from 'src/app/Services/Entity_Services/clinic-doctor.service';
 import { ClinicService } from 'src/app/Services/Entity_Services/clinic.service';
 
 @Component({
@@ -17,7 +19,12 @@ export class ClinicComponent implements OnInit {
     observe: 'response' as const,
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
   };
-  constructor(private http: HttpClient, private clinicSer: ClinicService) {}
+  constructor(
+    private http: HttpClient,
+    private clinicSer: ClinicService,
+    private clinicDrSer: ClinicDoctorService,
+    private addServ: AddressService
+  ) {}
   ngOnInit(): void {
     //city url
     this.http
@@ -71,6 +78,7 @@ export class ClinicComponent implements OnInit {
         Validators.required,
       ]),
       u_descr: new FormControl(this.Dr_clinic?.clinic?.address?.notes),
+      fees: new FormControl(this.Dr_clinic.fees),
     });
   }
   get usqController() {
@@ -108,6 +116,9 @@ export class ClinicComponent implements OnInit {
 
   get uclinicNameController() {
     return this.UpdateclinicForm.controls.uclinicName;
+  }
+  get feescontroller() {
+    return this.UpdateclinicForm.controls.fees;
   }
 
   // get clinic of doctor
@@ -147,31 +158,47 @@ export class ClinicComponent implements OnInit {
       }
     }
   }
-
+  clUpdateFlag = true;
   updateClinic() {
+    this.clUpdateFlag = true;
     if (this.UpdateclinicForm.valid) {
       const model = {
+        id: this.Dr_clinic.clinic.id,
         name: this.uclinicNameController.value,
         phone: this.uclinicPhoneController.value,
-        address: {
-          street: this.ustController.value,
-          square: this.usqController.value,
-          building: this.ubuildingController.value,
-          floor_num: this.ufloorController.value,
-          flat_num: this.uappartController.value,
-          notes: this.udescController.value,
-          city_id: this.uregionController.value,
-        },
-        clinic_Doctors: [
-          {
-            dr_id: this.id,
-          },
-        ],
       };
-      console.log(model);
-      this.clinicSer.updateClinic(this.id, model).subscribe((res) => {
-        if (res.status == 200) console.log(res);
-      });
+      const address = {
+        street: this.ustController.value,
+        square: this.usqController.value,
+        building: this.ubuildingController.value,
+        floor_num: this.ufloorController.value,
+        flat_num: this.uappartController.value,
+        notes: this.udescController.value,
+        city_id: this.uregionController.value,
+        clinic_id: this.Dr_clinic.clinic.id,
+        id: this.Dr_clinic.clinic.address.id,
+      };
+      const clinic_Doctors = {
+        dr_id: this.id,
+        clinic_id: this.Dr_clinic.clinic.id,
+        fees: this.feescontroller.value,
+      };
+      this.clinicSer
+        .updateClinic(this.Dr_clinic.clinic.id, model)
+        .subscribe((res) => {
+          if (res.status == 200) console.log(res);
+        });
+      this.clinicDrSer
+        .updateDoctor_Clinic(this.id, this.Dr_clinic.clinic.id, clinic_Doctors)
+        .subscribe();
+      this.addServ
+        .Update(this.Dr_clinic.clinic.address.id, address)
+        .subscribe((res) => {
+          alert('تم التعديل ينجاح');
+        });
+      //console.log(model);
+    } else {
+      this.clUpdateFlag = false;
     }
   }
 }

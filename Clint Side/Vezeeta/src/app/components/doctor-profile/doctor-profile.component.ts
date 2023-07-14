@@ -51,18 +51,29 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
   Dr_clinic: any = {};
   updateClinicFlag: any = false;
   loaderDr = false;
-
+  dateOfBirth = new Date();
+  formatDate: any;
+  DrSpec: any;
   // -----------------------------------------------------------------------
   ngOnInit(): void {
     this.formGroupFlag = false;
     this.doctorService.getDoctorById(this.id).subscribe({
       next: (res) => {
         this.doctor = res.body;
-        //this.doctor_phones = this.doctor?.doctors_Phones;
-        console.log(this?.doctor);
+        this.DrSpec = this.doctor?.id_specializeNavigation.name;
+        console.log(this.doctor);
         this.noOfPhone = this.doctor_phones.length;
-        console.log(this.noOfPhone);
+
+        this.dateOfBirth = new Date(this.doctor?.birth_date);
+        console.log(this.dateOfBirth);
+        let year = this.dateOfBirth.getFullYear();
+        let month = (this.dateOfBirth.getMonth() + 1)
+          .toString()
+          .padStart(2, '0');
+        let day = this.dateOfBirth.getDate().toString().padStart(2, '0');
+        this.formatDate = `${year}-${month}-${day}`;
         this.loaderDr = true;
+        console.log(this.formatDate);
       },
       complete: () => {
         this.CreatForm();
@@ -72,13 +83,11 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
     });
     this.specService.GetAll().subscribe((res) => {
       this.specs = res.body;
-      console.log(this.specs);
     });
     this.drPhoneServ.getByDoctorId(this.id).subscribe((re2) => {
       console.log(re2);
       if (re2.status == 200) {
         this.doctor_phones = re2.body;
-        console.log(this.doctor_phones[0]['phone']);
       }
     });
 
@@ -97,7 +106,6 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
       .subscribe((res) => {
         if (res.status == 200) {
           this.regions = res.body;
-          console.log(this.regions);
         }
       });
 
@@ -108,8 +116,6 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
         next: (res) => {
           if (res.status == 200) {
             this.Dr_clinic = res.body;
-            console.log(this.Dr_clinic);
-            console.log(this.Dr_clinic?.clinic?.address?.street);
 
             this.updateClinicFlag = true;
           }
@@ -137,9 +143,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
       ]),
       image: new FormControl(this.doctor?.image, [Validators.required]),
       online_fees: new FormControl(this.doctor?.online_fees),
-      birth_date: new FormControl(this.doctor?.birth_date, [
-        Validators.required,
-      ]),
+      birth_date: new FormControl(this.formatDate, [Validators.required]),
       experience: new FormControl(this.doctor?.experience, [
         Validators.required,
       ]),
@@ -187,14 +191,15 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
   clinicForm = new FormGroup({
     city: new FormControl('', [Validators.required]),
     st: new FormControl('', [Validators.required]),
-    building: new FormControl(''),
+    building: new FormControl('', [Validators.required]),
     ClinicPhone: new FormControl('', [Validators.required]),
     floor: new FormControl('', [Validators.required]),
     region: new FormControl('', [Validators.required]),
     clinicName: new FormControl('', [Validators.required]),
-    sq: new FormControl(''),
+    sq: new FormControl('', [Validators.required]),
     appart: new FormControl('', [Validators.required]),
     descr: new FormControl(''),
+    fees: new FormControl(''),
   });
 
   // end of form group creation
@@ -290,6 +295,9 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
   get clinicNameController() {
     return this.clinicForm.controls.clinicName;
   }
+  get feesController() {
+    return this.clinicForm.controls.fees;
+  }
   //------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------
@@ -307,6 +315,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
           this.drPhoneServ.addNewPhone(model).subscribe((res1) => {
             this.doctor_phones.push(model);
             inptval.value = '';
+            this.noOfPhone++;
           });
         }
         if (res.status == 200) {
@@ -323,6 +332,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
     if (confirm('هل انت متأكد')) {
       this.drPhoneServ.deletePhone(this.doctor.id, e.value).subscribe((res) => {
         ev.target.parentElement.remove();
+        this.noOfPhone--;
       });
     }
   }
@@ -332,25 +342,19 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
     reader.readAsDataURL(selectedfile);
     //reader.abort();
     reader.onload = (event) => {
-      if (typeof reader.result == 'string')
-        //this.imageController.setValue(reader.result);
-        this.image.setValue(reader.result);
-      this.doctor.image = this.image.value;
-      console.log(this.imageController.value);
+      //this.imageController.setValue(reader.result);
+      this.image.setValue(reader.result);
+      this.doctor.image = reader.result;
+      console.log(this.doctor.image);
+      console.log(this.doctor);
+      this.doctorService
+        .updateDoctorInfo(this.doctor.id, this.doctor)
+        .subscribe((res) => {
+          console.log(res);
+        });
     };
   }
-  verfchange(e: any) {
-    const selectedfile = e.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(selectedfile);
-    //reader.abort();
-    reader.onload = (event) => {
-      if (typeof reader.result == 'string')
-        //this.verificationController.setValue(reader.result);
-        this.verification.setValue(reader.result);
-      console.log(this.verificationController.value);
-    };
-  }
+
   onSubmit(e: Event) {
     this.addFlage = false;
     if (this.DoctorUpdateForm.valid) {
@@ -362,11 +366,14 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
       this.doctor.online_fees = this.online_feesController.value;
       this.doctor.description = this.decriptionController.value;
       this.doctor.gender = this.genderController.value;
+      this.doctor.id_specialize = this.id_specializeController.value;
+      this.doctor.birth_date = this.birth_dateController.value;
       this.doctorService
         .updateDoctorInfo(this.doctor.id, this.doctor)
         .subscribe((res) => {
           console.log(res);
           this.addFlage = true;
+          alert('تم التعديل بنجاح');
         });
       // if (this.addFlage) {
       //   if (this.doctor_phones.length === 1) {

@@ -51,14 +51,11 @@ namespace Vezeeta.Repository.clinics
 
         public async Task<Clinic> Update(int id, Clinic entity)
         {
-            Clinic phoneUnique = await db.Clinics.FirstOrDefaultAsync(c => c.phone == entity.phone);
-            if (phoneUnique == null)
-            {
+            
                 db.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 await db.SaveChangesAsync();
                 return entity;
-            }
-            return null;
+           
         }
         public async Task<Clinic_Doctor> getByDr(int id)
         {
