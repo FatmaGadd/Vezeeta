@@ -1,4 +1,4 @@
-<div class="container col-7 m-auto" *ngIf="registerCompleted==false">
+<div class="container col-7 m-auto my-5" *ngIf="registerCompleted==false">
 
   <form [formGroup]="DoctorRegisterForm" enctype="multipart/form-data" method="post" (submit)="onSubmit($event)"
     class="border-1 border-light bg-white">
@@ -21,14 +21,14 @@
 
       <!--  name input -->
       <div class="form-outline my-2 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label " for="DName">الاسم </label>
+        </div>
         <div class="col-7 ">
           <input required formControlName="name" type="text" id="DName" class="form-control col-8 " name="name"
             placeholder="ُالاسم بالكامل" />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="DName">الاسم </label>
-        </div>
+
       </div>
       <ng-container *ngIf="nameController.touched || clickpress==true">
         <div *ngIf="nameController.hasError('required')" class="text-danger input-group-text border-white bg-white">
@@ -43,14 +43,14 @@
       <!-- ------------------------------------------------------------------------------------------- -->
       <!-- email input -->
       <div class="form-outline my-2 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label " for="Demail">البريد الالكتروني </label>
+        </div>
         <div class="col-7">
           <input required formControlName="email" type="email" id="Demail" class="form-control col-8"
             placeholder="ُExample@domain.com" name="email" />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="Demail">البريد الالكتروني </label>
-        </div>
+
 
       </div>
       <ng-container *ngIf="emailController.touched || clickpress==true">
@@ -71,7 +71,9 @@
 
       <!-- gender -->
       <div class="form-outline my-2 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label "> النوع </label>
+        </div>
         <div class="col-3">
           <label for="male">ذكر</label>
           <input required formControlName="gender" type="radio" id="male" name="gender" value="m" class="col-4" />
@@ -81,9 +83,7 @@
           <input required formControlName="gender" type="radio" id="female" name="gender" class=" col-4" value="f"
             checked />
         </div>
-        <div class="col-2">
-          <label class="form-label "> النوع </label>
-        </div>
+
 
         <!-- <div *ngIf="genderController.hasError('required')" class="text-danger input-group-text border-white bg-white">
           رقم الموبايل غير صحيح
@@ -92,15 +92,15 @@
 
       <!-- specilize drop down list  -->
       <div class="form-outline my-2 d-flex justify-content-around  ">
-
+        <div class="col-2">
+          <label class="form-label  " for="spec">التخصص </label>
+        </div>
         <div class="col-7">
           <select name="id_specialize" id="spec" class="form-select" formControlName="id_specialize">
             <option *ngFor="let spec of specs" value="{{spec.id}}">{{spec.name}}</option>
           </select>
         </div>
-        <div class="col-2">
-          <label class="form-label  " for="spec">التخصص </label>
-        </div>
+
       </div>
       <ng-container *ngIf="id_specializeController.touched || clickpress==true">
         <div *ngIf="id_specializeController.hasError('required')" class="text-danger">
@@ -112,14 +112,14 @@
 
       <!-- Password input -->
       <div class="form-outline my-2 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label " for="pass"> كلمة المرور </label>
+        </div>
         <div class="col-7">
           <input required formControlName="password" name="password" type="password" id="pass"
             class="form-control col-8" placeholder="كلمة المرور " />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="pass"> كلمة المرور </label>
-        </div>
+
       </div>
       <ng-container *ngIf="passwordController.touched || clickpress==true">
         <div *ngIf="passwordController.hasError('required')" class="text-danger input-group-text border-white bg-white">
@@ -134,14 +134,14 @@
 
       <!-- confirm password -->
       <div class="form-outline my-2 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label " for="Cpassword">تأكيد كلمة المرور </label>
+        </div>
         <div class="col-7">
           <input required formControlName="confirmPassword" type="password" id="Cpassword" class="form-control col-8"
             placeholder=" تأكيد كلمة المرور " />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="Cpassword">تأكيد كلمة المرور </label>
-        </div>
+
       </div>
       <ng-container *ngIf="CpasswordController.touched || clickpress==true">
         <div *ngIf="CpasswordController.hasError('required')"
@@ -172,14 +172,14 @@
         <!-- <div *ngIf="noOfPhone==0" class="col-1">
           <button class="btn btn-danger" (click)="addAnotherPhone()">+</button>
         </div> -->
-
+        <div class="col-2">
+          <label class="form-label " for="DPhone">رقم الموبايل 1 </label>
+        </div>
         <div class="col-7">
           <input required formControlName="Doctors_Phone1" name="Doctors_Phones" type="tel" id="DPhone"
             class="form-control col-8" placeholder="رقم الموبايل " />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="DPhone">رقم الموبايل 1 </label>
-        </div>
+
       </div>
       <ng-container *ngIf="DoctorsphoneController1.touched||clickpress==true">
         <div *ngIf="DoctorsphoneController1.hasError('required')"
@@ -237,7 +237,9 @@
 
         <!-- waiting time -->
         <div class="form-outline my-2 d-flex justify-content-around ">
-
+          <div class="col-4">
+            <label class="form-label " for="waiting"> waiting time </label>
+          </div>
           <div class="col-7">
             <select name="waiting_time" id="waiting_time" formControlName="waiting_time" class="form-select">
               <option value="5">5 دقايق</option>
@@ -246,9 +248,7 @@
               <option value="20">20 دقيقة</option>
             </select>
           </div>
-          <div class="col-4">
-            <label class="form-label " for="waiting"> waiting time </label>
-          </div>
+
 
           <ng-container *ngIf="waitTimeController.touched">
             <div *ngIf="waitTimeController.hasError('required')" class="text-danger">
@@ -263,13 +263,13 @@
 
         <!-- experience -->
         <div class="form-outline my-2 d-flex justify-content-around ">
+          <div class="col-4">
+            <label class="form-label " for="experience"> الخبرة </label>
+          </div>
 
           <div class="col-7">
             <input required formControlName="experience" type="number" id="experience" class="form-control col-8"
               placeholder="الخبرة  " name="experience" />
-          </div>
-          <div class="col-4">
-            <label class="form-label " for="experience"> الخبرة </label>
           </div>
 
           <ng-container *ngIf="experienceController.touched">
@@ -282,14 +282,14 @@
 
       <!-- birth date -->
       <div class="form-outline my-2 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label " for="date"> تاريخ الميلاد </label>
+        </div>
         <div class="col-7">
           <input required formControlName="birth_date" name="birth_date" type="date" id="date"
             class="col-8 form-control" placeholder="  " />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="date"> تاريخ الميلاد </label>
-        </div>
+
       </div>
       <ng-container *ngIf="birth_dateController.touched">
         <div *ngIf="birth_dateController.hasError('required')" class="text-danger">
@@ -303,14 +303,14 @@
     <ng-container *ngIf="lineIndex==2">
       <!-- image input -->
       <div class="form-outline my-4 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label " for="image">ارفع صورة شخصية </label>
+        </div>
         <div class="col-7">
           <input required formControlName="image" type="file" accept=".png,.jpeg,.jpg" id="image" name="image"
             class="form-control col-8" (change)="imagechange($event)" />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="image">ارفع صورة شخصية </label>
-        </div>
+
       </div>
       <ng-container *ngIf="imageController.touched">
         <div *ngIf="imageController.hasError('required')" class="text-danger">
@@ -319,14 +319,14 @@
       </ng-container>
       <!--  verification input -->
       <div class="form-outline my-4 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label " for="verification">ارفع صورة كارنية النقابة </label>
+        </div>
         <div class="col-7">
           <input required formControlName="verification" type="file" accept=".png, .jpeg,.jpg" id="verification"
             name="verification" class="form-control col-8" (change)="verfchange($event)" />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="verification">ارفع صورة كارنية النقابة </label>
-        </div>
+
       </div>
       <ng-container *ngIf="verificationController.touched">
         <div *ngIf="verificationController.hasError('required')" class="text-danger">
@@ -336,27 +336,27 @@
 
       <!-- online fees -->
       <div class="form-outline my-2 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label " for="form3Example3"> سعر الكشف الاونلاين </label>
+        </div>
         <div class="col-7">
           <input required formControlName="online_fees" type="number" id="form3Example3" class="form-control col-8"
             name="online_fees" placeholder="  سعر الكشف الاونلاين" />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="form3Example3"> سعر الكشف الاونلاين </label>
-        </div>
+
 
       </div>
 
       <!-- description -->
       <div class="form-outline my-2 d-flex justify-content-around ">
-
+        <div class="col-2">
+          <label class="form-label " for="description">description </label>
+        </div>
         <div class="col-7">
           <input required formControlName="description" type="text" id="description" class="form-control col-8"
             placeholder=" description " name="description" />
         </div>
-        <div class="col-2">
-          <label class="form-label " for="description">description </label>
-        </div>
+
 
         <ng-container *ngIf="decriptionController.touched">
           <div *ngIf="decriptionController.hasError('required')" class="text-danger">

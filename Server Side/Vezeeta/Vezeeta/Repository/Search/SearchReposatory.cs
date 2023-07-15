@@ -11,20 +11,26 @@ namespace Vezeeta.Repository
     public class SearchReposatory : ISearch
     {
         private readonly VezeetaContext context;
-        public SearchReposatory(VezeetaContext context)
+        private readonly IAppointment contextAppointment;
+
+        public SearchReposatory(VezeetaContext context,IAppointment con)
         {
             this.context = context;
+            this.contextAppointment = con;
         }
 
          async Task<List<Clinic_Doctor>> GetAll()
         {
-            var temp= await context.Clinic_Doctors.Include(a => a.clinic).ThenInclude(a => a.Address).ThenInclude(a => a.city).ThenInclude(a => a.region).Include(a => a.Dr).ToListAsync();
+            var temp= await context.Clinic_Doctors.Include(a => a.clinic).ThenInclude(a => a.Address)
+                .ThenInclude(a => a.city).Include(a => a.Dr).ToListAsync();
                 return temp;
                 }
-        public async Task<List<Doctor>> GetAll(SearchDTO search)
+        public async Task<List<SearchReturnDTO>> GetAll(SearchDTO search)
         {
-            var temp=await GetAll();
+            List<Clinic_Doctor> temp =await GetAll();
             if (temp == null) { return null; }
+            var appointments = await contextAppointment.Get();
+
             //      NavigationExpansionExtensibilityHelperDependencies to update database
             if (search.City != 0)
             {
@@ -34,7 +40,7 @@ namespace Vezeeta.Repository
 
             if (search.Reigon != 0)
             {
-                temp = temp.Where(a => a.clinic.Address.city.region.id==search.Reigon).ToList();
+                temp = temp.Where(a => a.clinic.Address.city.region_id==search.Reigon).ToList();
 
             }
             if (search.Specialization != 0)
@@ -55,11 +61,34 @@ namespace Vezeeta.Repository
             }
 
 
-            var list=new List<Doctor>();
-            foreach (var d in temp) {
-             //   if(list.FirstOrDefault(a=>a.id==d.Dr.id )==null)
-                list.Add(d.Dr);
+            //var list=new List<Doctor>();
+            //foreach (var d in temp) {
+            // //   if(list.FirstOrDefault(a=>a.id==d.Dr.id )==null)
+            //    list.Add(d.Dr);
+            //}
+
+            var list=new List<SearchReturnDTO>();
+            foreach (var d in temp)
+            {
+                var Drappointments=appointments.Where(a=>a.Dr_id==d.Dr.id).ToList();
+
+                var x = new SearchReturnDTO()
+                {
+                    DrID = d.Dr.id,
+                    Appointments = Drappointments,
+                    Cityid = (int)d?.clinic?.Address?.city_id,
+                    Clinic = d.clinic,
+                    Clinic_address = d.clinic.Address,
+                    Clinic_feese = d.fees,
+                    DrName = d.Dr.name,
+                    Reigon = (int)d?.clinic?.Address?.city?.region_id,
+                    specilalization = d.Dr.id_specialize,
+                    WattingTime = d.Dr.waiting_time
+
+                };
+                list.Add(x);
             }
+
             return list;
         }
     }

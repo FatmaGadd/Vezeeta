@@ -17,7 +17,7 @@ export class HomeComponent {
   ngOnInit() {
     this.productService.GetAll().subscribe(a => {
       this.products = a.body
-      this.products = this.products.filter((a: any) => a.id != 1)
+      this.products = this.products.filter((a: any) => a.id != 0)
 
     })
 

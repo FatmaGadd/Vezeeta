@@ -8,25 +8,28 @@ import { IAppoinment } from 'src/app/Interfaces/iappoinment';
 })
 export class AppoinmentService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
   private options = {
     observe: 'response' as const,
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
   };
-  GetAllByDoctor(Dr_id:number){
-    return this.http.get(AppointmentURLs.Get(Dr_id),this.options);
-  }  
-  GetById(id:number,Dr_id:number){
-    return this.http.get(AppointmentURLs.GetById_Put_Delete(id,Dr_id),this.options);
+  GetAllByDoctor(Dr_id: number) {
+    return this.http.get(AppointmentURLs.Get(Dr_id), this.options);
   }
-  Add(appoinment:IAppoinment){
-    return this.http.post(AppointmentURLs.Post(),appoinment,this.options);
+  GetAll() {
+    return this.http.get(AppointmentURLs.Getall(), this.options);
   }
-  Update(id:number,Dr_id:number,appoinment:IAppoinment){
-    return this.http.put(AppointmentURLs.GetById_Put_Delete(id,Dr_id),appoinment,this.options);
+  GetById(id: number, Dr_id: number) {
+    return this.http.get(AppointmentURLs.GetById_Put_Delete(id, Dr_id), this.options);
   }
-  Delete(id:number,Dr_id:number){
-    return this.http.delete(AppointmentURLs.GetById_Put_Delete(id,Dr_id),this.options)
+  Add(appoinment: IAppoinment) {
+    return this.http.post(AppointmentURLs.Post(), appoinment, this.options);
   }
-  
+  Update(id: number, Dr_id: number, appoinment: IAppoinment) {
+    return this.http.put(AppointmentURLs.GetById_Put_Delete(id, Dr_id), appoinment, this.options);
+  }
+  Delete(id: number, Dr_id: number) {
+    return this.http.delete(AppointmentURLs.GetById_Put_Delete(id, Dr_id), this.options)
+  }
+
 }

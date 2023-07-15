@@ -111,6 +111,7 @@ namespace Vezeeta.Controllers
                     {
                         Dr_id = cllinicDr.Dr_id,
                         clinic_id = cllinicDr.clinic_id,
+                        fees = cllinicDr.fees,
                     };
                     cl_dr.Add(c);
                 }
@@ -135,7 +136,7 @@ namespace Vezeeta.Controllers
                 Clinic returnedClinic = await ClinicRepos.Add(clinic);
                 return Ok(returnedClinic);
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (Exception ex) { return BadRequest("no data"); }
             //if (returnedClinic == null)
             //    return BadRequest();
             //return Ok(returnedClinic);
