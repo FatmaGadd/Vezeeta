@@ -15,12 +15,14 @@ namespace Vezeeta.Controllers.NewFolder
     {
         IEntityRepository<Address> _context;
         IEntityRepository<City> _context_city;
+         IDocAddress addressContext;
 
-        public AddressController(IEntityRepository<Address> context,IEntityRepository<City> mcity)
+        public AddressController(IDocAddress _addressContext,IEntityRepository<Address> context,IEntityRepository<City> mcity)
         {
             _context = context;
            
             _context_city= mcity;
+            addressContext = _addressContext;
 
         }
 
@@ -44,6 +46,14 @@ namespace Vezeeta.Controllers.NewFolder
             return Ok(address);
         }
 
+        [HttpGet("clinic/{clinic_id}")]
+        public async Task<ActionResult<Address>> GetAdressByClinicId(int clinic_id)
+        {
+            Address? address = await addressContext.GetAddressByClinicId(clinic_id);
+            if (address == null) return NotFound("لا يوجد عنوان لهذه العياده ");
+
+            return Ok(address);
+        }
 
 
 

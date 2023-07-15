@@ -5,7 +5,7 @@ using Vezeeta.Models;
 
 namespace Vezeeta.Repository.Adress
 {
-    public class AdressRepository : IEntityRepository<Address>
+    public class AdressRepository : IEntityRepository<Address>, IDocAddress
     {
         //fields
         VezeetaContext dbContext;
@@ -49,6 +49,10 @@ namespace Vezeeta.Repository.Adress
             dbContext.Entry(address).State = EntityState.Modified;
             await dbContext.SaveChangesAsync();
             return address;
+        }
+        public async Task<Address> GetAddressByClinicId(int clinic_id)
+        {
+            return await dbContext.Addresses.Include(a => a.city).ThenInclude(a => a.region).FirstOrDefaultAsync(q => q.clinic_id == clinic_id);
         }
     }
 }
