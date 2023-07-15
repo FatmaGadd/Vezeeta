@@ -78,22 +78,17 @@ constructor(private patientAppoint:PatientAppointService,private DrService:Docto
                       this.clinic.forEach(clinic => {
                     
                            ///// get address using dr_id , clinic_id 
-                           console.log(clinic.clinic_id);
+                           
                            this.adressService.GetAddressByClinicId(clinic.clinic_id).subscribe(
                              {
                                next:(res)=>{
-                               
                                  this.temp=res.body;
                                  this.Address=this.temp;
                                },
                                error:(e)=>console.log(e.error)
-                               
                              }
                            )
                       });
-                      console.log(this.clinic[0].dr_id);
-                      console.log(this.clinic[0].clinic_id);
-
                   },
                   error:(e)=>console.log(e.error )
                   
@@ -106,10 +101,8 @@ constructor(private patientAppoint:PatientAppointService,private DrService:Docto
                       console.log(this.Doctors?.name +';');
                         if(this.Doctors != null)
                           this.DoctorsName.push(this.Doctors.name);
-                    
                     },
                     error:(e)=>console.log(e)
-                    
                   }); 
                 
                   setTimeout(() => {

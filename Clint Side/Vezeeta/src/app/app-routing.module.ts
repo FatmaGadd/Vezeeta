@@ -24,6 +24,7 @@ import { DoctorProfileComponent } from './components/doctor-profile/doctor-profi
 import { DoctorDataComponent } from './components/Doctor/doctor-data/doctor-data.component';
 import { TakeAppoinmentComponent } from './components/patientappoinment/take-appoinment/take-appoinment.component';
 import { DoctorAddAppointmentComponent } from './components/Doctor/doctor-add-appointment/doctor-add-appointment.component';
+import { SavedAppoinmentComponent } from './components/patientappoinment/saved-appoinment/saved-appoinment.component';
 
 
 
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'doctor/data/:id', component: DoctorDataComponent },
   { path: 'reservation/create/:id/:drid', component: TakeAppoinmentComponent},
   { path: 'doctor/add-appointment', component: DoctorAddAppointmentComponent },
+  {path:'book',component:SavedAppoinmentComponent},
   {path:'**',  component:ErrorComponent },
 
 ];

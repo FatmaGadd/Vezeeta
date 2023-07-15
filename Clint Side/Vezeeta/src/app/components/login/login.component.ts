@@ -39,6 +39,7 @@ Login(e:any){
       next:(response:any) => {
           let res = response.body.response;
           this.tokenService.SaveToken(res.patient.id,res.token,res.role,res.patient.name);
+          localStorage.setItem('isLogin','userLoged');
           this.router.navigate(['home']);
       },
       error: (e) => {console.error(e),this.showError=true},
