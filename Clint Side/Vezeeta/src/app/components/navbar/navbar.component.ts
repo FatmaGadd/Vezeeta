@@ -9,20 +9,14 @@ import { PatientService } from 'src/app/Services/Entity_Services/patient.service
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  name:string="kl";
-  patientId:number=17;
-  loginInfo:any;
-  patient:IPatientAdd|undefined;
+  name:any="";
+  // patientId:number=17;
+  // loginInfo:any;
+  // patient:IPatientAdd|undefined;
   constructor(private patientService:PatientService) {}
   ngOnInit(): void {
-   this.patientService.GetById(this.patientId).subscribe({
-    next:(p)=>{
-      this.loginInfo=p.body;
-      this.patient=this.loginInfo;
-      if(this.patient!= null)
-      this.name=this.patient?.name.toString();
-    }
-   })
+    if(localStorage.getItem("UserName"))
+this.name=localStorage.getItem("UserName")?.toString();
   }
   
 

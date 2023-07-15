@@ -60,6 +60,8 @@ if (this.formRegister.status === 'VALID') {
  this.patientService.Add(this.formRegister.value).subscribe(
   {
   error:(e)=>{
+    console.log(e);
+    
   this.errorFromServer=e.error;
   },
   complete:()=>{console.log("s");

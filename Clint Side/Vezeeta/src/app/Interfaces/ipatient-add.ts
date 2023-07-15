@@ -10,6 +10,7 @@ export interface IPatientAdd {
      is_deleted:boolean,
      password:string, 
      phone:string, 
-     state:boolean
+     state:boolean,
+     code ?:number,
      
 }

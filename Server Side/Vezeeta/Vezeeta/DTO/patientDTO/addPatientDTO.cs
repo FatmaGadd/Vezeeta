@@ -13,7 +13,8 @@ namespace Vezeeta.DTO.patientDTO
         public DateTime patientBirth_date { get; set; } 
         public string patientGender { get; set; }
         public string patientAddress { get; set; }
+        public int? patientCode { get; set; }
         public string patientPassword { get; set; }
-            
+
     }
 }
