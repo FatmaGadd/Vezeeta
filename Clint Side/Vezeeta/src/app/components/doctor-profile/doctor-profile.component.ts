@@ -29,7 +29,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
   };
   ngAfterViewInit(): void {}
   // fields
-  id = 17;
+  id: number | any;
   doctor: any;
   specs: any;
   doctor_phones: any = [];
@@ -54,16 +54,23 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
   dateOfBirth = new Date();
   formatDate: any;
   DrSpec: any;
+  doctorState = false;
   // -----------------------------------------------------------------------
   ngOnInit(): void {
     this.formGroupFlag = false;
+    this.id = localStorage.getItem('UserId');
+    this.id = JSON.parse(this.id);
+    console.log(this.id);
     this.doctorService.getDoctorById(this.id).subscribe({
       next: (res) => {
         this.doctor = res.body;
         this.DrSpec = this.doctor?.id_specializeNavigation.name;
         console.log(this.doctor);
         this.noOfPhone = this.doctor_phones.length;
-
+        //check state of doctor
+        if (this.doctor.status) this.doctorState = true;
+        //------------------------------------------------------
+        console.log(this.doctor.status);
         this.dateOfBirth = new Date(this.doctor?.birth_date);
         console.log(this.dateOfBirth);
         let year = this.dateOfBirth.getFullYear();
@@ -301,8 +308,10 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
   //------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------
+  addphoneClick = false;
   addAnotherPhone(inptval: any) {
     this.phone1Exist = false;
+    this.addphoneClick = true;
     console.log(inptval.value);
     const phoneNumber = inptval.value;
     const egyptianPhoneRegex = /^01[0-9]{9}$/;
@@ -316,6 +325,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
             this.doctor_phones.push(model);
             inptval.value = '';
             this.noOfPhone++;
+            this.addphoneClick = false;
           });
         }
         if (res.status == 200) {
@@ -449,6 +459,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
         clinic_Doctors: [
           {
             dr_id: this.doctor.id,
+            fees: this.feesController.value,
           },
         ],
       };
