@@ -66,7 +66,7 @@ namespace Vezeeta.Controllers
                 else if (getbyEmail.email != oldDr.email)
                     return BadRequest("email found");
 
-
+                oldDr.code = doctor.code;
                 oldDr.password = doctor.password;
                 oldDr.birth_date = doctor.birth_date;
                 oldDr.name = doctor.name;

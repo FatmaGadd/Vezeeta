@@ -40,7 +40,7 @@ namespace Vezeeta.DTO.DoctorDTO
         [Required]
         [StringLength(50)]
         public string name { get; set; }
-
+       public int ? code { get; set; }
         public  ICollection<Doctor_PhonesDTO> Doctors_Phones { get; set; }
 
 

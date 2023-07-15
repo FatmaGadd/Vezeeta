@@ -79,6 +79,7 @@ namespace Vezeeta.Controllers
                 p.birth_date = patientdto.patientBirth_date;
                 p.gender = patientdto.patientGender;
                 p.address=patientdto.patientAddress;
+                p.code = patientdto.patientCode;
                 p.password=patientdto.patientPassword;
                 p.update_at = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
                 Patient patientUpdate = await context.Update(id, p); 

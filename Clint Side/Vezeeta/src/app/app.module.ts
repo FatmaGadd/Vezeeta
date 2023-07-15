@@ -19,8 +19,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RegisterPatientComponent } from './components/patient/register-patient/register-patient.component';
 import { LoginComponent } from './components/login/login.component';
 import { PatientAccountComponent } from './components/Accounts/patient-account/patient-account.component';
-import { PatientProfileComponent } from './components/Accounts/patient-profile/patient-profile.component';
-import { PatientChangePasswordComponent } from './components/Accounts/patient-change-password/patient-change-password.component';
 import { PatientAppointmentComponent } from './components/patient/patient-appointment/patient-appointment.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
@@ -59,8 +57,6 @@ import { DoctorDataComponent } from './components/Doctor/doctor-data/doctor-data
     LoginComponent,
     PatientAccountComponent,
     PatientAppointmentComponent,
-    PatientChangePasswordComponent,
-    PatientProfileComponent,
     PatientQuestionsComponent,
     ErrorComponent,
     ForgetPasswordComponent,

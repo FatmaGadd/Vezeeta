@@ -14,4 +14,5 @@ export interface Idoctor {
   waiting_time: string;
   name: string;
   Doctors_Phones: IdoctorPhone[];
+  code?:number;
 }
