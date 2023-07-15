@@ -175,6 +175,9 @@ export class AddressURLs {
   public static GetById_Put_Delete(id: number) {
     return `${Base_URl}/Address/${id}`;
   }
+  public static GetAddressByClinicId(id: number) {
+    return `${Base_URl}/Address/clinic/${id}`;
+}
 }
 
 

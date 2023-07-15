@@ -76,20 +76,20 @@ constructor(private patientAppoint:PatientAppointService,private DrService:Docto
                       console.log(this.clinic);
                       
                       this.clinic.forEach(clinic => {
-                            ///// get address using dr_id , clinic_id 
-                            console.log(clinic.dr_id);
-                    this.adressService.GetById(7).subscribe(
-                      {
-                        next:(res)=>{
-                        
-                          this.temp=res.body;
-                          this.Address=this.temp;
-                        },
-                        error:(e)=>console.log(e.error)
-                        
-                      }
-                    )
                     
+                           ///// get address using dr_id , clinic_id 
+                           console.log(clinic.clinic_id);
+                           this.adressService.GetAddressByClinicId(clinic.clinic_id).subscribe(
+                             {
+                               next:(res)=>{
+                               
+                                 this.temp=res.body;
+                                 this.Address=this.temp;
+                               },
+                               error:(e)=>console.log(e.error)
+                               
+                             }
+                           )
                       });
                       console.log(this.clinic[0].dr_id);
                       console.log(this.clinic[0].clinic_id);

@@ -30,5 +30,7 @@ export class AddressService {
   Delete(id: number) {
     return this.http.delete(AddressURLs.GetById_Put_Delete(id), this.options);
   }
-
+  GetAddressByClinicId(clinic_id:number){
+    return this.http.get(AddressURLs.GetAddressByClinicId(clinic_id), this.options);
+  }
 }
