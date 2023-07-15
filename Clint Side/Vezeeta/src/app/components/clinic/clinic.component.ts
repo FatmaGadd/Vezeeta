@@ -26,6 +26,8 @@ export class ClinicComponent implements OnInit {
     private addServ: AddressService
   ) {}
   ngOnInit(): void {
+    this.id = localStorage.getItem('UserId');
+    this.id = JSON.parse(this.id);
     //city url
     this.http
       .get('https://localhost:7018/api/Reigons', this.options)
@@ -47,7 +49,7 @@ export class ClinicComponent implements OnInit {
     // get Clinic
     this.getClinic();
   }
-  id = 17;
+  id: number | any;
   cities: any;
   regions: any;
   selectRegion: any = [];

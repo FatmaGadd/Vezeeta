@@ -9,10 +9,12 @@ import { DoctorService } from 'src/app/Services/Entity_Services/doctor.service';
 })
 export class ChangePasswordComponent implements OnInit {
   constructor(private doctorService: DoctorService) {}
-  id = 17;
+  id: number | any;
   doctor: any;
   succFlag = false;
   ngOnInit(): void {
+    this.id = localStorage.getItem('UserId');
+    this.id = JSON.parse(this.id);
     this.doctorService.getDoctorById(this.id).subscribe({
       next: (res) => {
         this.doctor = res.body;

@@ -1,0 +1,65 @@
+<div id="mainwrap" *ngIf="pageload==true">
+
+  <div class="col-12 col-md-8" id="appoint">
+    <form method="post" class="border-1 border-light bg-white mb-5 bg-light">
+      <h2>
+
+        <i class="fa-solid fa-calendar-days">اضافةاو حذف معاد</i>
+      </h2>
+      <div class="input-group">
+        <div *ngFor="let appoint of appointments let i =index" class="d-flex justify-content-between col-8">
+          <div class="col-1"> <button (click)="removeAppoint(remoVal,$event)"
+              class="btn btn-close text-danger input-group-text me-4  "></button></div>
+          <div class="col-2">يوم {{daysForNgfor[i]}} </div>
+          <div class="col-2"> من {{startTime[i]}}</div>
+          <div class="col-2"> الي {{endTime[i]}}</div>
+          <div hidden> <input type="text" readonly value="{{appoint.id}}" class="my-2" #remoVal></div>
+        </div>
+      </div>
+      <!-- ----------------------------------------  -->
+      <!-- add appoint -->
+      <div class="form-outline my-2 d-flex justify-content-around">
+
+
+
+        <div class="col-7">
+          <form [formGroup]="appointForm" (submit)="addAppoint($event,start,end)">
+
+            <div class="row d-flex justify-content-between">
+              <!-- add button -->
+              <div class="col-1 mt-3">
+                <button class="btn btn-primary"><i class="fa-regular fa-plus"></i></button>
+              </div>
+              <!-- start date  -->
+              <div class="col-sm-5">
+                <label for="appoinS">معاد البداية</label>
+                <input formControlName="startTime" required name="startTime" type="datetime-local" id="appoinS"
+                  class="form-control col-8 " value="" placeholder=" " #start />
+              </div>
+              <!-- end date -->
+              <div class="col-sm-5">
+                <label for="appoinE">معاد النهاية</label>
+                <input formControlName="endTime" required name="endTime" type="datetime-local" id="appoinE"
+                  class="form-control col-8 " placeholder=" " #end />
+              </div>
+            </div>
+          </form>
+          <div *ngIf="notValid==true" class="text-danger bg-white input-group-text border-0">
+            يوجد خطأ في المعاد
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="ms-auto">
+        <button [routerLinkActive]="'linkActive '" [routerLink]="['/doctor/profile']"
+          [routerLinkActiveOptions]="{ exact: true }" class="btn btn-primary">الرجوع </button>
+      </div>
+
+    </form>
+
+
+  </div>
+</div>
