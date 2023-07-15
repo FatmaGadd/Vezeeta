@@ -5,6 +5,6 @@ namespace Vezeeta.IEntities
 {
     public interface ISearch
     {
-        public Task<List<Doctor>> GetAll(SearchDTO a);
+        public Task<List<SearchReturnDTO>> GetAll(SearchDTO a);
     }
 }

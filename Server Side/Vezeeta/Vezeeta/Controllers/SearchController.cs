@@ -18,9 +18,9 @@ namespace Vezeeta.Controllers
 
         }
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Doctor>>> Search(SearchDTO dto)
+        public async Task<ActionResult<IEnumerable<SearchReturnDTO>>> Search(SearchDTO dto)
         {
-            IEnumerable<Doctor> doctors = await search.GetAll(dto);
+            IEnumerable<SearchReturnDTO> doctors = await search.GetAll(dto);
             if (doctors == null)
             {
                 return NotFound();

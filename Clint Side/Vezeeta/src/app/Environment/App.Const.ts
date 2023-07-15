@@ -48,6 +48,10 @@ export class AnswerURLs {
 }
 
 export class AppointmentURLs {
+  public static Getall() {
+    return `${Base_URl}/Appointments`;
+
+  }
   public static Get(Dr_id: number) {
     return `${Base_URl}/Appointments/${Dr_id}`;
   }
@@ -117,7 +121,7 @@ export class PatientURLs {
   public static PostByPassword(password: string) {
     return `${Base_URl}/Patients/${password}`;
   }
-  public static GetWithQuetions(id:number){
+  public static GetWithQuetions(id: number) {
     return `${Base_URl}/Patients/Questions/${id}`
   }
 }
@@ -174,19 +178,19 @@ export class AddressURLs {
 }
 
 
-export class Patient_AppointmentURLs{
-    public static Post(patient_appoint:IAddAppointToPatient,patient_id:number){
-        return `${Base_URl}/Patient_Appoinment`;
-    }
-    public static GetById(id:number){
-        return `${Base_URl}/Patient_Appoinment/${id}`;
-    }
-    public static Delete_Put(appoint_id:number,patient_id:number){
-        return `${Base_URl}/Patient_Appoinment/${appoint_id}/${patient_id}`;
-    }
+export class Patient_AppointmentURLs {
+  public static Post(patient_appoint: IAddAppointToPatient, patient_id: number) {
+    return `${Base_URl}/Patient_Appoinment`;
+  }
+  public static GetById(id: number) {
+    return `${Base_URl}/Patient_Appoinment/${id}`;
+  }
+  public static Delete_Put(appoint_id: number, patient_id: number) {
+    return `${Base_URl}/Patient_Appoinment/${appoint_id}/${patient_id}`;
+  }
 }
 export class SearchURLs {
-    public static Get_Post() {
-        return `${Base_URl}/Values`;
-    }
+  public static Get_Post() {
+    return `${Base_URl}/Values`;
+  }
 }

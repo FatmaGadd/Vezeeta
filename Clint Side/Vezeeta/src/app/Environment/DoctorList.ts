@@ -21,7 +21,7 @@ export class Doctors_List_Genrate {
             // const element = array[index];
             // console.log(List[index])
             for (let j = 0; j < List[index]["clinic_Doctors"].length; j++) {
-
+                console.log(List[index])
                 let temp: IDoctorTemp = {
                     id: List[index]["id"],
                     name: List[index]["name"],

@@ -27,6 +27,16 @@ namespace Vezeeta.Controllers
 
         // GET: api/Appointments
         //[Authorize(Roles = "Admin")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointments()
+        {
+            IEnumerable<Appointment> appointments = await _context.Get();
+            if (appointments == null) return NotFound();
+
+            return Ok(appointments);
+        }
+
+
         [HttpGet("{Dr_id}")]
         public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointments(int Dr_id)
         {
