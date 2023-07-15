@@ -50,6 +50,11 @@ import { TimeTableComponent } from './components/search-page/components/doctors-
 import { ConfirmCodeComponent } from './components/confirm-code/confirm-code.component';
 import { ChangePasswordComponent } from './components/Doctor/change-password/change-password.component';
 import { DoctorDataComponent } from './components/Doctor/doctor-data/doctor-data.component';
+import { TakeAppoinmentComponent } from './components/patientappoinment/take-appoinment/take-appoinment.component';
+import { SavedAppoinmentComponent } from './components/patientappoinment/saved-appoinment/saved-appoinment.component';
+import { DoctorAddAppointmentComponent } from './components/Doctor/doctor-add-appointment/doctor-add-appointment.component';
+import { ListboxModule } from 'primeng/listbox';
+import { ListComponent } from './components/search-page/components/doctors-list/components/time-table/list/list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +87,11 @@ import { DoctorDataComponent } from './components/Doctor/doctor-data/doctor-data
     TimeTableComponent,
     ConfirmCodeComponent,
     ChangePasswordComponent,
-    DoctorDataComponent
+    DoctorDataComponent,
+    TakeAppoinmentComponent,
+    SavedAppoinmentComponent,
+    DoctorAddAppointmentComponent,
+    ListComponent
   ],
   imports: [
     PaginatorModule,
@@ -103,7 +112,8 @@ import { DoctorDataComponent } from './components/Doctor/doctor-data/doctor-data
     MatSlideToggleModule,
     ProgressSpinnerModule,
     CarouselModule,
-    ScrollerModule
+    ScrollerModule,
+    ListboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
