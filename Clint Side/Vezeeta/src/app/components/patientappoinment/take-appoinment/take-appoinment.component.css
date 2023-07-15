@@ -1,0 +1,21 @@
+.bg-blue{
+ background-color: #0070CD;
+ border-radius: 10px;
+}
+#flexCheckDefault{
+position: absolute;
+}
+.blue{
+    color: #0070CD;
+}
+img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid rgb(190, 189, 189);
+    position:relative;
+    bottom: 15px;
+}
+.bg-bieg{
+    background-color: #F5F5F5;
+}

@@ -22,6 +22,8 @@ import { ConfirmCodeComponent } from './components/confirm-code/confirm-code.com
 import { ChangePasswordComponent } from './components/Doctor/change-password/change-password.component';
 import { DoctorProfileComponent } from './components/doctor-profile/doctor-profile.component';
 import { DoctorDataComponent } from './components/Doctor/doctor-data/doctor-data.component';
+import { TakeAppoinmentComponent } from './components/patientappoinment/take-appoinment/take-appoinment.component';
+import { DoctorAddAppointmentComponent } from './components/Doctor/doctor-add-appointment/doctor-add-appointment.component';
 
 
 
@@ -47,6 +49,8 @@ const routes: Routes = [
   { path: 'doctor/changePassword', component: ChangePasswordComponent },
   { path: 'doctor/profile', component: DoctorProfileComponent },
   { path: 'doctor/data/:id', component: DoctorDataComponent },
+  { path: 'reservation/create/:id/:drid', component: TakeAppoinmentComponent},
+  { path: 'doctor/add-appointment', component: DoctorAddAppointmentComponent },
   {path:'**',  component:ErrorComponent },
 
 ];

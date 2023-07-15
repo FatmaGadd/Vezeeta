@@ -1,0 +1,67 @@
+<div *ngIf="appoinment" class="container d-flex mx-5 mt-3 justify-content-around  row">
+    <div  class="bg-light rounded-2 h-50 mt-5 col-12 col-md-5 mb-5 ">
+        <div class="row">
+            <div class="col-3">
+                <img [src]="appoinment.dr.image" >
+            </div>
+            <div class="col-8">
+                <div class="py-3">
+                    <span *ngIf="appoinment.dr.gender == 'f'">دكتورة</span>
+                    <span *ngIf="appoinment.dr.gender == 'm'">دكتور</span>
+                    {{appoinment.dr.name}}
+                </div>
+                <div>
+                    {{appoinment.dr.description}}
+                </div>
+            </div>
+        </div>
+        <div class="bg-bieg p-4 mb-4">
+            {{appoinment.start_date}}
+            ، الدخول بميعاد محدد
+        </div>
+    </div>
+    <div class="bg-light rounded-2 col-12 col-md-5 pt-1 mt-5">
+        <div class="mb-3 py-2 text-light bg-blue text-center ">
+            ادخــــل بـــيــــانـــات الــحــجــز
+        </div>
+        <div class="px-5">
+            <form (submit)="submit($event)" [formGroup]="reservationForm">
+                <div class="form-group mb-2 d-flex">
+                    <i class="fs-5 pt-2 px-2 fa-regular fa-user blue"></i>
+                    <input type="text"formControlName="name" placeholder=" اسم المريض الذي سيقوم بالكشف" class="form-control" id="name">
+                    <ng-container *ngIf="GetName.touched">
+                        <span *ngIf="GetName.hasError('required')" class="form-text text-danger">
+                            هذا الحقل مطلوب
+                        </span>
+                    </ng-container>
+                </div>
+                <hr>
+                <div class="form-group mb-2 d-flex">
+                    <i class="fa-solid fa-phone-flip fs-5 pt-2 px-2 blue"></i>              
+                    <input type="number" minlength="11" maxlength="11" formControlName="mobile" placeholder="رقم الموبايل" class="form-control" id="name">
+                    <ng-container *ngIf="GetMobile.touched">
+                        <span *ngIf="GetMobile.hasError('required')" class=" form-text text-danger">
+                            هذا الحقل مطلوب
+                        </span>
+                    </ng-container>
+                </div>
+                <hr>
+                <div class="form-group mb-2 d-flex">
+                    <i class="fs-5 pt-2 px-2 fa-regular fa-envelope blue"></i>
+                    <input type="text"formControlName="email" placeholder="البريد الالكتروني (اختياري)" class="form-control" id="name">
+                </div>
+                <hr>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="change($event)">
+                    <label class="form-check-label px-4" for="flexCheckDefault">
+                      أنا أقوم بالحجز نيابة عن مريض أخر
+                    </label>
+                </div>
+                <div class="py-4 row">
+                    <input type="submit" value="احجز" class="mx-4 btn btn-danger col-6 rounded-2">
+                    <input type="button" [routerLink]="['/home']" value="الغاء" class="btn col-4 border rounded-2">  
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
