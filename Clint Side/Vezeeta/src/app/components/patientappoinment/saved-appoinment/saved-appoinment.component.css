@@ -1,0 +1,55 @@
+.parent{
+        background-color: white;
+        border-radius: 10px;
+    }
+    .head-img{
+        background-size: cover;
+        background-image: url(https://d1aovdz1i2nnak.cloudfront.net/vezeeta-web-reactjs/55283/_next/static/images/thankyou-banner.png);
+        background-repeat: no-repeat;
+        height: 193px;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .text{
+        margin: 10px ;
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: start;
+    justify-content: normal;
+    }
+
+    .icon >i{
+        font-size: 15px;
+        color: rgb(0, 112, 205);
+    }
+    .icon::after {
+        width: 12px;
+        height: 2px;
+        background: rgb(239, 15, 15);
+        content: " ";
+        text-align: center;
+        display: -webkit-box;
+        position: relative;
+        bottom: 0.11em;
+        margin: auto !important;
+    }
+    .text span:nth-child(2){
+            font-size: 20px;
+            color: rgb(116, 116, 112);
+            margin-right: 15px;
+  
+    }
+    hr{
+        width: 100%;
+        height: 2px;
+        background-color:rgb(224, 224, 224);
+    }
+    tr td{
+        padding: 10px 0px;
+        font-size: 24px;
+        color: rgb(116, 116, 112);
+        margin-right: 15px;
+
+}
