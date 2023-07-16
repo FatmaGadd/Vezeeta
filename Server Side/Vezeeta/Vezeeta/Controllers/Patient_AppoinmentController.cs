@@ -82,20 +82,18 @@ namespace Vezeeta.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Patient_Appoinment>> AddPatient_Appoinment(addApointTOPatient patient_Appoinment, int patient_id)
+        public async Task<ActionResult<Patient_Appoinment>> AddPatient_Appoinment(addApointTOPatient patient_Appoinment)
         {
-            Patient patient = await patientContext.GetById(patient_id);
-            if(patient == null)
-                     return NotFound();
+            if(patient_Appoinment == null)
+                     return BadRequest();
 
             Patient_Appoinment patientAppointToAdd = new Patient_Appoinment()
             {
                 patient_id = patient_Appoinment.patient_id,
-                state = false,       // delete this props after update in DB
 
             };
-            await context.Add(patientAppointToAdd, patient_id);
-            return Ok(patient_Appoinment);
+            await context.Add(patientAppointToAdd,patient_Appoinment.patient_id);
+            return Ok(patientAppointToAdd);
             }
 
         // // DELETE 

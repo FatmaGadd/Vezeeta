@@ -59,19 +59,27 @@ namespace Vezeeta.Controllers
         // PUT: api/Appointments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id},{Dr_id}")]
-        public async Task<IActionResult> PutAppointment(int id, int Dr_id, AddAppointmentDTO appointment)
+        public async Task<IActionResult> PutAppointment(int id, int Dr_id, UpdateAppoinmentDTO appointment)
         {
             Appointment? a = await _context.GetById(id, Dr_id);
             if (a == null) return NotFound();
             if (id != a.id || Dr_id != a.Dr_id) return BadRequest();
-
+            Patient_Appoinment patientappointment = null;
+            if (appointment?.patientAppointDTO?.patient_id != null)
+            {
+                patientappointment = new Patient_Appoinment()
+                {
+                    patient_id = appointment.patientAppointDTO.patient_id
+                };
+            }
+            
             try
             {
                 a.start_date = appointment.start_date;
                 a.end_date = appointment.end_date;
                 a.type = appointment.type;
-                a.appoint_id = appointment.appoint_id;
                 a.patients_per_day = appointment.patients_per_day;
+                a.appoint = patientappointment;
                 await _context.Update(id, Dr_id, a);
             }
             catch (DbUpdateConcurrencyException)

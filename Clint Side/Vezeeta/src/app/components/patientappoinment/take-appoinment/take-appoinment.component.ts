@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IAppoinment } from 'src/app/Interfaces/iappoinment';
 import { IAddAppointToPatient } from 'src/app/Interfaces/iadd-appoint-to-patient';
+import { HttpClient } from '@angular/common/http';
+import { AppointmentURLs } from 'src/app/Environment/App.Const';
 
 @Component({
   selector: 'app-take-appoinment',
@@ -18,13 +20,13 @@ export class TakeAppoinmentComponent implements OnInit{
   drId?:any;
   appoinment?:any;
   patient?:any;
-
+  invalid = false;
   constructor(private tokenService:TokenService,
     private appoinmentService:AppoinmentService, 
     private router:Router,
     private activatedRoute:ActivatedRoute, 
     private patientService:PatientService,
-    private patientAppointService:PatientAppointService
+    private http:HttpClient
     ){
     this.activatedRoute.params.subscribe((params) => {
       this.appoinmentId = params['id'];
@@ -72,20 +74,20 @@ export class TakeAppoinmentComponent implements OnInit{
   }
 submit(e:Event){
   e.preventDefault();
-  debugger
   if (this.reservationForm.valid) {
-    //update with APPOINMENT DIRECT or add with appoinpatient direct
-    // let appointupdate:IAppoinment={id:this.appoinmentId,Dr_id:this.drId,appoint_id:}
-    // this.appoinmentService.Update(this.appoinmentId,this.drId,appointupdate)
-    //navigate to success
-    let appPatient:IAddAppointToPatient={id:this.patient.id}
-    this.patientAppointService.AddPatient_Appoinment(appPatient,this.patient.id).subscribe({
+    let appointment = {id:this.appoinment.id,dr_id:this.drId,start_date:this.appoinment.start_date,end_date:this.appoinment.end_date,patients_per_day:this.appoinment.patients_per_day,type:this.appoinment.type,patientAppointDTO:{patient_id:this.patient.id}}
+    //console.log(appointment);
+    this.http.put(AppointmentURLs.GetById_Put_Delete(this.appoinment.id,this.drId),appointment).subscribe({
       next:(response:any) => {
-        console.log(response);
+        //console.log(response);
+        this.router.navigate(['']);
        },
        error: (e) => console.error(e),
       complete: () =>console.info('Success')
     })
+  }
+  else{
+    this.invalid =  true;
   }
 }
 change(e:any){

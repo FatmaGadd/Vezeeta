@@ -19,3 +19,17 @@ img{
 .bg-bieg{
     background-color: #F5F5F5;
 }
+.fg{
+    color: rgb(97, 96, 96);
+    font-size: 1.1rem;
+
+}
+.parent {
+    font-size: 1.5rem;
+    color: rgb(74, 73, 73);
+    font-weight: bold;
+} 
+.desc{
+    color: rgb(93, 92, 92);
+    font-size: 1.4rem;
+}
