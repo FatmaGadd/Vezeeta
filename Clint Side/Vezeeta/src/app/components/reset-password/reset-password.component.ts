@@ -36,10 +36,10 @@ export class ResetPasswordComponent implements OnInit {
       patientPhone: new FormControl(),
       patientCode: new FormControl(),
     });
-    if(localStorage.getItem('UserId') && localStorage.getItem('Role'))
+    if(localStorage.getItem('id') && localStorage.getItem('State'))
     {
-        this.id=localStorage.getItem('UserId');
-        this.role=localStorage.getItem('Role');
+        this.id=localStorage.getItem('id');
+        this.role=localStorage.getItem('State');
         ////////////////////get info for patient
         if(this.role=='Patient'){
               this.patientService.GetById(this.id).subscribe({
@@ -78,8 +78,6 @@ export class ResetPasswordComponent implements OnInit {
  }
   resetPass(e:any){
     e.preventDefault();
-  
-    
     if(this.formRestPass.status === 'VALID' ){
       if(this.getNewPass.value === this.getConfirmPass.value){
         this.isConfirm=true;

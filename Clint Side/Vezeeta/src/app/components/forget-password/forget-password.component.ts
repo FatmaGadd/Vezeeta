@@ -21,8 +21,8 @@ formForgetPass:any;
 temp:any;
 data:IPatientAdd|undefined;
 code:any;
-role=localStorage.getItem('Role');
-
+role=localStorage.getItem('State');
+id=0;
 
 ngOnInit(): void {
  this.formForgetPass = new FormGroup({
@@ -50,15 +50,15 @@ forgetPass(e:any){
   if(this.formForgetPass.status=='VALID'){
     console.log('valid');
     
-    const id = Number(localStorage.getItem('UserId'));
+    // const id = Number(localStorage.getItem('UserId'));
      // search by mail in patient
             if(this.role == 'Patient'){
               this.patientService.GetByEmail(this.getEmail.value).subscribe({
                 next:(p)=>{
                   this.temp=p.body;
                   this.data=this.temp;
-                  
                  if(this.data != undefined){
+                  this.id=this.data.id;
                   this.formForgetPass.controls['patientEmail'].setValue(this.data.email);
                   this.formForgetPass.controls['patientAddress'].setValue(this.data.address);
                   this.formForgetPass.controls['patientGender'].setValue(this.data.gender);
@@ -87,7 +87,7 @@ forgetPass(e:any){
                 if(this.data){
                   this.data.code = this.code;
                   
-                  this.patientService.Update(id,this.formForgetPass).subscribe((e)=>console.log(e))
+                  this.patientService.Update(this.id,this.formForgetPass).subscribe((e)=>console.log(e))
                 }
                
             }
@@ -102,7 +102,9 @@ forgetPass(e:any){
                     this.data=this.temp;
                     // send Code to this Email 
                             if(this.data != undefined){
-                              console.log(this.data.id);
+                              this.id=this.data.id;
+                              localStorage.setItem('id',String(this.data.id));
+                              localStorage.setItem('id',String(this.data.id));
                               this.GenerateCodeAndSendEmail(this.data.email , this.data.id);
                             
                        setTimeout(() => {
@@ -120,7 +122,7 @@ forgetPass(e:any){
                 if(this.data){
                   this.data.code = this.code;
                   
-                  this.patientService.Update(id,this.data).subscribe((e)=>console.log(e))
+                  this.patientService.Update(this.id,this.data).subscribe((e)=>console.log(e))
                 }
               }
 

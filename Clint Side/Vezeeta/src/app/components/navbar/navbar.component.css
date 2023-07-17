@@ -36,3 +36,11 @@ li a:before {
     border-radius: 3px !important;
 
 }
+@media(max-width:991px){
+    li a:before {
+        content: "";
+    }
+    ul li{
+        margin: 5px 0px;
+    }
+}

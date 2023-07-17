@@ -23,7 +23,7 @@ DocData:Idoctor|undefined;
 user:any;
 codeFromServer:any;
 isCodeConfirm=false;
-role=localStorage.getItem("Role");
+role=localStorage.getItem("State");
 
 ngOnInit(): void {
  this.formConfirmCode = new FormGroup({
@@ -41,8 +41,8 @@ submitCode(e:any){
   
   if(this.formConfirmCode.status=='VALID'){
     console.log('valid');
-      if(localStorage.getItem("UserId")){
-        this.user=localStorage.getItem("UserId");
+      if(localStorage.getItem("id")){
+        this.user=localStorage.getItem("id");
         if(this.role == 'Doctor'){
           this.DocService.getDoctorById(this.user).subscribe({
               next:(doc)=>{

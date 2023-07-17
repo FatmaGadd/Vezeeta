@@ -12,7 +12,9 @@ export class NavbarComponent implements OnInit {
   name:any="";
   isLogin='userLogOut';
   // isLogin=localStorage.getItem('isLogin');
-  constructor(private patientService:PatientService) {}
+  constructor(private patientService:PatientService) {
+    
+  }
   ngOnInit(): void {
     if(localStorage.getItem("UserName"))
                 this.name=localStorage.getItem("UserName")?.toString();
@@ -21,9 +23,9 @@ export class NavbarComponent implements OnInit {
                           
   }
   DocRole(){
-     localStorage.setItem('Role','Doctor')
+     localStorage.setItem('State','Doctor')
     }
-  patientRole(){ localStorage.setItem('Role','Patient')}
+  patientRole(){ localStorage.setItem('State','Patient')}
   logOut(){
     localStorage.removeItem('Role');
     localStorage.removeItem('Token');
