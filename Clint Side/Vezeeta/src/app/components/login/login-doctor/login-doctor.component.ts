@@ -39,6 +39,7 @@ export class LoginDoctorComponent {
         next:(response:any) => {
             let res = response.body.response;
             this.tokenService.SaveToken(res.doctor.id,res.token,res.role,res.doctor.name);
+            localStorage.setItem('isLogin','userLoged');
             this.router.navigate(['home']);
         },
         error: (e) => {console.error(e),this.showError=true},

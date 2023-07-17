@@ -10,14 +10,27 @@ import { PatientService } from 'src/app/Services/Entity_Services/patient.service
 })
 export class NavbarComponent implements OnInit {
   name:any="";
-  // patientId:number=17;
-  // loginInfo:any;
-  // patient:IPatientAdd|undefined;
+  isLogin='userLogOut';
+  // isLogin=localStorage.getItem('isLogin');
   constructor(private patientService:PatientService) {}
   ngOnInit(): void {
     if(localStorage.getItem("UserName"))
-this.name=localStorage.getItem("UserName")?.toString();
+                this.name=localStorage.getItem("UserName")?.toString();
+                if(localStorage.getItem('isLogin') != null)
+                          this.isLogin=String(localStorage.getItem('isLogin'));
+                          
   }
-  
+  DocRole(){
+     localStorage.setItem('Role','Doctor')
+    }
+  patientRole(){ localStorage.setItem('Role','Patient')}
+  logOut(){
+    localStorage.removeItem('Role');
+    localStorage.removeItem('Token');
+    localStorage.removeItem('UserName');
+    localStorage.removeItem('UserId');
+    this.isLogin='userLogOut';
+    
+  }  
 
 }
