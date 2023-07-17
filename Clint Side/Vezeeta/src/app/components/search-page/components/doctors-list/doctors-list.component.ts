@@ -24,29 +24,7 @@ export class DoctorsListComponent implements OnInit {
   constructor(private activatedrot: ActivatedRoute, private search: SearchService, private specialization: SpecializationService, private appointment: AppoinmentService) {
 
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    // console.log(changes)
-    // this.activatedrot.queryParams.subscribe(params => {
-    //   let temp: ISearch = {
-    //     City: params["city"],
-    //     Reigon: params["reigon"],
-    //     Fese: 0,
-    //     Gender: "",
-    //     Name: params["name"],
-    //     Specialization: params["special"]
-    //   }
 
-    //   if (temp["City"] != 0 || temp["Reigon"] != 0)
-    //     this.holderlist = Doctors_List_Genrate.GetListbyReigonAndCity(this.doctorslist, temp["Reigon"], temp["City"])
-    //   else
-    //     this.holderlist = Doctors_List_Genrate.GetList(this.doctorslist)
-
-    //   this.doctorslist = this.holderlist
-
-    // })
-
-
-  }
   ngOnInit(): void {
 
     this.specialization.GetAll().subscribe(res => {
@@ -55,12 +33,15 @@ export class DoctorsListComponent implements OnInit {
     })
     //-------------------get data from query string
     this.activatedrot.queryParams.subscribe(params => {
-
+      console.log(params["fese"])
+      console.log(params["gender"] == undefined)
       let temp: ISearch = {
         City: params["city"],
         Reigon: params["reigon"],
-        Fese: 0,
-        Gender: "",
+        Fese: params["fese"] == undefined ? 0 : +(params["fese"]),
+        Gender: params["gender"] == undefined ? " " : params["gender"],
+        Date: params["date"] == undefined ? 0 : +(params["date"]),
+        // Gender: " ",
         Name: params["name"],
         Specialization: params["special"]
       }

@@ -10,48 +10,97 @@
     </div>
 </div>
 <div *ngIf="!load">
-    <div *ngIf="flag">
-        n odata
-    </div>
-    <div *ngIf="!flag">
-        <div class="card w-100 mb-3 rounded " *ngFor="let x of doctorslist">
+    <div *ngIf="doctorslist.length==0">
+        <div class="parent">
 
-            <div class="card-body">
-                <div class="row px-4">
-
-                    <div class="col-2  p-3 d-flex justify-center align-self-center  ">
-
-                        <h1 class="text-danger d-felx align-self-center border rounded-circle p-5 border-primary">
-                            {{x.drName[0]}}
-                        </h1>
-                        <!-- <img src="./assets/images/spec-skin.jpeg"style="width: 150px;height: 150px; ;border-radius: 200px; border: 1px solid ;" alt=""> -->
-                    </div>
-                    <div class="col-5  p-3">
-                        <h3 class="card-title m-0  ">Doctor <span style="font-size: 1.4rem; font-weight: 700;">
-                                {{x.drName}}</span>
-                        </h3>
-                        <h5 class="card-title m-0"></h5>
-                        <!-- <div>ratings</div>  -->
-                        <p class="card-text"> <i class="fa-solid fa-stethoscope me-2 mt-2"></i>
-                            {{getSpecialById(x.specilalization)}}
-                        </p>
-                        <p class="card-text"><i class="fa-solid fa-map-location-dot me-2 mt-2"></i>address</p>
-                        <p class="card-text"><i class="fa-solid fa-money-bill-wave me-2 mt-2"></i>Fees: <span
-                                style="color: red;font-size: 1.2rem;">{{x.clinic_feese}}
-                            </span>EGP
-                        </p>
-                        <p class="card-text"><i class="fa-solid fa-stopwatch me-2 mt-2"></i>{{x.waittime==null?"غير
-                            محدد":x.waittime}}
-                        </p>
-                    </div>
-                    <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssss -->
-                    <div class="card col-5 " style="direction: ltr;">
-                        <app-time-table [products]="getappointement(x.drID)"></app-time-table>
-                    </div>
-
-
+            <div class=" px-5 d-flex flex-column align-items-center justify-content-between">
+                <span class="notFound">ناسف لم نتمكن من العثور علي نتائج</span>
+                <span class="notFound"> لا داعي للقلق .. بامكاننا المساعدة</span>
+                <div class="d-flex align-items-center justify-content-between mt-2 ">
+                    <a href="/search?type=b&city=0&reigon=0&name=&special=0" class="Dr btn">تصفح دكاترة فيزيتا</a>
+                    <a href="/" class="home btn">الصفحة الرئيسية</a>
                 </div>
             </div>
+
+            <div class="">
+                <img alt="404 not found" src="assets/images/error.png"
+                    class="NewPageNotFoundstyle__NotFoundImg-sc-1b0y90p-3 kJuOyQ" />
+            </div>
+
         </div>
+
     </div>
+
+    <!-- ------------------------------------------------------------------ -->
+
+    <div class="card">
+        <p-dataView [value]="doctorslist" [paginator]="true" [rows]="10" filterBy="name" layout="grid">
+            <ng-template let-product pTemplate="gridItem">
+                <div class="p-col-12 p-md-4">
+                    <div>
+                        <div class="card w-100 mb-3  " id="card">
+                            <!-- <a [routerLink]="doctor/data/:id"></a> -->
+                            <div class="card-body">
+                                <div class="row px-4">
+
+
+                                    <div class="col-2  p-3 d-flex justify-center align-self-center  ">
+                                        <h1 *ngIf="product.image == null"
+                                            class="text-danger d-felx align-self-center  rounded-circle p-5 ">
+                                            {{product.drName[0]}}
+                                        </h1>
+                                        <!-- <img src="./assets/images/spec-skin.jpeg" -->
+                                        <img *ngIf="product.image != null" src="{{product.image}}"
+                                            style="width: 150px;height: 150px; ;border-radius: 300px; border: 1px solid ;"
+                                            alt="">
+                                    </div>
+                                    <div class="col-6  p-3">
+                                        <a [routerLink]="['/doctor/data/',product.drID]" style="text-decoration: none;">
+
+                                            <h3 class="card-title my-2  ">دكتور <span
+                                                    style="font-size: 1.4rem; font-weight: 700;">
+                                                    {{product.drName}}</span>
+                                            </h3>
+                                            <h5 class="card-title m-0"></h5>
+                                            <!-- <div>ratings</div>  -->
+                                            <p class="card-text text-secondary"> <i
+                                                    class="fa-solid fa-stethoscope me-2 mt-2"></i>
+                                                <span class="mx-1 bg-primary p-1 rounded text-white"
+                                                    style="font-size: .8rem;">تخصص</span>
+                                                {{getSpecialById(product.specilalization)}}
+                                            </p>
+                                            <p class="card-text"><i
+                                                    class="fa-solid fa-map-location-dot mx-2 mt-2"></i>{{product.clinic_address["city"]["name"]}}-شارع
+                                                {{product.clinic_address["street"]}}
+                                            </p>
+                                            <p class="card-text"><i
+                                                    class="fa-solid fa-money-bill-wave mx-2 mt-2"></i>الكشف: <span
+                                                    style="font-size: 1.5rem; font-weight: bold;"
+                                                    class="text-success mx-1">{{product.clinic_feese}}
+                                                </span>ج.م
+                                            </p>
+                                            <p class="card-text"><i class="fa-solid fa-stopwatch mx-2 mt-2"></i><span
+                                                    style="font-weight: bold;">{{product.wattingTime==null?"غير
+                                                    محدد":product.wattingTime+" دقيقة "}}</span>
+                                            </p>
+                                        </a>
+
+                                    </div>
+
+                                    <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+                                    <div class="card col-4 " style="direction: ltr;    border: none;max-width: 390px;">
+                                        <app-time-table [products]="getappointement(product.drID)"></app-time-table>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+
 </div>

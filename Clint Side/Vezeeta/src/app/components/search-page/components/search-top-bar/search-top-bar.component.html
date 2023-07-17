@@ -1,22 +1,25 @@
 <div id="search">
     <div class="container">
-        <h1>Better Healthcare for a Better Life</h1>
+        <h1>رعاية صحية أفضل لحياة أفضل</h1>
 
-        <h3>Best Doctors in Egypt</h3>
-        <h3><i class="fa-regular fa-calendar-check m-2 title"></i>book doctor or <i
-                class="title fa-solid fa-phone m-2"></i>call
-            online
+        <h3>افضل دكاتره في مصر</h3>
+        <h3>
+            <i class="fa-regular fa-calendar-check m-2 title"></i>
+            احجز معاد دكتور اونلاين
+            <i class="title fa-solid fa-phone m-2"></i>
+            او تواصل اونلاين مع الدكتور
         </h3>
     </div>
-    <div class=" bg-white  p-2 container">
-        <form class=" d-flex rounded border" [formGroup]=" Form" (ngSubmit)="onSubmit()">
+    <div class=" bg-white  p-2 container ">
+        <form class=" d-flex rounded border flex-column flex-sm-row " [formGroup]=" Form" (ngSubmit)="onSubmit()">
             <!-- ---------------------------------------------- specialization -------------------------------------------- -->
 
-            <div class="  col p-0 border">
+            <div class="  col p-0 border  ">
                 <label class=" form-label ms-3">Select speciality</label>
                 <div class="input-group">
-                    <span class="input-group-text bg-white border-0"><i class="fa-solid fa-stethoscope"></i> </span>
-                    <select name="" class="form-control text-primary border-0" formControlName="special">
+                    <span class="input-group-text bg-white border-0 d-none d-lg-block"><i
+                            class="fa-solid fa-stethoscope"></i> </span>
+                    <select name="" class="form-control text-primary border-0 me-2 me-lg-0" formControlName="special">
                         <option value="0">اختر التخصص</option>
                         <option *ngFor="let elent of specializationList" value={{elent.id}} selected>{{elent.name}}
                         </option>

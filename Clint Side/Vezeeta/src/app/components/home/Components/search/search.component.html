@@ -2,28 +2,28 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs ">
         <li class="nav-item col ">
-            <a class="nav-link d-flex justify-content-center align-items-center gap-3 active ounded-0"
+            <a class="nav-link d-flex justify-content-center align-items-center gap-3 active ounded-0 pt-3"
                 data-bs-toggle="tab" href="#home">
                 <div>
-                    <i class="fa-solid fa-calendar-days h2"></i>
+                    <i class="fa-solid fa-calendar-days h1"></i>
                 </div>
                 <div>
 
-                    <h2 class="m-0">Book a doctor</h2>
-                    <h5>Examination or procedure</h5>
+                    <h2 class="m-0 " style="font-size: 2rem;font-weight: bold;">احجز دكتور</h2>
+                    <h5 style="font-size: 1rem;">الفحص أو الإجراء</h5>
                 </div>
 
             </a>
         </li>
         <li class="nav-item col">
-            <a class="nav-link d-flex justify-content-center align-items-center gap-3 " data-bs-toggle="tab"
+            <a class="nav-link d-flex justify-content-center align-items-center gap-3 pt-3" data-bs-toggle="tab"
                 href="#menu1">
                 <div>
-                    <i class="fa-solid fa-headset h2"></i>
+                    <i class="fa-solid fa-headset h1"></i>
                 </div>
                 <div>
-                    <h2 class="m-0">Telehealth</h2>
-                    <h5>Call consultation with doctor</h5>
+                    <h2 class="m-0 " style="font-size: 2rem;font-weight: bold;">مكالمة دكتور</h2>
+                    <h5 style="font-size: 1rem;">للمتابعة عبر مكالمة مع دكتور</h5>
                 </div>
             </a>
         </li>
@@ -35,7 +35,7 @@
         <div class="tab-pane container active " id="home">
             <form class="d-flex rounded border" [formGroup]="Form" (ngSubmit)="onSubmit()">
                 <div class="  col p-0 border">
-                    <label class=" form-label ms-3">Select speciality</label>
+                    <label class=" form-label mx-3 mt-1">ابحث عن دكتور</label>
                     <div class="input-group">
                         <span class="input-group-text bg-white border-0"><i class="fa-solid fa-stethoscope"></i> </span>
                         <select name="" class="form-control text-primary border-0" formControlName="special">
@@ -47,7 +47,7 @@
                 </div>
                 <!-- ---------------------------------------------- reigon -------------------------------------------- -->
                 <div class="  col p-0 border">
-                    <label for="formGroupExampleInput" class=" form-label ms-3">In this City</label>
+                    <label for="formGroupExampleInput" class=" form-label mx-3  mt-1">في محافظة</label>
                     <div class="input-group ">
                         <span class="input-group-text bg-white border-0" id="basic-addon1">
                             <i class="fa-solid fa-location-dot"></i>
@@ -62,7 +62,7 @@
                 <!-- ---------------------------------------------- city -------------------------------------------- -->
 
                 <div class="  col p-0 border">
-                    <label for="formGroupExampleInput" class=" form-label ms-3">In this Area</label>
+                    <label for="formGroupExampleInput" class=" form-label mx-3  mt-1">في منطقه</label>
                     <div class="input-group  ">
                         <span class="input-group-text bg-white border-0" id="basic-addon1">
                             <i class="fa-solid fa-map-location-dot"></i>
@@ -77,9 +77,8 @@
                 <!-- ---------------------------------------------- doctor name -------------------------------------------- -->
 
                 <div class="  col p-0 border">
-                    <label for="formGroupExampleInput" class=" form-label ms-3"
-                        style="font-size: .6rem;margin-bottom: -100%;">Example
-                        label</label>
+                    <label for="formGroupExampleInput" class=" form-label mx-3  mt-1"
+                        style="font-size: .6rem;margin-bottom: -100%;">او اكتب اسم الدكتور</label>
                     <div class="input-group  ">
                         <span class="input-group-text bg-white border-0" id="basic-addon1">
                             <i class="fa-solid fa-user-doctor"></i>

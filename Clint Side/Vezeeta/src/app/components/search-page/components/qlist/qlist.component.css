@@ -1,0 +1,61 @@
+.box,
+.box2 {
+    border: 1px solid #dddcdc;
+    border-radius: 10px;
+    position: relative;
+    padding: 50px;
+}
+
+.box::after,
+.box2::after {
+    font-size: 1.2rem;
+    position: absolute;
+    top: -20px;
+    right: 50px;
+    background: #0078D7;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+
+.box::after {
+    content: "أسئلة مكررة";
+}
+
+.box2::after {
+    content: "اعرف اكثر عن صحتك";
+}
+
+.accordion-button {
+    border-radius: 20px !important;
+    color: #808184 !important;
+    font-weight: bold;
+}
+
+.accordion-button:not(.collapsed):after {
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    /* transform: translateY(-50%) !important; */
+    transform: rotatex(180deg) !important;
+    /* background-image: none; */
+
+    transition: .5s ease;
+}
+
+.accordion-button.collapsed:after {
+    content: "";
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    /* transform: rotate(360deg); */
+    transition: .5s ease;
+}
+
+.text {
+    color: #0078D7 !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+}

@@ -22,3 +22,24 @@ button {
     background: #0070CD !important;
     color: white !important;
 }
+
+.accordion-button:not(.collapsed):after {
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    /* transform: translateY(-50%) !important; */
+    transform: rotatex(180deg) !important;
+    /* background-image: none; */
+
+    transition: .5s ease;
+}
+
+.accordion-button.collapsed:after {
+    content: "";
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    /* transform: rotate(360deg); */
+    transition: .5s ease;
+}
