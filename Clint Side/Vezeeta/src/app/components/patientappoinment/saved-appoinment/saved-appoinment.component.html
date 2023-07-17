@@ -1,5 +1,6 @@
-<div class="container my-4">
+<div *ngIf="appoinment && dr_clinic"class="container my-4 ">
         <div class="d-flex flex-wrap">
+            <div class="col-md-3"></div>
         <div class="col col-md-6">
             <div class="parent px-5">
                 <div class="head-img">
@@ -8,57 +9,62 @@
                     <div class="d-flex  flex-column  p-4 mt-2">
                         <div class="text ">
                                 <span class="icon"><i class="fa-regular fa-envelope"></i></span>
-                                <span>أبلغنا دكتورة [[إيمان الشرقاوي]] بحجزك</span>
+                                <span>أبلغنا
+                                     <span *ngIf="appoinment.dr?.gender == 'f'"> دكتورة </span>
+                                     <span *ngIf="appoinment.dr?.gender == 'm'"> دكتور </span>
+                                      {{appoinment.dr.name}} بحجزك</span>
                         </div>
                         <div class="text ">
                                 <span class="icon"><i class="fa-solid fa-money-bill-1-wave"></i></span>
-                                <span> سعر الكشف: [200]جنيه  </span>
+                                <span> سعر الكشف: {{dr_clinic.fees}} جنيه  </span>
                         </div>
                         <hr>
                         <div class="text ">
                                 <span class="icon"><i class="fa-solid fa-phone-flip"></i></span>
-                                <span> رقم تليفون العيادة:  <i style=" color: rgb(0, 112, 205);">[[768768]]</i></span>
+                                <span> رقم تليفون العيادة:  <i style=" color: rgb(0, 112, 205);">{{dr_clinic.clinic.phone}}</i></span>
                         </div>
                         <div class="text ">
                                 <span class="icon"><i class="fa-regular fa-calendar-check"></i></span>
-                                <span> تفاصيل الحجز <i style=" color: rgb(0, 112, 205);">[[768768]]</i></span>
+                                <span> تفاصيل الحجز <i style=" color: rgb(0, 112, 205);"></i></span>
                         </div>
                         <hr>
                         <table  class="table table-hover ">
                             <tbody>
                                 <tr>
                                     <td>  اسم المريض </td>
-                                    <td>[[soha]]</td>
+                                    <td>{{patientname}}</td>
                                 </tr>
                                 <tr>
-                                    <td> تاريخ  الحجز</td>
-                                    <td>الدخول بميعاد محدد</td>
+                                    <td class="w-25"> تاريخ  الحجز</td>
+                                    <td>
+                                        {{appoinment.start_date | date:'dd/MM/yyyy (hh:mm)'}}
+                                        ، الدخول بميعاد محدد</td>
                                  </tr>
                                  <tr>
                                     <td> اسم الدكتور</td>
-                                    <td>[[إيمان]] دكتورة</td>
+                                    <td>{{appoinment.dr.name}}</td>
                                  </tr>   
                                  <tr>
                                     <td> مدة الانتظار</td>
-                                    <td>[[  30 دقيقة]]</td>
+                                    <td>غير محددة</td>
                                  </tr>
                                  <tr>
                                     <td>   عنوان العيادة</td>
-                                    <td>[[ش المأجور ش طلبه عويضه - خلف رنين]]</td>
+                                    <td> مدينة {{clinicaddress.city.name}} ,{{clinicaddress.street}}, {{clinicaddress.square}}, مبنى رقم {{clinicaddress.building}}, الدور رقم {{clinicaddress.floor_num}}, شقة رقم {{clinicaddress.flat_num}}, {{clinicaddress.notes}}</td>
                                  </tr>       
                                
                             </tbody>
                         </table>
-                        <button class="btn btn-primary d-block m-auto fs-4">مواعيدي </button>
+                        <button [routerLink]="['/patientAppoint']" class="btn btn-primary d-block m-auto fs-4">مواعيدي </button>
             </div>
                   </div>
         </div>
         </div>
 
-        <div class="col-md-6" px-5>
+        <!-- <div class="col-md-6" px-5>
             <div class="px-5">
                 Your Divvvvvvvvvvvvvvvv
             </div>
-        </div>
+        </div> -->
         </div>
 </div>

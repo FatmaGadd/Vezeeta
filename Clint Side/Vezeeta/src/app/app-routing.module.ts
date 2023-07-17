@@ -52,7 +52,7 @@ const routes: Routes = [
   { path: 'doctor/data/:id', component: DoctorDataComponent },
   { path: 'reservation/create/:id/:drid', component: TakeAppoinmentComponent},
   { path: 'doctor/add-appointment', component: DoctorAddAppointmentComponent },
-  {path:'book',component:SavedAppoinmentComponent},
+  {path:'book/:id/:drid',component:SavedAppoinmentComponent},
   {path:'**',  component:ErrorComponent },
 
 ];

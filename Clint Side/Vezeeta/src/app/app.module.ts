@@ -53,6 +53,10 @@ import { SavedAppoinmentComponent } from './components/patientappoinment/saved-a
 import { DoctorAddAppointmentComponent } from './components/Doctor/doctor-add-appointment/doctor-add-appointment.component';
 import { ListboxModule } from 'primeng/listbox';
 import { ListComponent } from './components/search-page/components/doctors-list/components/time-table/list/list.component';
+import { QlistComponent } from './components/search-page/components/qlist/qlist.component';
+import { FieldsetModule } from 'primeng/fieldset';
+import { DataViewModule } from "primeng/dataview";
+import { TestComponent } from './components/test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +91,9 @@ import { ListComponent } from './components/search-page/components/doctors-list/
     TakeAppoinmentComponent,
     SavedAppoinmentComponent,
     DoctorAddAppointmentComponent,
-    ListComponent
+    ListComponent,
+    QlistComponent,
+    TestComponent
   ],
   imports: [
     PaginatorModule,
@@ -109,7 +115,9 @@ import { ListComponent } from './components/search-page/components/doctors-list/
     ProgressSpinnerModule,
     CarouselModule,
     ScrollerModule,
-    ListboxModule
+    ListboxModule,
+    FieldsetModule,
+    DataViewModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
