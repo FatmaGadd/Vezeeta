@@ -6,6 +6,7 @@
         public int City { get; set; }
         public int Reigon { get; set; }
         public string Name { get; set; }
+        public int Date { get; set; }
 
         public string Gender { get; set; }
         public double Fese { get; set; }

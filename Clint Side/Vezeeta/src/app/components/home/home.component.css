@@ -80,3 +80,17 @@ div+h2+p {
     font-size: 1.1rem;
     font-weight: 700;
 }
+
+.about {
+    /* From https://css.glass */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.47);
+    /* background-color: rgba(59, 104, 160, 0.47); */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.9px);
+    -webkit-backdrop-filter: blur(10.9px);
+    border: 1px solid rgba(255, 255, 255, 0.59);
+}

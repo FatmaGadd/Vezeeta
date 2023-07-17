@@ -5,5 +5,6 @@ export interface ISearch {
     Name: string | null,
     Gender: string | null,
     Fese: number | null,
+    Date: number | null
 
 }

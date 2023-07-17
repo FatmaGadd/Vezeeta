@@ -59,18 +59,10 @@ namespace Vezeeta.Repository
                 var holder = search.Gender.ToLower();
                 temp = temp.Where(a=>a.Dr.gender.ToLower()==holder).ToList();
             }
-
-
-            //var list=new List<Doctor>();
-            //foreach (var d in temp) {
-            // //   if(list.FirstOrDefault(a=>a.id==d.Dr.id )==null)
-            //    list.Add(d.Dr);
-            //}
-
-            var list=new List<SearchReturnDTO>();
+            var list = new List<SearchReturnDTO>();
             foreach (var d in temp)
             {
-                var Drappointments=appointments.Where(a=>a.Dr_id==d.Dr.id).ToList();
+                var Drappointments = appointments.Where(a => a.Dr_id == d.Dr.id).ToList();
 
                 var x = new SearchReturnDTO()
                 {
@@ -84,10 +76,48 @@ namespace Vezeeta.Repository
                     Reigon = (int)d?.clinic?.Address?.city?.region_id,
                     specilalization = d.Dr.id_specialize,
                     WattingTime = d.Dr.waiting_time
-
+                    ,
+                    image = d.Dr.image
                 };
                 list.Add(x);
             }
+
+            if (search.Fese != 0 )
+            {
+                if(search.Fese <=300) {
+                    list = list.Where(a => a.Clinic_feese <= (decimal)search.Fese).ToList();
+
+                }
+                else
+                {
+                    list = list.Where(a => a.Clinic_feese > 300).ToList();
+
+                }
+
+            }
+
+            if (search.Date != 0)
+            {
+                if (search.Date == 1)
+                {
+                    list = list.Where(a => a.Appointments.Any(B=>B.start_date==DateTime.Now)).ToList();
+
+                }
+                else
+                {
+                    list = list.Where(a => a.Appointments.Any(B => B.start_date == DateTime.Now.AddDays(1))).ToList();
+
+
+                }
+
+            }
+
+            //var list=new List<Doctor>();
+            //foreach (var d in temp) {
+            // //   if(list.FirstOrDefault(a=>a.id==d.Dr.id )==null)
+            //    list.Add(d.Dr);
+            //}
+
 
             return list;
         }

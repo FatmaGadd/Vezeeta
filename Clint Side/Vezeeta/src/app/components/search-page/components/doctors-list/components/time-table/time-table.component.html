@@ -1,23 +1,21 @@
-<p-carousel [value]="products" [numVisible]="2" [numScroll]="2" [responsiveOptions]="responsiveOptions">
+<p-carousel [value]="products" [numVisible]="2" [numScroll]="1" [responsiveOptions]="responsiveOptions">
     <ng-template let-product pTemplate="item">
         <div class="border-1  border-round m-1 text-center h-100">
-            <div class="card text-center h-100">
-                <div class="card-header ">
+            <div class="card text-center h-100" style="max-width:95px ;min-width:95px ;">
+                <div class="py-2 bg-primary text-white">
                     <!-- {{(getstring(product.start_date))}} -->
                     {{product[1]}}
                 </div>
-                <div class="card-body">
-                    <!-- disabled 
-                            [ngClass]="{'disabled' : x.appoint_id!=null}"
-                    -->
+                <div class=" card-body " [ngClass]="{'scroller':product[0].length!=0}">
 
-                    <div class="row p-2" *ngIf="product.length!=0">
-                        <button *ngFor="let x of product[0] ; let i = index" class="btn btn-primary my-1 p-1"
-                            [ngClass]="{'disabled' :(product[0].length!=0)&&( x.appoint_id==null)}"
-                            (click)="click(x)">{{getdate(x)}}</button>
+                    <div class="row p-3 " *ngIf="product.length!=0">
+                        <button *ngFor="let x of product[0] ; let i = index" class="btn btn-primary my-1 p-1 "
+                            [ngClass]="{'disabled' :(product[0].length!=0)&&( x.appoint_id!=null)}" (click)="click(x)"
+                            style="height: fit-content;">{{getdate(x)}}</button>
                     </div>
                     <div *ngIf="product[0].length==0">
-                        غير متاح مواعيد
+                        <h2>غير متاح مواعيد
+                        </h2>
                     </div>
                 </div>
                 <div class="card-footer text-body-secondary">

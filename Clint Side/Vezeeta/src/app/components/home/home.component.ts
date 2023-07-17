@@ -18,7 +18,7 @@ export class HomeComponent {
     this.productService.GetAll().subscribe(a => {
       this.products = a.body
       this.products = this.products.filter((a: any) => a.id != 0)
-
+      console.log(this.products)
     })
 
     this.responsiveOptions = [

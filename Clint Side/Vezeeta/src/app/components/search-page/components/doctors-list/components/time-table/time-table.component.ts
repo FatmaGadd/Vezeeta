@@ -31,7 +31,7 @@ export class TimeTableComponent implements OnInit {
       },
       {
         breakpoint: '991px',
-        numVisible: 2,
+        numVisible: 1,
         numScroll: 1
       },
       {
@@ -82,7 +82,13 @@ export class TimeTableComponent implements OnInit {
   //   return this.counter
   // }
   getdate(product: any) {
-    return (new Date(product["start_date"])).toLocaleTimeString('ar-EG');
+    // let x = (new Date(product["start_date"])).toLocaleTimeString('ar-EG');
+    // return x.slice(0, x.lastIndexOf(":"));
+    // return x;
+    return (new Date(product["start_date"])).toLocaleTimeString(navigator.language, {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   }
   click(product: any) {
     this.router.navigate([`/reservation/create/${product['id']}/${product['dr_id']}`])

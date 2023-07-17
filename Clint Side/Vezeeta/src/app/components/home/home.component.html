@@ -43,74 +43,79 @@
         </div>
     </div>
 </div>
-<!-- ***************************************** section -->
-<div class="container mt-5">
-    <div class="display-5 mb-4" style="color: #666666;">لماذا فيزيتا؟</div>
+<div class="bg-white p-5">
+    <!-- ***************************************** section -->
 
-    <div class="card mb-5 p-4 pb-2">
-        <div class="card-body d-flex justify-content-end ">
-            <div class="col">
-                <h2 class="card-title " style="font-weight: bold;font-size: 25px; ">لماذا فيزيتا؟</h2>
-                <h2 class="card-text">فيزيتا هي اول منصه بتساعدك تتواصل مع الدكتور</h2>
-                <h2 class="card-text">متشلش هم الحجز دلوقتي الموضوع بقي سهل</h2>
+    <div class="container mt-5">
+
+        <div class="col  d-flex justify-content-center position-relative p-5">
+            <div class=" about p-5">
+                <h2>مين احنا</h2>
+                <p>فيزيتا هي خدمه مجانيه على الانترنت، تساعد المرضى في ايجاد دكاترة أو أي تخصص آخر وحجز ميعاد فورا.
+                </p>
             </div>
-            <div class="col  d-flex justify-content-end"><img style="width: 300px;height:300px ; "
-                    src="../assets/images/about.jpg" alt=""></div>
+            <img style="min-width: 600px;min-height:500px ; " src="../assets/images/about1.jpeg" alt="">
+
         </div>
     </div>
-</div>
-<!-- ***************************************** section -->
+    <!-- ***************************************** section -->
 
-<div class=" bg-white p-5">
-    <div class="container">
-        <div class=" display-5 mb-4" style="color: #666666;">احجز كشف حسب التخصص </div>
-    </div>
-    <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
-    <div class="container">
+    <div class=" bg-white p-lg-5">
+        <div class="container">
+            <div class=" display-5 mb-4" style="color: #666666;">احجز كشف حسب التخصص </div>
+        </div>
+        <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+        <div class="container">
+            <div class="row d-flex flex-row">
+                <div class="card border-0 col m-0 p-0 " style="direction: ltr;width: 200px;">
+                    <p-carousel [value]="products" class=" bg-primary m-0 p-0" [numVisible]="1" [numScroll]="1"
+                        [responsiveOptions]="responsiveOptions">
+                        <ng-template let-product pTemplate="item">
+                            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
 
-        <div class="card" style="direction: ltr;">
-            <p-carousel [value]="products" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions">
-                <ng-template let-product pTemplate="item">
-                    <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                                <div class="card ">
+                                    <img [src]="product.image" class="rounded-circle" alt="...">
 
-                        <div class="card">
-                            <img src="../../../assets/images/{{product.id}}.jpeg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h2 class="mb-1">{{ product.name }}</h2>
-                                <button class="btn btn-primary" (click)="navigate(product.id)">احجز الان</button>
+                                </div>
+                                <button class="btn btn-success w-100 mt-2" (click)="navigate(product.id)">احجز
+                                    الان</button>
                             </div>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-carousel>
+                        </ng-template>
+                    </p-carousel>
+                </div>
+                <div class="col bg-primary">
+                    <h1 class="text-end text-white mt-5 me-5" style="color: white !important; ">احجز كشف حسب التخصص</h1>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
-<!--****************************************** section -->
+    <!--****************************************** section -->
 
-<div class="container">
-    <div class="row m-5">
-        <div class="col mx-3">
-            <div><i class="fa-solid fa-hands-holding-child my-4"></i></div>
-            <h2>كل احتياجاتك على فيزيتا</h2>
-            <p>ابحث و احجز كشف مع دكتور في عيادة، مستشفى، زيارة منزلية، أو عبر مكالمة. ممكن كمان تطلب أدوية، أو تحجز
-                خدمة أو عملية
-                بأحسن سعر.</p>
-        </div>
-        <div class="col mx-3">
-            <div><i class="fa-solid fa-user-tie my-4"></i></div>
-            <h2>تقييمات حقيقية من المرضى</h2>
-            <p>تقييمات الدكاترة من مرضى حجزوا على فيزيتا و زاروا الدكتور بالفعل.</p>
-        </div>
-        <div class="col mx-3">
-            <div><i class="fa-regular fa-calendar-check my-4"></i></div>
-            <h2>حجزك مؤكد مع الدكتور</h2>
-            <p>حجزك مؤكد بمجرد اختيارك من المواعيد المتاحة للدكتور.</p>
-        </div>
-        <div class="col mx-3">
-            <div><i class="fa-solid fa-shield-halved my-4"></i></div>
-            <h2>احجز مجاناً، و ادفع في العيادة</h2>
-            <p>سعر الكشف على فيزيتا نفس سعر الكشف في العيادة، بدون أي مصاريف إضافية.</p>
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row m-lg-5">
+            <div class=" mx-0 mx-lg-3 col">
+                <div><i class="fa-solid fa-hands-holding-child my-4"></i></div>
+                <h2>كل احتياجاتك على فيزيتا</h2>
+                <p>ابحث و احجز كشف مع دكتور في عيادة، مستشفى، زيارة منزلية، أو عبر مكالمة. ممكن كمان تطلب أدوية، أو تحجز
+                    خدمة أو عملية
+                    بأحسن سعر.</p>
+            </div>
+            <div class="mx-0 mx-lg-3 col">
+                <div><i class="fa-solid fa-user-tie my-4"></i></div>
+                <h2>تقييمات حقيقية من المرضى</h2>
+                <p>تقييمات الدكاترة من مرضى حجزوا على فيزيتا و زاروا الدكتور بالفعل.</p>
+            </div>
+            <div class=" mx-0 mx-lg-3 col">
+                <div><i class="fa-regular fa-calendar-check my-4"></i></div>
+                <h2>حجزك مؤكد مع الدكتور</h2>
+                <p>حجزك مؤكد بمجرد اختيارك من المواعيد المتاحة للدكتور.</p>
+            </div>
+            <div class=" mx-0 mx-lg-3 col">
+                <div><i class="fa-solid fa-shield-halved my-4"></i></div>
+                <h2>احجز مجاناً، و ادفع في العيادة</h2>
+                <p>سعر الكشف على فيزيتا نفس سعر الكشف في العيادة، بدون أي مصاريف إضافية.</p>
+            </div>
         </div>
     </div>
 </div>

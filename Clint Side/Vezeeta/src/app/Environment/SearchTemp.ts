@@ -1,5 +1,5 @@
 import { ISearch } from './../Interfaces/i-search';
-const SearchReselt: ISearch = { City: 0, Gender: "", Fese: 0, Name: '', Reigon: 0, Specialization: 0 }
+const SearchReselt: ISearch = { City: 0, Gender: "", Date: 0, Fese: 0, Name: '', Reigon: 0, Specialization: 0 }
 
 export class SearchTemp {
     public static GetSearch() {
