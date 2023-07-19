@@ -59,6 +59,7 @@ export class TakeAppoinmentComponent implements OnInit{
       }
       })
   }
+  
   reservationForm = new FormGroup({
     name: new FormControl('',[Validators.required,Validators.minLength(3)]),
     mobile: new FormControl('',[Validators.required,Validators.minLength(11)]),
@@ -76,15 +77,20 @@ submit(e:Event){
   e.preventDefault();
   if (this.reservationForm.valid) {
     let appointment = {id:this.appoinment.id,dr_id:this.drId,start_date:this.appoinment.start_date,end_date:this.appoinment.end_date,patients_per_day:this.appoinment.patients_per_day,type:this.appoinment.type,patientAppointDTO:{patient_id:this.patient.id}}
-    //console.log(appointment);
-    this.http.put(AppointmentURLs.GetById_Put_Delete(this.appoinment.id,this.drId),appointment).subscribe({
-      next:(response:any) => {
-        //console.log(response);
-        this.router.navigate([`/book/${this.appoinmentId}`]);
-       },
-       error: (e) => console.error(e),
-      complete: () =>console.info('Success')
-    })
+    // console.log(appointment);
+    // console.log(this.appoinment);
+    if (this.appoinment.appoint_id != null) {
+      alert("Already Has A Reservation");
+    } else {
+      this.http.put(AppointmentURLs.GetById_Put_Delete(this.appoinment.id,this.drId),appointment).subscribe({
+        next:(response:any) => {
+          //console.log(response);
+          this.router.navigate([`/book/${this.appoinmentId}/${this.drId}`]);
+         },
+         error: (e) => console.error(e),
+        complete: () =>console.info('Success')
+      })
+    }
   }
   else{
     this.invalid =  true;

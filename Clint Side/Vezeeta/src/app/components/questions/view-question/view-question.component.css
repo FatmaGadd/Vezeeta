@@ -39,7 +39,8 @@ div{
 img{
     border: 0.5px solid rgb(128, 127, 127);
     border-radius: 50%;
-    width: 7%;
+    width: 80px;
+    height: 80px;
 }
 .ans{
     font-size: 1.4rem;
