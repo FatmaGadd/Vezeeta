@@ -25,7 +25,8 @@ export class HomeComponent {
       {
         breakpoint: '1199px',
         numVisible: 1,
-        numScroll: 1
+        numScroll: 1,
+        
       },
       {
         breakpoint: '991px',
@@ -40,7 +41,7 @@ export class HomeComponent {
     ];
   }
   navigate(id: any) {
-    alert(id)
+    // alert(id)
     this.router.navigate(
       ['/search'],
       { queryParams: { type: "b", city: 0, reigon: 0, name: "", special: id } }

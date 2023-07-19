@@ -177,7 +177,7 @@ console.log(this.appointment);
     // make state = true in patient_appoint table 
          this.patientAppoint.DeletePatient_Appoinment(appointPatientId).subscribe();
     // make pationt_id = null in appointment
-   //////////   this.appointmentSerice.softDelete(id).subscribe();
+    //  this.appointmentSerice.softDelete(id).subscribe();
       // change style tr from table 
       var tr=e.target.parentNode.parentNode;
       tr.classList.add("unClickable");

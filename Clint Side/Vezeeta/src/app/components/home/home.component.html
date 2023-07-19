@@ -43,7 +43,7 @@
         </div>
     </div>
 </div>
-<div class="bg-white p-5">
+<div class="bg-white py-5">
     <!-- ***************************************** section -->
 
     <div class="container mt-5">
@@ -60,41 +60,36 @@
     </div>
     <!-- ***************************************** section -->
 
-    <div class=" bg-white p-lg-5">
-        <div class="container">
-            <div class=" display-5 mb-4" style="color: #666666;">احجز كشف حسب التخصص </div>
-        </div>
-        <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
-        <div class="container">
-            <div class="row d-flex flex-row">
-                <div class="card border-0 col m-0 p-0 " style="direction: ltr;width: 200px;">
-                    <p-carousel [value]="products" class=" bg-primary m-0 p-0" [numVisible]="1" [numScroll]="1"
-                        [responsiveOptions]="responsiveOptions">
-                        <ng-template let-product pTemplate="item">
-                            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
-
-                                <div class="card ">
-                                    <img [src]="product.image" class="rounded-circle" alt="...">
-
-                                </div>
-                                <button class="btn btn-success w-100 mt-2" (click)="navigate(product.id)">احجز
-                                    الان</button>
+       <div class="my-5"  style="background-color: rgb(238, 240, 242);">
+        <div class=" container py-5">
+         
+            <p class="fs-2 pe-3 fw-1 me-5" style="color: #666666;">احجز كشف حسب التخصص </p>
+                <div class="" style="direction: ltr">
+                    <p-carousel [value]="products" [numVisible]="4" [numScroll]="1"
+                    [responsiveOptions]="responsiveOptions">
+                    <ng-template let-product pTemplate="item">
+                        <div class=" btn border-none my-3" (click)="navigate(product.id)" >
+                            <div class="card  text-right">
+                                <img [src]="product.image" class="card-img-top" [alt]="product.name">
+                                <div class="card-title fs-3 px-4 text-secondary">{{product.name}}</div>  
+                                 <!-- <button class="btn   card-footer btn-success" (click)="navigate(product.id)">احجز
+                                    الان</button> -->
                             </div>
-                        </ng-template>
-                    </p-carousel>
-                </div>
-                <div class="col bg-primary">
-                    <h1 class="text-end text-white mt-5 me-5" style="color: white !important; ">احجز كشف حسب التخصص</h1>
-                </div>
-
-            </div>
+                            
+                         
+                        </div>
+                    </ng-template>
+                 </p-carousel>
+                  </div>
+               
         </div>
-    </div>
+       </div>
+   
     <!--****************************************** section -->
 
     <div class="container">
-        <div class="d-flex flex-column flex-lg-row m-lg-5">
-            <div class=" mx-0 mx-lg-3 col">
+        <div class="d-flex flex-sm-column flex-lg-row m-lg-5">
+            <div class=" mx-0 mx-lg-3 col ">
                 <div><i class="fa-solid fa-hands-holding-child my-4"></i></div>
                 <h2>كل احتياجاتك على فيزيتا</h2>
                 <p>ابحث و احجز كشف مع دكتور في عيادة، مستشفى، زيارة منزلية، أو عبر مكالمة. ممكن كمان تطلب أدوية، أو تحجز

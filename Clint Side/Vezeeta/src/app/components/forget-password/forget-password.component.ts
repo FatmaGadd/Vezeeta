@@ -59,6 +59,7 @@ forgetPass(e:any){
                   this.data=this.temp;
                  if(this.data != undefined){
                   this.id=this.data.id;
+                  localStorage.setItem("id",this.id.toString());
                   this.formForgetPass.controls['patientEmail'].setValue(this.data.email);
                   this.formForgetPass.controls['patientAddress'].setValue(this.data.address);
                   this.formForgetPass.controls['patientGender'].setValue(this.data.gender);
@@ -70,6 +71,7 @@ forgetPass(e:any){
                   // send Code to this Email 
                           if(this.data != undefined){
                             console.log(this.data.id);
+                            
                             this.GenerateCodeAndSendEmail(this.data.email , this.data.id);
                           }
                      setTimeout(() => {
@@ -103,7 +105,6 @@ forgetPass(e:any){
                     // send Code to this Email 
                             if(this.data != undefined){
                               this.id=this.data.id;
-                              localStorage.setItem('id',String(this.data.id));
                               localStorage.setItem('id',String(this.data.id));
                               this.GenerateCodeAndSendEmail(this.data.email , this.data.id);
                             

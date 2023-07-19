@@ -42,7 +42,7 @@ initialFormValues:any;
       patientName: new FormControl( '', [Validators.required, Validators.minLength(3)]),
       patientEmail :new FormControl( '',[Validators.required ,Validators.email]),
       patientPhone :new FormControl( '',[Validators.required ,Validators.pattern(/^01[0125][0-9]{8}$|^2[0-5][0-9]{6}$/)]),
-      patientBirth_date :new FormControl( '',Validators.required), 
+      patientBirth_date :new FormControl( Validators.required), 
       patientAddress :new FormControl( Validators.required),
       patientPassword :new FormControl(),
        patientGender :new FormControl(),
