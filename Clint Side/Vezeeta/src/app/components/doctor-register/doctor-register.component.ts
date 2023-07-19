@@ -221,56 +221,74 @@ export class DoctorRegisterComponent implements OnInit {
     this.lineIndex--;
     console.log(this.lineIndex);
   }
-
+  fileSizeBig = false;
   imagechange(e: any) {
-    const selectedfile = e.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(selectedfile);
-    //reader.abort();
-    reader.onload = (event) => {
-      if (typeof reader.result == 'string')
-        //this.imageController.setValue(reader.result);
-        this.image.setValue(reader.result);
-      console.log(this.imageController.value);
-    };
+    this.fileSizeBig = false;
+    if (e.target.files[0]) {
+      const selectedfile = e.target.files[0];
+      if (selectedfile.size / 1024 < 500) {
+        let reader = new FileReader();
+        reader.readAsDataURL(selectedfile);
+        //reader.abort();
+        reader.onload = (event) => {
+          if (typeof reader.result == 'string')
+            //this.imageController.setValue(reader.result);
+            this.image.setValue(reader.result);
+          console.log(this.imageController.value);
+        };
+      } else {
+        this.fileSizeBig = true;
+      }
+    }
   }
+
+  verificationFileSize = false;
   verfchange(e: any) {
-    const selectedfile = e.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(selectedfile);
-    //reader.abort();
-    reader.onload = (event) => {
-      if (typeof reader.result == 'string')
-        //this.verificationController.setValue(reader.result);
-        this.verification.setValue(reader.result);
-      console.log(this.verificationController.value);
-    };
+    this.verificationFileSize = false;
+    if (e.target.files[0]) {
+      const selectedfile = e.target.files[0];
+      if (selectedfile.size / 1024 < 500) {
+        let reader = new FileReader();
+        reader.readAsDataURL(selectedfile);
+        //reader.abort();
+        reader.onload = (event) => {
+          if (typeof reader.result == 'string')
+            //this.imageController.setValue(reader.result);
+            this.verification.setValue(reader.result);
+          console.log(this.verificationController.value);
+        };
+      } else {
+        this.verificationFileSize = true;
+      }
+    }
   }
 
   onSubmit(e: Event) {
     this.registerCompleted = false;
-    if (this.DoctorRegisterForm.valid) {
-      const model: any = {
-        email: this.emailController.value,
-        name: this.nameController.value,
-        password: this.passwordController.value,
-        Doctors_Phones: this.dr_phone,
-        experience: this.experienceController.value,
-        id_specialize: this.id_specializeController.value,
-        image: this.image.value,
-        verification: this.verification.value,
-        birth_date: this.birth_dateController.value,
-        online_fees: this.online_feesController.value,
-        waiting_time: this.waitTimeController.value,
-        description: this.decriptionController.value,
-        gender: this.genderController.value,
-      };
-      console.log(model);
-      this.doctorService.addNewDoctor(model).subscribe((res) => {
-        console.log(res);
-        this.registerCompleted = true;
-      });
-    } else e.preventDefault();
+    if (!this.fileSizeBig && !this.verificationFileSize) {
+      if (this.DoctorRegisterForm.valid) {
+        const model: any = {
+          email: this.emailController.value,
+          name: this.nameController.value,
+          password: this.passwordController.value,
+          Doctors_Phones: this.dr_phone,
+          experience: this.experienceController.value,
+          id_specialize: this.id_specializeController.value,
+          image: this.image.value,
+          verification: this.verification.value,
+          birth_date: this.birth_dateController.value,
+          online_fees: this.online_feesController.value,
+          waiting_time: this.waitTimeController.value,
+          description: this.decriptionController.value,
+          gender: this.genderController.value,
+        };
+        console.log(model);
+        this.doctorService.addNewDoctor(model).subscribe((res) => {
+          console.log(res);
+          this.registerCompleted = true;
+        });
+      } else e.preventDefault();
+    }
   }
 
   // addAnotherPhone() {

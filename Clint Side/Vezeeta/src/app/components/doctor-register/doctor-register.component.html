@@ -313,9 +313,14 @@
 
       </div>
       <ng-container *ngIf="imageController.touched">
-        <div *ngIf="imageController.hasError('required')" class="text-danger">
+        <div *ngIf="imageController.hasError('required') && fileSizeBig==false"
+          class="text-danger input-group-text border-0 bg-white">
           يرجي رفع الصورة الشخصية
         </div>
+        <div *ngIf="fileSizeBig==true" class="text-danger input-group-text border-0 bg-white m-auto">
+          يرجي اختيار صورة اصغر من 500kp
+        </div>
+
       </ng-container>
       <!--  verification input -->
       <div class="form-outline my-4 d-flex justify-content-around ">
@@ -331,6 +336,9 @@
       <ng-container *ngIf="verificationController.touched">
         <div *ngIf="verificationController.hasError('required')" class="text-danger">
           يرجي رفع الصورة الشخصية
+        </div>
+        <div *ngIf="verificationFileSize==true" class="text-danger input-group-text border-0 bg-white m-auto">
+          يرجي اختيار صورة اصغر من 500kp
         </div>
       </ng-container>
 
@@ -362,6 +370,8 @@
           <div *ngIf="decriptionController.hasError('required')" class="text-danger">
             يرجي ادخال الوصف
           </div>
+
+
         </ng-container>
       </div>
     </ng-container>

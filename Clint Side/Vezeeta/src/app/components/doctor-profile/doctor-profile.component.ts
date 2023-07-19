@@ -65,6 +65,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
       next: (res) => {
         this.doctor = res.body;
         this.DrSpec = this.doctor?.id_specializeNavigation.name;
+        this.doctor_phones = this.doctor?.doctors_Phones;
         console.log(this.doctor);
         this.noOfPhone = this.doctor_phones.length;
         //check state of doctor
@@ -346,23 +347,32 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
+  fileSizeBig = false;
   imagechange(e: any) {
-    const selectedfile = e.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(selectedfile);
-    //reader.abort();
-    reader.onload = (event) => {
-      //this.imageController.setValue(reader.result);
-      this.image.setValue(reader.result);
-      this.doctor.image = reader.result;
-      console.log(this.doctor.image);
-      console.log(this.doctor);
-      this.doctorService
-        .updateDoctorInfo(this.doctor.id, this.doctor)
-        .subscribe((res) => {
-          console.log(res);
-        });
-    };
+    this.fileSizeBig = false;
+    if (e.target.files[0]) {
+      const selectedfile = e.target.files[0];
+      if (selectedfile.size / 1024 < 500) {
+        let reader = new FileReader();
+        reader.readAsDataURL(selectedfile);
+        //reader.abort();
+        reader.onload = (event) => {
+          //this.imageController.setValue(reader.result);
+          this.image.setValue(reader.result);
+          this.doctor.image = reader.result;
+          console.log(this.doctor.image);
+          console.log(this.doctor);
+          this.doctorService
+            .updateDoctorInfo(this.doctor.id, this.doctor)
+            .subscribe((res) => {
+              console.log(res);
+            });
+        };
+      } else {
+        this.fileSizeBig = true;
+      }
+    }
   }
 
   onSubmit(e: Event) {
