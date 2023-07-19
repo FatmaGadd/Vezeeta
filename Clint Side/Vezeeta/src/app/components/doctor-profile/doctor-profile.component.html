@@ -9,6 +9,9 @@
           <input required type="file" accept=".png,.jpeg,.jpg" id="image" name="image" class="form-control col-8"
             (change)="imagechange($event)" />
         </div>
+        <div *ngIf="fileSizeBig==true" class="text-danger input-group-text border-0 bg-white m-auto">
+          يرجي اختيار صورة اصغر من 500kp
+        </div>
       </div>
     </div>
     <div class="col-md-6">
