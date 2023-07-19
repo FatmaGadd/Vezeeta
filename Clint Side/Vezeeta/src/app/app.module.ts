@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from 'ngx-progressbar'
 import { AuthInterceptor } from './Interceptor/auth.interceptor';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
@@ -55,8 +55,20 @@ import { ListboxModule } from 'primeng/listbox';
 import { ListComponent } from './components/search-page/components/doctors-list/components/time-table/list/list.component';
 import { QlistComponent } from './components/search-page/components/qlist/qlist.component';
 import { FieldsetModule } from 'primeng/fieldset';
-import { DataViewModule } from "primeng/dataview";
 import { TestComponent } from './components/test/test.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { TabViewModule } from 'primeng/tabview';
+import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
+import { CardComponent } from './components/admin-page/Components/card/card.component';
+import { ButtonModule } from 'primeng/button';
+import { ImageModule } from 'primeng/image';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { UsersComponent } from './components/admin-page/Components/users/users.component';
+import { BadgeModule } from 'primeng/badge';
+import { AddspecialComponent } from './components/admin-page/Components/addspecial/addspecial.component';
+import { AddreigonComponent } from './components/admin-page/Components/addreigon/addreigon.component';
+import { AddcityComponent } from './components/admin-page/Components/addcity/addcity.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,7 +105,14 @@ import { TestComponent } from './components/test/test.component';
     DoctorAddAppointmentComponent,
     ListComponent,
     QlistComponent,
-    TestComponent
+    TestComponent,
+    AdminPageComponent,
+    CardComponent,
+    UsersComponent,
+    AddspecialComponent,
+    AddreigonComponent,
+    AddcityComponent,
+
   ],
   imports: [
     PaginatorModule,
@@ -117,11 +136,17 @@ import { TestComponent } from './components/test/test.component';
     ScrollerModule,
     ListboxModule,
     FieldsetModule,
-    DataViewModule
+    DataViewModule,
+    TabViewModule,
+    ButtonModule
+    , ImageModule
+    , OverlayPanelModule,
+    ToastModule
+    , BadgeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -2,13 +2,14 @@
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq;
 using Vezeeta.dbContext;
+using Vezeeta.DTO.DoctorDTO;
 using Vezeeta.DTO.SearchDTO;
 using Vezeeta.IEntities;
 using Vezeeta.Models;
 
 namespace Vezeeta.Repository
 {
-    public class SearchReposatory : ISearch
+    public class SearchReposatory : ISearch,IAdmin
     {
         private readonly VezeetaContext context;
         private readonly IAppointment contextAppointment;
@@ -59,6 +60,7 @@ namespace Vezeeta.Repository
                 var holder = search.Gender.ToLower();
                 temp = temp.Where(a=>a.Dr.gender.ToLower()==holder).ToList();
             }
+            temp=temp.Where(a=>a.Dr.is_deleted==false).ToList();
             var list = new List<SearchReturnDTO>();
             foreach (var d in temp)
             {
@@ -81,7 +83,7 @@ namespace Vezeeta.Repository
                 };
                 list.Add(x);
             }
-
+            
             if (search.Fese != 0 )
             {
                 if(search.Fese <=300) {
@@ -112,14 +114,45 @@ namespace Vezeeta.Repository
 
             }
 
-            //var list=new List<Doctor>();
-            //foreach (var d in temp) {
-            // //   if(list.FirstOrDefault(a=>a.id==d.Dr.id )==null)
-            //    list.Add(d.Dr);
-            //}
-
-
             return list;
+        }
+
+        public Task<List<Doctor>> GetdoctorsUnActive()
+        {
+         return context.Doctors.Where(a=>a.status==false &&a.is_deleted==false).ToListAsync();
+        }
+
+        //public async Task<Doctor> UpdateState(int id, bool status)
+        //{
+        //    Doctor dro = await context.Doctors.FirstOrDefaultAsync(a => a.id == id);
+        //    dro.status = status;
+        //    context.Entry(dro).State = EntityState.Modified;
+        //    await context.SaveChangesAsync();
+        //    return dro;
+        //}
+
+        public async Task<Doctor> active(int id, bool state)
+        {
+            Doctor dro = await context.Doctors.FirstOrDefaultAsync(a => a.id == id);
+            dro.status = state;
+            context.Entry(dro).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return dro;
+        }
+
+        public async Task<Doctor> delete(int id, bool state)
+        {
+            Doctor dro = await context.Doctors.FirstOrDefaultAsync(a => a.id == id);
+            dro.is_deleted = state;
+            context.Entry(dro).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return dro;
+        }
+
+        public Task<List<Doctor>> GetdoctorsActive()
+        {
+            //return context.Doctors.Where(a => a.status == true && a.is_deleted == false).ToListAsync();
+           return context.Doctors.ToListAsync();
         }
     }
 }

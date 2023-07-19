@@ -27,9 +27,10 @@
     "ngx-cookie-service": "^16.0.0",
     "ngx-progressbar": "^11.1.0",
     "nodemailer": "^6.9.3",
+    "primeflex": "^3.3.1",
     "primeng": "^16.0.2",
     "rxjs": "~7.8.0",
-    "sweetalert2": "^11.7.12",
+    "sweetalert2": "^11.6.13",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
