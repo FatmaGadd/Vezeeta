@@ -18,4 +18,28 @@ export class SearchService {
   Search(search: ISearch) {
     return this.http.post(SearchURLs.Get_Post(), search);
   }
+  getUNactive() {
+    return this.http.get(SearchURLs.Get_Post(), this.options);
+  }
+  updatestate(id: number, state: boolean) {
+    let s = { state: state }
+    console.log(s)
+    return this.http.put(SearchURLs.put("active", id), s);
+  }
+  deactiveUser(id: number, state: boolean) {
+    let s = { state: state }
+    console.log(s)
+    return this.http.put(SearchURLs.put("deactive", id), s);
+  }
+  deleteUSer(id: number, state: boolean) {
+    let s = { state: state }
+    console.log(s)
+    return this.http.put(SearchURLs.put("delete", id), s);
+  }
+  getUSers() {
+    // let s = { state: state }
+    // console.log(s)
+    return this.http.get(SearchURLs.Get("users"));
+  }
+
 }

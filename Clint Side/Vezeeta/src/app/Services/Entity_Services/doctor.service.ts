@@ -7,7 +7,7 @@ import { Idoctor } from 'src/app/Interfaces/idoctor';
   providedIn: 'root',
 })
 export class DoctorService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   private options = {
     observe: 'response' as const,
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
@@ -23,6 +23,9 @@ export class DoctorService {
     return this.http.post(DoctorURLs.Get_Post(), doctorDTO, this.options);
   }
   updateDoctorInfo(id: number, doctorDTO: Idoctor) {
+    console.log(id)
+    console.log(doctorDTO)
+
     return this.http.put(
       DoctorURLs.GetById_Put_Delete(id),
       doctorDTO,

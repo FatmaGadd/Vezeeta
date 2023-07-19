@@ -177,7 +177,7 @@ export class AddressURLs {
   }
   public static GetAddressByClinicId(id: number) {
     return `${Base_URl}/Address/clinic/${id}`;
-}
+  }
 }
 
 
@@ -195,5 +195,11 @@ export class Patient_AppointmentURLs {
 export class SearchURLs {
   public static Get_Post() {
     return `${Base_URl}/Values`;
+  }
+  public static put(path: string, id: number) {
+    return `${Base_URl}/Values/${path}/${id}`;
+  }
+  public static Get(stin: string) {
+    return `${Base_URl}/Values/${stin}`;
   }
 }

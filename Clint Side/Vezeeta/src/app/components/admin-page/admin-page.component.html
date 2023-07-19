@@ -1,0 +1,60 @@
+<div class="card container" style="direction: ltr; min-height: 80vh;">
+    <p-tabView styleClass="tabview-custom" [scrollable]="true">
+
+        <p-tabPanel header="Header II">
+            <ng-template pTemplate="header">
+                <i class="pi pi-user">
+
+
+                </i>
+
+                <span>Users</span>
+            </ng-template>
+            <div class="card">
+                <app-users [specil]="specalizationlist" [items]="currentItem">
+                </app-users>
+            </div>
+
+        </p-tabPanel>
+        <p-tabPanel>
+            <ng-template pTemplate="header">
+
+                <i class="fa-solid fa-users mx-2 "></i> <span>Accept users</span>
+                <div class="card flex justify-content-center">
+                    <i class="" pBadge style="font-size: 2rem" [value]="unactiveUsers?.length" severity="danger"></i>
+                </div>
+            </ng-template>
+            <div class="card">
+                <app-card [items]="unactiveUsers"></app-card>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Header III">
+            <ng-template pTemplate="header">
+                <i class="pi pi-search"></i>
+                <span>Specialization</span>
+                <i class="pi pi-cog"></i>
+            </ng-template>
+            <app-addspecial [specil]="specalizationlist"></app-addspecial>
+        </p-tabPanel>
+
+        <p-tabPanel header="Header III">
+            <ng-template pTemplate="header">
+                <i class="pi pi-search"></i>
+                <span>cities</span>
+                <i class="pi pi-cog"></i>
+            </ng-template>
+            <app-addcity></app-addcity>
+        </p-tabPanel>
+
+        <p-tabPanel header="Header III">
+            <ng-template pTemplate="header">
+                <i class="pi pi-search"></i>
+                <span>Reigon</span>
+                <i class="pi pi-cog"></i>
+            </ng-template>
+            <app-addreigon></app-addreigon>
+        </p-tabPanel>
+    </p-tabView>
+</div>
+
+<button type="button" class="mybutton">My Button</button>

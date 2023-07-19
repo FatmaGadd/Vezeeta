@@ -25,39 +25,42 @@ import { DoctorDataComponent } from './components/Doctor/doctor-data/doctor-data
 import { TakeAppoinmentComponent } from './components/patientappoinment/take-appoinment/take-appoinment.component';
 import { DoctorAddAppointmentComponent } from './components/Doctor/doctor-add-appointment/doctor-add-appointment.component';
 import { SavedAppoinmentComponent } from './components/patientappoinment/saved-appoinment/saved-appoinment.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 
 
 const routes: Routes = [
-  {path:'',component:HomeComponent },
+  { path: '', component: HomeComponent },
+  { path: 'admin', component: AdminPageComponent },
+
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login/admin', component: LoginAdminComponent },
   { path: 'login/doctor', component: LoginDoctorComponent },
   { path: 'register/doctor', component: DoctorRegisterComponent },
   { path: 'registerPatient', component: RegisterPatientComponent },
-  {path:'account' ,component:PatientAccountComponent },
-  {path:'patientAppoint' , component:PatientAppointmentComponent},
-  {path:'forgetPass' , component:ForgetPasswordComponent},
-  {path:'questions/view/:id',component:ViewQuestionComponent},
-  {path:'questions/specializations',component:SpecilizationComponent},
-  {path:'questions/ask',component:QuestionsComponent},
-  {path:'questions/patient',component:PatientQuestionsComponent},
+  { path: 'account', component: PatientAccountComponent },
+  { path: 'patientAppoint', component: PatientAppointmentComponent },
+  { path: 'forgetPass', component: ForgetPasswordComponent },
+  { path: 'questions/view/:id', component: ViewQuestionComponent },
+  { path: 'questions/specializations', component: SpecilizationComponent },
+  { path: 'questions/ask', component: QuestionsComponent },
+  { path: 'questions/patient', component: PatientQuestionsComponent },
   { path: 'updateClinic/:id', component: ClinicComponent },
   { path: 'search', component: SearchPageComponent },
-  {path:'resetPassword' , component:ResetPasswordComponent},
-  {path:'confirmCode' , component:ConfirmCodeComponent},
+  { path: 'resetPassword', component: ResetPasswordComponent },
+  { path: 'confirmCode', component: ConfirmCodeComponent },
   { path: 'doctor/changePassword', component: ChangePasswordComponent },
   { path: 'doctor/profile', component: DoctorProfileComponent },
-  { path: 'doctor/data/:id', component: DoctorDataComponent },
-  { path: 'reservation/create/:id/:drid', component: TakeAppoinmentComponent},
-  { path: 'doctor/add-appointment', component: DoctorAddAppointmentComponent },
-  {path:'book/:id/:drid',component:SavedAppoinmentComponent},
-  {path:'**',  component:ErrorComponent },
+  { path: 'doctor/data/:id', component: DoctorDataComponent },
+  { path: 'reservation/create/:id/:drid', component: TakeAppoinmentComponent },
+  { path: 'doctor/add-appointment', component: DoctorAddAppointmentComponent },
+  { path: 'book/:id/:drid', component: SavedAppoinmentComponent },
+  { path: '**', component: ErrorComponent },
 
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -126,6 +126,7 @@ namespace Vezeeta
             builder.Services.AddScoped<IClinic,ClinicRepository>();
             builder.Services.AddScoped<IPatientQuetions, patientRepo>();
             builder.Services.AddScoped<IDocAddress, AdressRepository>();
+            builder.Services.AddScoped<IAdmin, SearchReposatory>();
 
             #endregion
 
