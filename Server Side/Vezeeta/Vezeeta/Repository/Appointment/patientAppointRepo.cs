@@ -34,14 +34,14 @@ namespace Vezeeta.Repository
     
         }
 
-        public async Task <bool> DeleteSoft(int id, int patient_id)
+        public async Task <bool> DeleteSoft(int id)
         {
-           Patient_Appoinment p= await dp.Patient_Appoinments.Where(a=>a.id==id).FirstOrDefaultAsync(a=>a.patient_id==patient_id);
+           Patient_Appoinment p= await dp.Patient_Appoinments.FirstOrDefaultAsync(a=>a.id==id);
             if (p == null) return false;
-            
-                p.state = false;
-                // p.state = 0;  ==>byte
-                await dp.SaveChangesAsync();
+
+            p.state = true;
+          //  p.state = false;
+            await dp.SaveChangesAsync();
             return true;
             }
 

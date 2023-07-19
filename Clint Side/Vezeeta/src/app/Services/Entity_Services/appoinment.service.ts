@@ -31,5 +31,9 @@ export class AppoinmentService {
   Delete(id: number, Dr_id: number) {
     return this.http.delete(AppointmentURLs.GetById_Put_Delete(id, Dr_id), this.options)
   }
+  
+  softDelete(id: number) {
+    return this.http.delete(AppointmentURLs.softDelete(id), this.options)
+  }
 
 }

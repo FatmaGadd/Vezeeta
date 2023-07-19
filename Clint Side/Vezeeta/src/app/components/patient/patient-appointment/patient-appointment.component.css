@@ -34,3 +34,8 @@ line-height: 2.2rem;
     font-weight: bolder;
     font-family:    sans-serif
 }
+.unClickable{
+    pointer-events: none;
+    opacity: 0.5;
+    
+}

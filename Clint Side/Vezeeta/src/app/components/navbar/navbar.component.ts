@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPatientAdd } from 'src/app/Interfaces/ipatient-add';
 import { PatientService } from 'src/app/Services/Entity_Services/patient.service';
@@ -10,18 +10,19 @@ import { PatientService } from 'src/app/Services/Entity_Services/patient.service
 })
 export class NavbarComponent implements OnInit {
   name:any="";
-  isLogin='userLogOut';
-  // isLogin=localStorage.getItem('isLogin');
-  constructor(private patientService:PatientService) {
-    
-  }
+  // isLogin='userLogOut';
+  
+isLogin = false;
+ role=localStorage.getItem('Role');
+  constructor(private patientService:PatientService) {}
+
   ngOnInit(): void {
     if(localStorage.getItem("UserName"))
                 this.name=localStorage.getItem("UserName")?.toString();
-                if(localStorage.getItem('isLogin') != null)
-                          this.isLogin=String(localStorage.getItem('isLogin'));
-                          
+                if(localStorage.getItem('UserId') != null)
+                          this.isLogin=true;
   }
+ 
   DocRole(){
      localStorage.setItem('State','Doctor')
     }
@@ -31,7 +32,9 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('Token');
     localStorage.removeItem('UserName');
     localStorage.removeItem('UserId');
-    this.isLogin='userLogOut';
+    localStorage.removeItem('State');
+    localStorage.removeItem('id');
+    this.isLogin=false;
     
   }  
 

@@ -10,6 +10,7 @@ namespace Vezeeta.IEntities
         public Task<Appointment> GetById(int id, int Dr_id);
         public Task Update(int id, int Dr_id, Appointment appointment);
         public Task DeleteById(int id, int Dr_id);
+        public Task<bool> SoftDelete(int id);
         public Task Add(Appointment appointment);
     }
 }

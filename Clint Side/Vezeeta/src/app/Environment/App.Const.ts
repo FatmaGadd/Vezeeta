@@ -61,6 +61,9 @@ export class AppointmentURLs {
   public static GetById_Put_Delete(id: number, Dr_id: number) {
     return `${Base_URl}/Appointments/${id},${Dr_id}`;
   }
+  public static softDelete(id: number) {
+    return `${Base_URl}/Appointments/${id}`;
+  }
 }
 
 export class ClinicURLs {
@@ -188,8 +191,12 @@ export class Patient_AppointmentURLs {
   public static GetById(id: number) {
     return `${Base_URl}/Patient_Appoinment/${id}`;
   }
-  public static Delete_Put(appoint_id: number, patient_id: number) {
+  public static Put(appoint_id: number, patient_id: number) {
     return `${Base_URl}/Patient_Appoinment/${appoint_id}/${patient_id}`;
+  }
+  
+  public static Delete(appoint_id: number) {
+    return `${Base_URl}/Patient_Appoinment/${appoint_id}`;
   }
 }
 export class SearchURLs {

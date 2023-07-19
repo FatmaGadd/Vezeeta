@@ -66,5 +66,16 @@ namespace Vezeeta.Repository
             }
         }
 
+         public async Task<bool>  SoftDelete(int id)
+        {
+            Appointment p = await dbContext.Appointments.FirstAsync(a => a.id == id);
+            if (p != null)
+            {
+                p.appoint_id = null;
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
     }
 }

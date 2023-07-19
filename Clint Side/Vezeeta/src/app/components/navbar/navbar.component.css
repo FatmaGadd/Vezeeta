@@ -5,7 +5,7 @@ nav {
     font-size: 1rem;
 }
  
-li a:before {
+.hash:before {
     content: "|";
     margin: 0px 5px;
     text-align: center;
@@ -16,7 +16,7 @@ li a:before {
 .nav-link{
     padding: 0px !important;
 }
-.dropMenu{
+/* .dropMenu{
     position: absolute;
     top: calc(100% + 5px);
     right: 0px;
@@ -35,7 +35,7 @@ li a:before {
     direction: inherit;
     border-radius: 3px !important;
 
-}
+} */
 @media(max-width:991px){
     li a:before {
         content: "";

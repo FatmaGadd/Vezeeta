@@ -1,6 +1,6 @@
 import { TokenService } from './../../Services/Token/token.service';
 import { AuthService } from './../../Services/Token/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ILogin } from 'src/app/Interfaces/ilogin';
@@ -12,6 +12,7 @@ import { ILogin } from 'src/app/Interfaces/ilogin';
 })
 export class LoginComponent implements OnInit {
 constructor(private authService:AuthService,private tokenService:TokenService, private router:Router){}
+@Output() isLogin = new EventEmitter<boolean>();
 showError=false;
 formLogin:any; 
 ngOnInit(): void {
@@ -32,14 +33,14 @@ Login(e:any){
  
   e.preventDefault();
   // console.log(this.formLogin);
-  
   if(this.formLogin.status=='VALID'){
     let user:ILogin = {email:this.getEmail?.value,password:this.getPass?.value}
     this.authService.loginPatient(user).subscribe({
       next:(response:any) => {
           let res = response.body.response;
           this.tokenService.SaveToken(res.patient.id,res.token,res.role,res.patient.name);
-          localStorage.setItem('isLogin','userLoged');
+          localStorage.setItem('isLogin','true');
+          // this.isLogin.emit(true);
           this.router.navigate(['home']);
       },
       error: (e) => {console.error(e),this.showError=true},

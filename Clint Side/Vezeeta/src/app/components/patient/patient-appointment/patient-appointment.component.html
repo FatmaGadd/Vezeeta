@@ -28,6 +28,7 @@
                         <th> أين</th>
                         <th>   موعد الحجز</th>
                         <th>تفاصيل</th>
+                        <th>  إلغاء الموعد</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -49,10 +50,10 @@
                                 </td>
                                 <td>{{appointDate[i]}}</td>
                               
-                                <ng-container *ngIf="!appoint.type">
-                                   <td>تم إلغاء الموعد</td>
+                                <ng-container *ngIf="appoint.appoint.state">
+                                   <td >تم إلغاء الموعد</td>
                                 </ng-container>
-                                <ng-container *ngIf="appoint.type">
+                                <ng-container *ngIf="!appoint.appoint.state">
                                     <td>
                                         يمكنك الذهاب للعياده يوم 
                                       <span>  {{getDay[i]}}</span>
@@ -64,7 +65,10 @@
                                        <span> {{endDate[i]}}</span>
                                     </td>
                                 </ng-container>
-                               
+                               <td  >
+                                <button *ngIf="!appoint.appoint.state" class="btn btn-danger "  (click)="deleteAppoint($event,appoint.id,appoint.appoint.id)"> إلغاء الموعد</button>
+                           
+                              </td>
                             </tr>
                     </ng-container>
                   </ng-container>

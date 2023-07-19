@@ -72,7 +72,7 @@ namespace Vezeeta.Controllers
                     patient_id = appointment.patientAppointDTO.patient_id
                 };
             }
-            
+
             try
             {
                 a.start_date = appointment.start_date;
@@ -145,6 +145,15 @@ namespace Vezeeta.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+        // soft delete
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> softDeleteAppointForPatient(int id)
+        {
+            bool isDeleted = await _context.SoftDelete(id);
+            if (isDeleted)
+                return Ok("تم الحذف بنجاح");
+            return BadRequest("لم نتمكن من الحذف , حاول في وقت لاحق ");
         }
     }
 }

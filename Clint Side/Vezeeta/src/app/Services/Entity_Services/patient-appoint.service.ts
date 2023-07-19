@@ -20,11 +20,11 @@ export class PatientAppointService {
   AddPatient_Appoinment(patient_appoint:IAddAppointToPatient,patient_id:number){
     return this.http.post(Patient_AppointmentURLs.Post(patient_appoint,patient_id),patient_appoint,this.options);
   }
-  DeletePatient_Appoinment(appoint_id:number,patient_id:number){
-      return this.http.put(Patient_AppointmentURLs.Delete_Put(appoint_id,patient_id),this.options);
+  DeletePatient_Appoinment(appoint_id:number){
+      return this.http.delete(Patient_AppointmentURLs.Delete(appoint_id),this.options);
   }
   UpdatePatientAppointState(appoint_id:number,patient_id:number){
-      return this.http.put(Patient_AppointmentURLs.Delete_Put(appoint_id,patient_id),this.options);
+      return this.http.put(Patient_AppointmentURLs.Put(appoint_id, patient_id ),this.options);
   }
 }
 

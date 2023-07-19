@@ -80,7 +80,7 @@ submit(e:Event){
     this.http.put(AppointmentURLs.GetById_Put_Delete(this.appoinment.id,this.drId),appointment).subscribe({
       next:(response:any) => {
         //console.log(response);
-        this.router.navigate([`/book/${this.appoinmentId}`]);
+        this.router.navigate([`/book/${this.appoinmentId}/${this.drId}`]);
        },
        error: (e) => console.error(e),
       complete: () =>console.info('Success')
