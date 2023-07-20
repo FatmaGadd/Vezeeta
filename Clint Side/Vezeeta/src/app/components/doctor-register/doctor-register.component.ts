@@ -290,8 +290,8 @@ export class DoctorRegisterComponent implements OnInit {
         this.doctorService.addNewDoctor(model).subscribe((res) => {
           console.log(res);
           this.registerCompleted = true;
-          setInterval(() => {
-            this.rout.navigate(['/home']);
+          setTimeout(() => {
+            this.rout.navigate(['home']);
           }, 3000);
         });
       } else {
