@@ -5,6 +5,7 @@ import {
   MinLengthValidator,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Idoctor } from 'src/app/Interfaces/idoctor';
 import { IdoctorPhone } from 'src/app/Interfaces/idoctor-phone';
 import { DoctorPhonesService } from 'src/app/Services/Entity_Services/doctor-phones.service';
@@ -20,7 +21,8 @@ export class DoctorRegisterComponent implements OnInit {
   constructor(
     private doctorService: DoctorService,
     private specService: SpecializationService,
-    private drPhoneServ: DoctorPhonesService
+    private drPhoneServ: DoctorPhonesService,
+    private rout: Router
   ) {}
   //------------------------------------------
 
@@ -263,7 +265,9 @@ export class DoctorRegisterComponent implements OnInit {
     }
   }
 
+  regClick = false;
   onSubmit(e: Event) {
+    this.regClick = false;
     this.registerCompleted = false;
     if (!this.fileSizeBig && !this.verificationFileSize) {
       if (this.DoctorRegisterForm.valid) {
@@ -286,8 +290,14 @@ export class DoctorRegisterComponent implements OnInit {
         this.doctorService.addNewDoctor(model).subscribe((res) => {
           console.log(res);
           this.registerCompleted = true;
+          setInterval(() => {
+            this.rout.navigate(['/home']);
+          }, 3000);
         });
-      } else e.preventDefault();
+      } else {
+        e.preventDefault();
+        this.regClick = true;
+      }
     }
   }
 

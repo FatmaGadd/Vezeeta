@@ -121,6 +121,7 @@ namespace Vezeeta.Controllers
                     experience = doctor.experience,
                     online_fees = doctor.online_fees,
                     Doctors_Phones = dr_phone,
+                    birth_date=doctor.birth_date,
                 };
                 await doctorRepository.Add(dr);
                 return Ok(dr);

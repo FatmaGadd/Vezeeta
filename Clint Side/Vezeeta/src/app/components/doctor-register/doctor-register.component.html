@@ -312,7 +312,7 @@
         </div>
 
       </div>
-      <ng-container *ngIf="imageController.touched">
+      <ng-container *ngIf="imageController.touched||regClick==true">
         <div *ngIf="imageController.hasError('required') && fileSizeBig==false"
           class="text-danger input-group-text border-0 bg-white">
           يرجي رفع الصورة الشخصية
@@ -333,7 +333,7 @@
         </div>
 
       </div>
-      <ng-container *ngIf="verificationController.touched">
+      <ng-container *ngIf="verificationController.touched||regClick==true">
         <div *ngIf="verificationController.hasError('required')" class="text-danger">
           يرجي رفع الصورة الشخصية
         </div>
@@ -364,16 +364,14 @@
           <input required formControlName="description" type="text" id="description" class="form-control col-8"
             placeholder=" description " name="description" />
         </div>
-
-
-        <ng-container *ngIf="decriptionController.touched">
-          <div *ngIf="decriptionController.hasError('required')" class="text-danger">
-            يرجي ادخال الوصف
-          </div>
-
-
-        </ng-container>
       </div>
+      <ng-container *ngIf="decriptionController.touched||regClick==true">
+        <div *ngIf="decriptionController.hasError('required')" class="text-danger">
+          يرجي ادخال الوصف
+        </div>
+
+
+      </ng-container>
     </ng-container>
 
 
@@ -402,6 +400,9 @@
     </h1>
     <h2>
       جاري مراجعة البيانات
+    </h2>
+    <h2>
+      <i class="fa-solid fa-circle-check text-success"></i>
     </h2>
     <h1 class="">
       <i class="bi bi-check-circle text-success"></i>
