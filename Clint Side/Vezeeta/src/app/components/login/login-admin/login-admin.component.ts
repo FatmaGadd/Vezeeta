@@ -40,7 +40,7 @@ export class LoginAdminComponent {
             let res = response.body.response;
             this.tokenService.SaveToken(0,res.token,res.role,res.admin.email);
             localStorage.setItem('isLogin','userLoged');
-            this.router.navigate(['home']);// change to admin screen
+            this.router.navigate(['/Admin']);// change to admin screen
         },
         error: (e) => {console.error(e),this.showError=true},
         complete: () => console.info('Success')
