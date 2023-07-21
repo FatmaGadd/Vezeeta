@@ -66,7 +66,7 @@
                     <div class="d-flex p-1 m-1">
                         <label for="patientBirth_date" class="control-label col-4">    تاريخ الميلاد : </label>
                         <div class="col-8">
-                            <input  type="datetime-local" name="patientBirth_date" id="patientBirth_date" placeholder="تاريخ الميلاد" class="form-control" formControlName="patientBirth_date" />
+                            <input  type="date" name="patientBirth_date" id="patientBirth_date" placeholder="تاريخ الميلاد" class="form-control" formControlName="patientBirth_date" />
                             <ng-container *ngIf="getBirth.touched || showError">
                                 <div
                                   *ngIf="getBirth.hasError('required')" 
