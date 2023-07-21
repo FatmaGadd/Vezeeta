@@ -151,7 +151,7 @@ namespace Vezeeta.Repository
         }
 
         public Task<List<Doctor>> GetdoctorsActive()
-        {
+            {
             //return context.Doctors.Where(a => a.status == true && a.is_deleted == false).ToListAsync();
            return context.Doctors.ToListAsync();
         }

@@ -8,23 +8,6 @@ import { PrimeNGConfig } from "primeng/api";
   styleUrls: ['./test.component.css']
 })
 export class TestComponent {
-  productNames: string[] = [
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-    "Heading",
-  ];
 
   ngOnInit() { }
 }

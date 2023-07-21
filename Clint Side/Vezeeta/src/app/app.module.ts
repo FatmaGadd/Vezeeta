@@ -68,7 +68,7 @@ import { BadgeModule } from 'primeng/badge';
 import { AddspecialComponent } from './components/admin-page/Components/addspecial/addspecial.component';
 import { AddreigonComponent } from './components/admin-page/Components/addreigon/addreigon.component';
 import { AddcityComponent } from './components/admin-page/Components/addcity/addcity.component';
-import { ContactComponent } from './components/contact/contact.component';
+import { CascadeSelectModule } from 'primeng/cascadeselect';
 
 @NgModule({
   declarations: [
@@ -144,7 +144,7 @@ import { ContactComponent } from './components/contact/contact.component';
     , ImageModule
     , OverlayPanelModule,
     ToastModule
-    , BadgeModule
+    , BadgeModule, CascadeSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
