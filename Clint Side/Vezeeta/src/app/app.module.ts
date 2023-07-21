@@ -69,6 +69,7 @@ import { AddspecialComponent } from './components/admin-page/Components/addspeci
 import { AddreigonComponent } from './components/admin-page/Components/addreigon/addreigon.component';
 import { AddcityComponent } from './components/admin-page/Components/addcity/addcity.component';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
