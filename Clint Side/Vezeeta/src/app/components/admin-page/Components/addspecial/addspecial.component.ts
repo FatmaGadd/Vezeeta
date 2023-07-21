@@ -22,20 +22,26 @@ export class AddspecialComponent {
   onSubmit() {
     this.error = false;
     console.log(this.Form.valid)
-    console.log(this.Form?.controls["special"]?.value?.trim().length)
-    // if (this.Form.controls["special"].value.trim()&&this.Form.invalid) {
 
-    //   let test = this.specil.some((a: any) => { return a.name === this.Form.controls["special"].value })
-    //   if (test)
-    //     this.error = true
-    //   else {
-    //     let x: ISpecialization = { name: this.Form.controls["special"].value, id: 0 }
-    //     this.special.Add(x).subscribe(res => {
-    //       alert("Success");
-    //       this.Form.controls["special"].setValue("")
-    //       this.specil.push(x);
-    //     })
-    //   }
-    // }
+
+    if (this.Form.controls["special"]?.value?.trim().length == 0 || this.Form.invalid) {
+
+      this.error = true
+
+    } else {
+
+      let test = this.specil.some((a: any) => { return a.name === this.Form.controls["special"].value })
+      if (test)
+        this.error = true
+      else {
+        let x: ISpecialization = { name: this.Form.controls["special"].value, id: 0 }
+        this.special.Add(x).subscribe(res => {
+          alert("Success");
+          this.Form.controls["special"].setValue("")
+          this.specil.push(x);
+        })
+      }
+    }
   }
 }
+

@@ -21,6 +21,8 @@ export class ReigonService {
     return this.http.get(ReigonURLs.GetById_Put_Delete(id), this.options);
   }
   Add(spec: Ireigon) {
+    console.log("test")
+    console.log(spec)
     return this.http.post(ReigonURLs.Get_Post(), spec);
   }
   Update(id: number, spec: Ireigon) {

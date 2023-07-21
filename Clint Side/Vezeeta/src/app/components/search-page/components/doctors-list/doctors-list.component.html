@@ -33,25 +33,25 @@
 
     <!-- ------------------------------------------------------------------ -->
 
-    <div class="card">
+    <div class="card" *ngIf="doctorslist.length!=0">
         <p-dataView [value]="doctorslist" [paginator]="true" [rows]="10" filterBy="name" layout="grid">
             <ng-template let-product pTemplate="gridItem">
-                <div class="p-col-12 p-md-4">
+                <div class="p-col-12 p-md-4 w-100">
                     <div>
-                        <div class="card w-100 mb-3  " id="card">
+                        <div class="card  mb-3  " id="card">
                             <!-- <a [routerLink]="doctor/data/:id"></a> -->
                             <div class="card-body">
                                 <div class="row px-4">
 
 
                                     <div class="col-2  p-3 d-flex justify-center align-self-center  ">
-                                        <h1 *ngIf="product.image == null"
-                                            class="text-danger d-felx align-self-center  rounded-circle p-5 ">
+                                        <h1 *ngIf=" product.image==' '"
+                                            class=" text-danger d-felx align-self-center rounded-circle p-5 text-danger">
                                             {{product.drName[0]}}
                                         </h1>
-                                        <!-- <img src="./assets/images/spec-skin.jpeg" -->
+                                        <!-- <img src=" ./assets/images/spec-skin.jpeg" -->
                                         <img *ngIf="product.image != null" src="{{product.image}}"
-                                            style="width: 150px;height: 150px; ;border-radius: 300px; border: 1px solid ;"
+                                            style="max-width: 150px;min-width: 150px;min-height:150px ;max-height: 150px; ;border-radius: 300px; border: 1px solid ;"
                                             alt="">
                                     </div>
                                     <div class="col-6  p-3">

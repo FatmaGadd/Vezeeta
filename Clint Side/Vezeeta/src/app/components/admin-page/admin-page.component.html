@@ -43,7 +43,7 @@
                 <span>cities</span>
                 <i class="pi pi-cog"></i>
             </ng-template>
-            <app-addcity></app-addcity>
+            <app-addcity [cityes]="CityList" [specil]="Reigonlist"></app-addcity>
         </p-tabPanel>
 
         <p-tabPanel header="Header III">
@@ -52,7 +52,7 @@
                 <span>Reigon</span>
                 <i class="pi pi-cog"></i>
             </ng-template>
-            <app-addreigon></app-addreigon>
+            <app-addreigon [specil]="Reigonlist"></app-addreigon>
         </p-tabPanel>
     </p-tabView>
 </div>

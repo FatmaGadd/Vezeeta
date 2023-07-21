@@ -131,6 +131,7 @@ namespace Vezeeta.Repository
         //    return dro;
         //}
 
+
         public async Task<Doctor> active(int id, bool state)
         {
             Doctor dro = await context.Doctors.FirstOrDefaultAsync(a => a.id == id);

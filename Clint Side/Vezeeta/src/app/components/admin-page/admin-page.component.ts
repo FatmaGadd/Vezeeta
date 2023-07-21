@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DoctorService } from 'src/app/Services/Entity_Services/doctor.service';
 import { SearchService } from 'src/app/Services/Entity_Services/search.service';
 import { SpecializationService } from 'src/app/Services/Entity_Services/specialization.service';
+import { ReigonService } from './../../Services/Entity_Services/reigon.service';
+import { CityService } from './../../Services/Entity_Services/city.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -12,7 +14,9 @@ export class AdminPageComponent implements OnInit {
   doctorlist: any;
   unactiveUsers: any;
   specalizationlist: any;
-  constructor(private DrrService: DoctorService, private search: SearchService, private special: SpecializationService) {
+  Reigonlist: any;
+  CityList: any;
+  constructor(private DrrService: DoctorService, private search: SearchService, private special: SpecializationService, private reigon: ReigonService, private city: CityService) {
 
   }
 
@@ -30,6 +34,12 @@ export class AdminPageComponent implements OnInit {
     })
     this.search.getUSers().subscribe(res => {
       this.currentItem = res;
+    })
+    this.reigon.GetAll().subscribe(res => {
+      this.Reigonlist = res.body;
+    })
+    this.city.GetAll().subscribe(res => {
+      this.CityList = res.body;
     })
   }
 
