@@ -68,6 +68,7 @@ import { BadgeModule } from 'primeng/badge';
 import { AddspecialComponent } from './components/admin-page/Components/addspecial/addspecial.component';
 import { AddreigonComponent } from './components/admin-page/Components/addreigon/addreigon.component';
 import { AddcityComponent } from './components/admin-page/Components/addcity/addcity.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { AddcityComponent } from './components/admin-page/Components/addcity/add
     AddspecialComponent,
     AddreigonComponent,
     AddcityComponent,
+    ContactComponent,
 
   ],
   imports: [

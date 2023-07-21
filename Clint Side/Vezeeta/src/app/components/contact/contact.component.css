@@ -1,0 +1,60 @@
+.parent{
+    background: white;
+    margin: 25px 0px;
+    padding: 20px 40px;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 11px;
+    
+font-size: 16.8px;
+color: rgb(102, 102, 102);
+}
+.head{
+    font-size: 24px;
+    color: rgb(0, 112, 205);
+    margin: 10px 0px;
+    font-weight: 400;
+}
+.text{
+    color: rgb(116, 116, 112);
+    font-size: 14px;
+    margin: 0px 0px 10px;
+}
+input,textarea{
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 0px;
+    font-size: 14px;
+    color: rgb(85, 85, 85);
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+   box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px inset;
+   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+input:focus , textarea:focus{
+    border: 1px solid rgb(0, 112, 205);
+    outline: 0px;
+    box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px inset, rgb(229, 241, 255) 0px 0px 8px;
+}
+.socialMedia{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 5rem;
+    font-size: 24px;
+}
+.verticleLine{
+    border-left: 1px solid rgb(210, 208, 208);
+     height: 350px;
+}
+@media (max) {
+    
+}
+@media(max-width: 768px) {
+    .verticleLine {
+       display: none;
+    }
+  }
