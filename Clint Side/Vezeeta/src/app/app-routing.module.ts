@@ -26,12 +26,13 @@ import { TakeAppoinmentComponent } from './components/patientappoinment/take-app
 import { DoctorAddAppointmentComponent } from './components/Doctor/doctor-add-appointment/doctor-add-appointment.component';
 import { SavedAppoinmentComponent } from './components/patientappoinment/saved-appoinment/saved-appoinment.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'Admin', component: AdminPageComponent },
+  { path: 'admin', component: AdminPageComponent },
 
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'reservation/create/:id/:drid', component: TakeAppoinmentComponent },
   { path: 'doctor/add-appointment', component: DoctorAddAppointmentComponent },
   { path: 'book/:id/:drid', component: SavedAppoinmentComponent },
+  {path:'contactUs', component:ContactComponent},
   { path: '**', component: ErrorComponent },
 
 ];
