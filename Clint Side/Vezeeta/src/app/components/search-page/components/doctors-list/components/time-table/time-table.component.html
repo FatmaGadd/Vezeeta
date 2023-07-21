@@ -1,7 +1,7 @@
 <p-carousel [value]="products" [numVisible]="2" [numScroll]="1" [responsiveOptions]="responsiveOptions">
     <ng-template let-product pTemplate="item">
-        <div class="border-1  border-round m-1 text-center h-100">
-            <div class="card text-center h-100" style="max-width:95px ;min-width:95px ;">
+        <div class="border-1  border-0 m-1 text-center h-100">
+            <div class="card text-center h-100 " style="max-width:95px ;min-width:95px ;">
                 <div class="py-2 bg-primary text-white">
                     <!-- {{(getstring(product.start_date))}} -->
                     {{product[1]}}

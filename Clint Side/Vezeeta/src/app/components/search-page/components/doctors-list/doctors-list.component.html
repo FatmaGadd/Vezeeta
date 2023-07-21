@@ -34,7 +34,7 @@
     <!-- ------------------------------------------------------------------ -->
 
     <div class="card" *ngIf="doctorslist.length!=0">
-        <p-dataView [value]="doctorslist" [paginator]="true" [rows]="10" filterBy="name" layout="grid">
+        <p-dataView [value]="doctorslist" [paginator]="true" [rows]="4" filterBy="name" layout="grid">
             <ng-template let-product pTemplate="gridItem">
                 <div class="p-col-12 p-md-4 w-100">
                     <div>

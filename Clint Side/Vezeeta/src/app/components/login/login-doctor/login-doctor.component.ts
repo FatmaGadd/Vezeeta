@@ -11,42 +11,42 @@ import { TokenService } from 'src/app/Services/Token/token.service';
   styleUrls: ['./login-doctor.component.css']
 })
 export class LoginDoctorComponent {
-  constructor(private authService:AuthService,private tokenService:TokenService, private router:Router){}
-  showError=false;
-  formLogin:any; 
+  constructor(private authService: AuthService, private tokenService: TokenService, private router: Router) { }
+  showError = false;
+  formLogin: any;
   ngOnInit(): void {
     this.formLogin = new FormGroup({
-      patientEmail :new FormControl("",[Validators.required ,Validators.email]),
-      patientPassword :new FormControl('',[Validators.required]),
+      patientEmail: new FormControl("", [Validators.required, Validators.email]),
+      patientPassword: new FormControl('', [Validators.required]),
     });
   }
-  
-  get getEmail(){
+
+  get getEmail() {
     return this.formLogin.controls["patientEmail"]
   }
-  
-  get getPass(){
+
+  get getPass() {
     return this.formLogin.controls["patientPassword"]
   }
-  Login(e:any){
-   
+  Login(e: any) {
+
     e.preventDefault();
     // console.log(this.formLogin);
-    
-    if(this.formLogin.status=='VALID'){
-      let user:ILogin = {email:this.getEmail?.value,password:this.getPass?.value}
+
+    if (this.formLogin.status == 'VALID') {
+      let user: ILogin = { email: this.getEmail?.value, password: this.getPass?.value }
       this.authService.loginDoctor(user).subscribe({
-        next:(response:any) => {
-            let res = response.body.response;
-            this.tokenService.SaveToken(res.doctor.id,res.token,res.role,res.doctor.name);
-            localStorage.setItem('isLogin','userLoged');
-            this.router.navigate(['home']);
+        next: (response: any) => {
+          let res = response.body.response;
+          this.tokenService.SaveToken(res.doctor.id, res.token, res.role, res.doctor.name);
+          localStorage.setItem('isLogin', 'userLoged');
+          this.router.navigate(['home']);
         },
-        error: (e) => {console.error(e),this.showError=true},
+        error: (e) => { console.error(e), this.showError = true },
         complete: () => console.info('Success')
       })
-    }else{
-      this.showError=true;
+    } else {
+      this.showError = true;
     }
   }
 }

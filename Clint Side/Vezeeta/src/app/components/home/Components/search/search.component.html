@@ -31,66 +31,101 @@
     </ul>
 
     <!-- Tab panes -->
-    <div class="tab-content py-3 border ">
+
+    <div class="tab-content py-3 border-0 ">
         <div class="tab-pane container active " id="home">
-            <form class="d-flex rounded border" [formGroup]="Form" (ngSubmit)="onSubmit()">
-                <div class="  col p-0 border">
+            <form class="d-flex rounded border border-0 " [formGroup]="Form" (ngSubmit)="onSubmit()">
+                <div class="  col p-0 border border-0">
                     <label class=" form-label mx-3 mt-1">ابحث عن دكتور</label>
-                    <div class="input-group">
+                    <div class="input-group ">
                         <span class="input-group-text bg-white border-0"><i class="fa-solid fa-stethoscope"></i> </span>
-                        <select name="" class="form-control text-primary border-0" formControlName="special">
+                        <div class="card flex justify-content-center border-0 ">
+
+                            <p-cascadeSelect formControlName="special" [(ngModel)]="special"
+                                [options]="specializationList" optionLabel="name" optionGroupLabel="name"
+                                [optionGroupChildren]="'name'"
+                                [style]="{ minWidth: '15rem','max-height': '100px',width:'100%' }"
+                                placeholder="اختر تخصص">
+
+                            </p-cascadeSelect>
+
+                        </div>
+                        <!-- <select name="" class="form-control text-primary border-0" formControlName="special">
                             <option value="0">اختر التخصص</option>
                             <option *ngFor="let elent of specializationList" value={{elent.id}} selected>{{elent.name}}
                             </option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
+
                 <!-- ---------------------------------------------- reigon -------------------------------------------- -->
-                <div class="  col p-0 border">
+
+                <div class="  col p-0 border-0">
                     <label for="formGroupExampleInput" class=" form-label mx-3  mt-1">في محافظة</label>
                     <div class="input-group ">
                         <span class="input-group-text bg-white border-0" id="basic-addon1">
                             <i class="fa-solid fa-location-dot"></i>
                         </span>
+                        <div class="card flex justify-content-center border-0 ">
+
+                            <p-cascadeSelect formControlName="special" [options]="regionList" optionLabel="name"
+                                optionGroupLabel="name" [optionGroupChildren]="'name'" [(ngModel)]="reigons"
+                                [style]="{ minWidth: '15rem','max-height': '100px' }" placeholder="اختر محافظه"
+                                (ngModelChange)="selectReigon2(hamad.value)" #hamad>
+
+                            </p-cascadeSelect>
+
+                        </div>
+                        <!--                         
                         <select name="" class="form-control  text-primary border-0" #hamad formControlName="reigon"
                             (change)="selectReigon(hamad.value)">
                             <option value="0">اختر المحافظه</option>
                             <option value={{elent.id}} *ngFor="let elent of regionList">{{elent.name}}</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <!-- ---------------------------------------------- city -------------------------------------------- -->
 
-                <div class="  col p-0 border">
+                <div class="  col p-0 border-0">
                     <label for="formGroupExampleInput" class=" form-label mx-3  mt-1">في منطقه</label>
                     <div class="input-group  ">
                         <span class="input-group-text bg-white border-0" id="basic-addon1">
                             <i class="fa-solid fa-map-location-dot"></i>
                         </span>
-                        <select name="" class="form-control text-primary border-0" formControlName="city">
+                        <div class="card flex justify-content-center border-0 ">
+
+                            <p-cascadeSelect formControlName="city" [options]="list" optionLabel="name"
+                                optionGroupLabel="name" [optionGroupChildren]="'name'" [(ngModel)]="citys"
+                                [style]="{ minWidth: '15rem','max-height': '100px',width:'100%' }"
+                                placeholder="اختر مدينه">
+
+                            </p-cascadeSelect>
+
+                        </div>
+                        <!-- <select name="" class="form-control text-primary border-0" formControlName="city">
                             <option value="0">اخترالمطقه</option>
                             <option value={{elent.id}} *ngFor="let elent of cityList">
                                 {{elent.name}}</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <!-- ---------------------------------------------- doctor name -------------------------------------------- -->
 
-                <div class="  col p-0 border">
+                <div class="  col p-0 border-0">
                     <label for="formGroupExampleInput" class=" form-label mx-3  mt-1"
                         style="font-size: .6rem;margin-bottom: -100%;">او اكتب اسم الدكتور</label>
-                    <div class="input-group  ">
+                    <div class="input-group  ps-4 ">
                         <span class="input-group-text bg-white border-0" id="basic-addon1">
                             <i class="fa-solid fa-user-doctor"></i>
                         </span>
-                        <input type="email" class="form-control  border-0 text-primary" id=" floatingInput"
+                        <input type="email" class="form-control  border py-2 pe-3 text-primary" id=" floatingInput"
                             placeholder="اسم الطبيب" formControlName="name">
                     </div>
 
                 </div>
                 <!-- ---------------------------------------------- button -------------------------------------------- -->
 
-                <button class="btn px-4 text-white rounded-0" style="background-color: #EF0F0F;">
+                <button class="btn px-4 text-white rounded-circle" style="background-color: #EF0F0F;">
                     <i class="fa-solid fa-magnifying-glass "></i>
                 </button>
 
@@ -106,6 +141,8 @@
                             <i class="fa-solid fa-stethoscope"></i>
 
                         </span>
+
+
                         <select name="" class="form-control text-primary border-0" id="">
                             <option selected>no one selected</option>
                             <option *ngFor="let elent of specializationList" value={{elent.id}} selected>{{elent.name}}
