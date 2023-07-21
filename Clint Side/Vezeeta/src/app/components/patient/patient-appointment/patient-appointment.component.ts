@@ -59,7 +59,7 @@ export class PatientAppointmentComponent implements OnInit {
 
   constructor(
     private patientAppoint: PatientAppointService,
-    private appointmentSerice:AppoinmentService,
+    private appointmentSerice: AppoinmentService,
     private DrService: DoctorService,
     private clinicService: ClinicDoctorService,
     private adressService: AddressService
@@ -76,7 +76,7 @@ export class PatientAppointmentComponent implements OnInit {
 
           this.temp = e.body;
           this.appointment = this.temp;
-console.log(this.appointment);
+          console.log(this.appointment);
 
           if (this.appointment) {
             // get DR name
@@ -151,17 +151,17 @@ console.log(this.appointment);
       });
   }
 
-   deleteAppoint(e: any, id: number,appointPatientId:number) {
+  deleteAppoint(e: any, id: number, appointPatientId: number) {
 
     ///// alert  
-  const swalWithBootstrapButtons = Swal.mixin({
+    const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
         cancelButton: 'btn btn-danger'
       },
       buttonsStyling: false
     })
-    
+
     swalWithBootstrapButtons.fire({
       title: 'هل تريد ألغاء الموعد ',
       text: "لايمكنك إعادة الموعد مره أخرى!",
@@ -172,17 +172,17 @@ console.log(this.appointment);
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        
-    console.log(e.target.parentNode.parentNode);
-    // make state = true in patient_appoint table 
-         this.patientAppoint.DeletePatient_Appoinment(appointPatientId).subscribe();
-    // make pationt_id = null in appointment
-    //  this.appointmentSerice.softDelete(id).subscribe();
-      // change style tr from table 
-      var tr=e.target.parentNode.parentNode;
-      tr.classList.add("unClickable");
-      
-      // tr.parentNode.removeChild(tr);
+
+        console.log(e.target.parentNode.parentNode);
+        // make state = true in patient_appoint table 
+        this.patientAppoint.DeletePatient_Appoinment(appointPatientId).subscribe();
+        // make pationt_id = null in appointment
+        //  this.appointmentSerice.softDelete(id).subscribe();
+        // change style tr from table 
+        var tr = e.target.parentNode.parentNode;
+        tr.classList.add("unClickable");
+
+        // tr.parentNode.removeChild(tr);
         swalWithBootstrapButtons.fire(
           'حذف!',
           'تم حذف الموعد بنجاح',
