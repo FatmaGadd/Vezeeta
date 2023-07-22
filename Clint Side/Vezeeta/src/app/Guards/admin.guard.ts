@@ -13,11 +13,11 @@ export class adminGaurd implements CanActivate{
       if (this.auth.isAdmin) {
         return true;
       } else {
-        this.router.navigate(['home']);
+        this.router.navigate(['**']);
         return false;
       }
     } else {
-      this.router.navigate(['home']);
+      this.router.navigate(['/login']);
       return false;
     }
   }

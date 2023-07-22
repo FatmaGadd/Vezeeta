@@ -23,7 +23,7 @@ export class DoctorRegisterComponent implements OnInit {
     private specService: SpecializationService,
     private drPhoneServ: DoctorPhonesService,
     private rout: Router
-  ) {}
+  ) { }
   //------------------------------------------
 
   //fields
@@ -184,12 +184,14 @@ export class DoctorRegisterComponent implements OnInit {
         this.clickpress = true;
       }
     } else if (this.lineIndex === 1) {
+
       if (
         this.DoctorsphoneController1.valid &&
         this.DoctorsphoneController1.value &&
         this.experienceController.valid &&
         this.birth_dateController.valid
       ) {
+
         this.drPhoneServ
           .getDoctorByPhone(this.DoctorsphoneController1.value)
           .subscribe({

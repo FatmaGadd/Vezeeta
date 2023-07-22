@@ -1,11 +1,11 @@
 <div class="container bg-white border-0 p-0 gap-0  ">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs ">
-        <li class="nav-item col ">
+        <li class="nav-item col p-0">
             <a class="nav-link d-flex justify-content-center align-items-center gap-3 active ounded-0 pt-3"
                 data-bs-toggle="tab" href="#home">
                 <div>
-                    <i class="fa-solid fa-calendar-days h1"></i>
+                    <i class="fa-solid fa-calendar-days h1 "></i>
                 </div>
                 <div>
 
@@ -15,7 +15,7 @@
 
             </a>
         </li>
-        <li class="nav-item col">
+        <li class="nav-item col p-0">
             <a class="nav-link d-flex justify-content-center align-items-center gap-3 pt-3" data-bs-toggle="tab"
                 href="#menu1">
                 <div>
@@ -34,7 +34,7 @@
 
     <div class="tab-content py-3 border-0 ">
         <div class="tab-pane container active " id="home">
-            <form class="d-flex rounded border border-0 " [formGroup]="Form" (ngSubmit)="onSubmit()">
+            <form class="d-flex flex-wrap rounded border border-0 " [formGroup]="Form" (ngSubmit)="onSubmit()">
                 <div class="  col p-0 border border-0">
                     <label class=" form-label mx-3 mt-1">ابحث عن دكتور</label>
                     <div class="input-group ">
@@ -44,8 +44,7 @@
                             <p-cascadeSelect formControlName="special" [(ngModel)]="special"
                                 [options]="specializationList" optionLabel="name" optionGroupLabel="name"
                                 [optionGroupChildren]="'name'"
-                                [style]="{ minWidth: '15rem','max-height': '100px',width:'100%' }"
-                                placeholder="اختر تخصص">
+                                [style]="{ minWidth: '15rem',maxheight: '100px',width:'100%' }" placeholder="اختر تخصص">
 
                             </p-cascadeSelect>
 
@@ -125,7 +124,8 @@
                 </div>
                 <!-- ---------------------------------------------- button -------------------------------------------- -->
 
-                <button class="btn px-4 text-white rounded-circle" style="background-color: #EF0F0F;">
+                <button class="btn px-4 text-white rounded-circle"
+                    style="background-color: #EF0F0F; width: 75px; height: 75px;">
                     <i class="fa-solid fa-magnifying-glass "></i>
                 </button>
 
@@ -133,7 +133,7 @@
 
         </div>
         <div class="tab-pane container fade " id="menu1">
-            <form class="d-flex w-50  m-auto">
+            <form class="d-flex w-50  m-auto ">
                 <div class="  col p-0 border">
                     <label for="formGroupExampleInput" class=" form-label ms-3">Select speciality</label>
                     <div class="input-group  ">

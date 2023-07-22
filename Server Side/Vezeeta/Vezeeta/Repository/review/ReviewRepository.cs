@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vezeeta.dbContext;
+using Vezeeta.DTO.ReviewDTO;
 using Vezeeta.IEntities;
 using Vezeeta.Models;
 
@@ -12,7 +13,7 @@ namespace Vezeeta.Repository
 
             //fields
             VezeetaContext dbContext;
-
+            
             //constructor
             public ReviewRepository(VezeetaContext context)
             {
@@ -23,7 +24,7 @@ namespace Vezeeta.Repository
             {
                 await dbContext.AddAsync(entity);
                 await dbContext.SaveChangesAsync();
-                return entity;
+                return await GetById(entity.Dr_id,entity.patient_id);
             }
 
             public async Task<Review> DeleteById(int Dr_id, int patient_id)
@@ -40,7 +41,7 @@ namespace Vezeeta.Repository
 
             public async Task<List<Review>> GetAllByDoctor(int Dr_id)
             {
-                return await dbContext.Reviews.Include(a => a.Dr).Include(a=>a.patient).Where(r => r.Dr_id== Dr_id).ToListAsync();
+                return await dbContext.Reviews.Include(a=>a.patient).Where(r => r.Dr_id== Dr_id).ToListAsync();
             }
 
             public async Task<List<Review>> GetAllByPatient(int patient_id)
@@ -53,7 +54,17 @@ namespace Vezeeta.Repository
                 return  await dbContext.Reviews.Include(a => a.Dr).Include(a => a.patient).FirstOrDefaultAsync(a => a.Dr_id == Dr_id && a.patient_id == patient_id);
             }
 
-            public async Task<Review> Update(int Dr_id, int patient_id, Review entity)
+        public async Task<bool> HasAppoinment(int Dr_id, int patient_id)
+        {
+            var appoinments = await dbContext.Appointments.Where(a => a.Dr_id == Dr_id && a.appoint.patient_id== patient_id).ToListAsync();
+            if (appoinments.Any())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<Review> Update(int Dr_id, int patient_id, Review entity)
             {
                 dbContext.Entry(entity).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();

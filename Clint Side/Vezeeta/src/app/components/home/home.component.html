@@ -20,7 +20,7 @@
           <i class="fa fa-phone-alt text-danger"></i>16676
         </h3>
       </div>
-      <app-search style="z-index: 11000; position: relative;"></app-search>*
+      <app-search style="z-index: 0; position: relative;"></app-search>
     </div>
   </div>
 </div>
@@ -38,7 +38,7 @@
           alt="" />
       </div>
       <div class="col-8">
-        <h2 class="card-title" style="font-weight: bold; font-size: 25px;z-index: 0;">
+        <h2 class="card-title" style="font-weight: bold; font-size: 25px">
           لديك سؤال طبي؟
         </h2>
         <h2 class="card-text">
@@ -46,6 +46,7 @@
         </h2>
       </div>
       <div class="col-2 d-flex align-items-center justify-content-end">
+        <!-- <a class="btn btn-primary text-white px-5 py-3" [routerLink]="['/questions/ask']">اسأل اللأن</a> -->
         <a class="btn btn-primary text-white px-5 py-3" [routerLink]="['/questions/ask']">اسأل اللأن</a>
       </div>
     </div>

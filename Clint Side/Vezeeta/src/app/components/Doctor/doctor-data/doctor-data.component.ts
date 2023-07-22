@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DoctorService } from 'src/app/Services/Entity_Services/doctor.service';
+import { ReviewService } from 'src/app/Services/Entity_Services/review.service';
 
 @Component({
   selector: 'app-doctor-data',
@@ -12,7 +13,8 @@ export class DoctorDataComponent implements OnInit {
   constructor(
     private doctorService: DoctorService,
     private activRoute: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private reviewServ: ReviewService
   ) {}
   //options
   private options = {
@@ -26,8 +28,12 @@ export class DoctorDataComponent implements OnInit {
   Dr_clinic: any;
   clinicLoad = false;
   doctorLoad = false;
+  reviews: any = [];
+  rates = 0;
+  ratesNgFor: any;
   //onint
   ngOnInit(): void {
+    this.rates = 0;
     this.id = this.activRoute.snapshot.paramMap.get('id');
     this.doctorService.getDoctorById(this.id).subscribe((res) => {
       this.doctor = res.body;
@@ -45,5 +51,17 @@ export class DoctorDataComponent implements OnInit {
           }
         },
       });
+    this.reviewServ.GetAllByDoctor(this.id).subscribe({
+      next: (res) => {
+        this.reviews = res.body;
+        console.log(this.reviews);
+        if (this.reviews.length !== 0)
+          for (let i = 0; i < this.reviews?.length; i++) {
+            this.rates += parseInt(this.reviews[i].value);
+          }
+        if (this.reviews.length !== 0)
+          this.ratesNgFor = Array(this.rates / this.reviews.length);
+      },
+    });
   }
 }
