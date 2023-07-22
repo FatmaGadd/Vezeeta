@@ -6,7 +6,7 @@ import { AuthService } from '../Services/Token/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class adminGaurd implements CanActivate{
+export class doctorGaurd implements CanActivate{
   constructor(private auth:AuthService,private router:Router){}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if (this.auth.isLoggedIn) {

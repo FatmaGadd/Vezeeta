@@ -29,12 +29,14 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { ContactComponent } from './components/contact/contact.component';
 import { DoctorReviewComponent } from './components/doctor-review/doctor-review.component';
 import { adminGaurd } from './Guards/admin.guard';
+import { patientGaurd } from './Guards/patient.guard';
+import { doctorGaurd } from './Guards/doctor.guard';
 
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'Admin', component: AdminPageComponent },
+  { path: 'Admin', component: AdminPageComponent,canActivate:[adminGaurd] },
 
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -43,24 +45,24 @@ const routes: Routes = [
   { path: 'register/doctor', component: DoctorRegisterComponent },
   { path: 'registerPatient', component: RegisterPatientComponent },
   { path: 'account', component: PatientAccountComponent },
-  { path: 'patientAppoint', component: PatientAppointmentComponent },
-  { path: 'forgetPass', component: ForgetPasswordComponent },
+  { path: 'patientAppoint', component: PatientAppointmentComponent,canActivate:[patientGaurd] },
+  { path: 'forgetPass', component: ForgetPasswordComponent},
   { path: 'questions/view/:id', component: ViewQuestionComponent },
   { path: 'questions/specializations', component: SpecilizationComponent },
-  { path: 'questions/ask', component: QuestionsComponent },
-  { path: 'questions/patient', component: PatientQuestionsComponent },
-  { path: 'updateClinic/:id', component: ClinicComponent },
+  { path: 'questions/ask', component: QuestionsComponent,canActivate:[patientGaurd] },
+  { path: 'questions/patient', component: PatientQuestionsComponent,canActivate:[patientGaurd] },
+  { path: 'updateClinic/:id', component: ClinicComponent,canActivate:[doctorGaurd] },
   { path: 'search', component: SearchPageComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
   { path: 'confirmCode', component: ConfirmCodeComponent },
-  { path: 'doctor/changePassword', component: ChangePasswordComponent },
-  { path: 'doctor/profile', component: DoctorProfileComponent },
+  { path: 'doctor/changePassword', component: ChangePasswordComponent,canActivate:[doctorGaurd] },
+  { path: 'doctor/profile', component: DoctorProfileComponent,canActivate:[doctorGaurd] },
   { path: 'doctor/data/:id', component: DoctorDataComponent },
-  { path: 'reservation/create/:id/:drid', component: TakeAppoinmentComponent },
-  { path: 'doctor/add-appointment', component: DoctorAddAppointmentComponent },
-  { path: 'book/:id/:drid', component: SavedAppoinmentComponent },
+  { path: 'reservation/create/:id/:drid', component: TakeAppoinmentComponent,canActivate:[patientGaurd] },
+  { path: 'doctor/add-appointment', component: DoctorAddAppointmentComponent,canActivate:[doctorGaurd] },
+  { path: 'book/:id/:drid', component: SavedAppoinmentComponent,canActivate:[patientGaurd] },
   {path:'contactUs', component:ContactComponent},
-  {path:'reviews/:id', component:DoctorReviewComponent},
+  {path:'reviews/:id', component:DoctorReviewComponent,canActivate:[patientGaurd]},
   { path: '**', component: ErrorComponent },
 
 ];

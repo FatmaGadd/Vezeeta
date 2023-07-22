@@ -61,7 +61,7 @@ export class DoctorReviewComponent implements OnInit {
     // console.log(this.addreviewform);
     if (this.addreviewform.valid) {
       let r= {Dr_id:this.drId,patient_id:this.patientId,value:this.GetValue.value?.toString(),comment:this.GetComment.value}
-      // console.log(r);
+       console.log(r);
       this.http.post("https://localhost:7018/api/Review",r).subscribe({
         next:(response:any) => {
           //console.log(response);
