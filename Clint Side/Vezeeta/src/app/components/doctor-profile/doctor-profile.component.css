@@ -117,10 +117,17 @@ h1,h2,h3,h4,h5{
 }
 
 .pass-Change{
+  cursor: pointer;
   font-size: 1.2rem;
   width: 100%;
   line-height: 35px;
   text-indent: 20px;
+  margin-bottom: 5px;
   border-bottom: 1.5px solid rgb(238, 238, 238);
+  transition: all .4s;
 }
-
+.pass-Change:hover{
+  background-color: #0062cc;
+   color: white;
+   transform: scale(1.05);
+}

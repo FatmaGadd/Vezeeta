@@ -1,4 +1,4 @@
-<div class="container-fluid emp-profile profile-work" *ngIf="loaderDr==true">
+<div class="container emp-profile profile-work" *ngIf="loaderDr==true">
 
   <div class="row">
     <div class="col-md-4">
@@ -16,24 +16,102 @@
     </div>
     <div class="col-md-6">
       <div class="profile-head">
-        <h3>
+        <h3 class="fs-3 me-5">
          دكتور: {{doctor?.name}}
         </h3>
-        <h4>
+        <h4 class="fs-3 me-5">
           تخصص : {{DrSpec}}
         </h4>
+              <ng-container *ngIf="updateClinicFlag==true"> 
+
+          <div class="pass-parent ">
+
+            <a style="color: rgb(153, 153, 153)" class="d-block" [routerLinkActive]="'linkActive '"
+              [routerLink]="['/doctor/add-appointment']" [routerLinkActiveOptions]="{ exact: true }">
+              <div class="pass-Change">
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="d-inline-block mx-1"> مواعيدي </span>
+              </div>
+            </a>
+
+            <a style="color: rgb(153, 153, 153)" class="d-block" [routerLinkActive]="'linkActive '"
+              [routerLink]="['/doctor/changePassword']" [routerLinkActiveOptions]="{ exact: true }">
+
+              <div class="pass-Change">
+                <span class=" fa fa-users "></span>
+                <span class="d-inline-block mx-1">تغيير كلمة المرور </span>
+              </div>
+            </a>
+
+            <a style="color: rgb(153, 153, 153)" class="d-block" [routerLinkActive]="'linkActive '"
+              [routerLink]="['/updateClinic',id]" (click)="updateClinic()" [routerLinkActiveOptions]="{ exact: true }">
+
+              <div class="pass-Change">
+                <i class="fa-regular fa-pen-to-square"></i>
+                <span class="d-inline-block mx-1">تعديل بيانات
+                  العيادة </span>
+              </div>
+            </a>
+          </div> 
+      </ng-container> 
+      <a *ngIf="updateClinicFlag==false && doctorState==true"  style="color: rgb(153, 153, 153)" class=" d-block"  (click)="scrollToElement()">
+        <div class="pass-Change">
+          <i class="fa-regular fa-square-plus"></i>
+          <span class="d-inline-block mx-1">اضافة عيادة</span>
+        </div>
+      </a>
       </div>
+      
     </div>
-    <!-- <div class="col-md-2">
-        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-      </div> -->
+
   </div>
-  <div class="container-fluid ">
+  <div class="container ">
     <div class="row justify-content-between my-5">
 
-      <!-- form 1 -->
-      <ng-container *ngIf="updateClinicFlag==false && doctorState==true">
-        <div class="col-12 col-md-3">
+      
+      <!-- form 1  -->
+      <div class="col-12 col-md-3">
+        <form method="post" (submit)="onPhoneSubmit($event)" class="border-1 border-light bg-white mb-5 bg-light">
+        
+       
+          <!-- ----------------------------------------  -->
+          <div class="form-outline p-4 my-2 d-flex flex-wrap rounded-3" style="background-color: #eaeaeab0;">
+           
+         <div class="bg-light p-3 rounded-4 d-flex  flex-wrap  justify-content-evenly align-items-center col-12"> 
+          <div class="col-9 ">
+            <input required name="Doctors_Phones" type="tel" id="DPhone" class="form-control col-8 "
+              placeholder="رقم الموبايل " #inptval />
+          </div>
+          <div class="">
+            <button class="btn btn-primary py-2" (click)="addAnotherPhone(inptval)">
+              <i class="fa-solid fa-phone mx-2">   اضافة هاتف اخر</i> 
+               <!-- <i class="fa-regular fa-plus"></i>   -->
+                </button>
+          </div>
+          
+          <div *ngIf="phoneValid==false && addphoneClick==true && phone1Exist==false"
+            class="text-danger input-group-text border-white bg-white">
+            رقم الموبايل غير صحيح
+          </div>
+
+          <div *ngIf="phone1Exist==true && addphoneClick" class="text-danger input-group-text border-white bg-white">
+            هذا الرقم بالفعل مسجل
+          </div>
+         </div>
+
+          <div *ngFor="let phone of doctor_phones" class="d-flex align-items-center col-5">
+            <button *ngIf="noOfPhone>1" (click)="removePhone(remoVal,$event)"
+              class="btn btn-close input-group-text me-4  "></button>
+            <input type="text" readonly value="{{phone.phone}}" class="m-2 p-1 rounded-2"#remoVal>
+          </div>
+        </div>
+        </form>
+      </div>
+
+      <!-- form 2 --> 
+      <!--  -->
+      <ng-container  *ngIf="updateClinicFlag==false && doctorState==true">
+        <div class="container py-5 rounded-3 m-5" style="background-color: #eaeaeab0;" id="updateClinic">
           <form class="row g-3 " (submit)="clinincAdd()" [formGroup]="clinicForm">
             <h1>اضافة عيادة</h1>
             <div class="col-6">
@@ -118,90 +196,9 @@
 
         </div>
       </ng-container>
-
-      <ng-container *ngIf="updateClinicFlag==true">
-        <div class="col-12 col-md-3">
-
-          <div class="pass-parent ">
-
-            <a style="color: rgb(153, 153, 153)" class="d-block" [routerLinkActive]="'linkActive '"
-              [routerLink]="['/doctor/add-appointment']" [routerLinkActiveOptions]="{ exact: true }">
-              <div class="pass-Change">
-                <i class="fas fa-exclamation-circle"></i>
-                <span class="d-inline-block mx-1"> مواعيدي </span>
-              </div>
-            </a>
-
-            <a style="color: rgb(153, 153, 153)" class="d-block" [routerLinkActive]="'linkActive '"
-              [routerLink]="['/doctor/changePassword']" [routerLinkActiveOptions]="{ exact: true }">
-
-              <div class="pass-Change">
-                <span class=" fa fa-users "></span>
-                <span class="d-inline-block mx-1">تغيير كلمة المرور </span>
-              </div>
-            </a>
-
-            <a style="color: rgb(153, 153, 153)" class="d-block" [routerLinkActive]="'linkActive '"
-              [routerLink]="['/updateClinic',id]" (click)="updateClinic()" [routerLinkActiveOptions]="{ exact: true }">
-
-              <div class="pass-Change">
-
-                <span class="d-inline-block mx-1">تعديل بيانات
-                  العيادة </span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </ng-container>
-
-      <!-- form 2  -->
-      <div class="col-12 col-md-3">
-        <form method="post" (submit)="onPhoneSubmit($event)" class="border-1 border-light bg-white mb-5 bg-light">
-          <h2>
-
-            <i class="fa-solid fa-phone text-primary">اضافة هاتف اخر</i>
-          </h2>
-          <div *ngFor="let phone of doctor_phones" class="input-group">
-            <button *ngIf="noOfPhone>1" (click)="removePhone(remoVal,$event)"
-              class="btn btn-close text-danger input-group-text me-4  "></button>
-            <input type="text" readonly value="{{phone.phone}}" class="my-2" #remoVal>
-          </div>
-          <!-- ----------------------------------------  -->
-          <div class="form-outline my-2 d-flex justify-content-around">
-
-            <div class="col-1">
-              <button class="btn btn-primary" (click)="addAnotherPhone(inptval)"><i
-                  class="fa-regular fa-plus"></i></button>
-            </div>
-
-            <div class="col-7">
-              <input required name="Doctors_Phones" type="tel" id="DPhone" class="form-control col-8 "
-                placeholder="رقم الموبايل " #inptval />
-            </div>
-
-            <!-- <div class="col-2">
-              <label class="form-label " for="DPhone">رقم الموبايل </label>
-            </div> -->
-          </div>
-
-
-          <div *ngIf="phoneValid==false && addphoneClick==true && phone1Exist==false"
-            class="text-danger input-group-text border-white bg-white">
-            رقم الموبايل غير صحيح
-          </div>
-
-          <div *ngIf="phone1Exist==true && addphoneClick" class="text-danger input-group-text border-white bg-white">
-            هذا الرقم بالفعل مسجل
-          </div>
-
-        </form>
-
-
-      </div>
-
+  
       <!-- form 3  -->
-      <div class="col-12 col-md-4">
-
+        <div class="container py-5 rounded-3 " style="background-color: #eaeaeab0;">
         <form [formGroup]="DoctorUpdateForm" enctype="multipart/form-data" method="post" (submit)="onSubmit($event)"
           class="border-1 border-light" *ngIf="formGroupFlag==true">
 
@@ -464,6 +461,5 @@
 
     </div>
 
-  </div>
-
+  </div> 
 </div>
