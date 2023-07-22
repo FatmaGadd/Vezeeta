@@ -33,12 +33,12 @@
 
     <!-- ------------------------------------------------------------------ -->
 
-    <div class="card" *ngIf="doctorslist.length!=0">
+    <div class="card" *ngIf="doctorslist.length!=0" style="direction: ltr;">
         <p-dataView [value]="doctorslist" [paginator]="true" [rows]="4" filterBy="name" layout="grid">
             <ng-template let-product pTemplate="gridItem">
                 <div class="p-col-12 p-md-4 w-100">
                     <div>
-                        <div class="card  mb-3  " id="card">
+                        <div class="card  mb-3  " id="card" style="direction: rtl;">
                             <!-- <a [routerLink]="doctor/data/:id"></a> -->
                             <div class="card-body">
                                 <div class="row px-4">
