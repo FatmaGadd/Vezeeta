@@ -27,12 +27,14 @@ import { DoctorAddAppointmentComponent } from './components/Doctor/doctor-add-ap
 import { SavedAppoinmentComponent } from './components/patientappoinment/saved-appoinment/saved-appoinment.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { DoctorReviewComponent } from './components/doctor-review/doctor-review.component';
+import { adminGaurd } from './Guards/admin.guard';
 
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'admin', component: AdminPageComponent },
+  { path: 'admin', component: AdminPageComponent ,canActivate:[adminGaurd]},
 
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -58,6 +60,7 @@ const routes: Routes = [
   { path: 'doctor/add-appointment', component: DoctorAddAppointmentComponent },
   { path: 'book/:id/:drid', component: SavedAppoinmentComponent },
   {path:'contactUs', component:ContactComponent},
+  {path:'reviews/:id', component:DoctorReviewComponent},
   { path: '**', component: ErrorComponent },
 
 ];

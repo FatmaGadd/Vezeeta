@@ -5,8 +5,8 @@
         </div>
         <form (submit)="submitquestion($event)" [formGroup]="addquestionForm">
             <div class="form-group mb-2">
-                <label for="q-title" class="col-form-label parent"><span class=" p-1 cs">(لن يتم الافصاح عن
-                        هويتك)</span>سؤالك</label>
+                <label for="q-title" class="col-form-label parent"> سؤالك <span class=" p-1 cs">(لن يتم الافصاح عن
+                        هويتك)</span></label>
                 <input type="text" maxlength="50" formControlName="title" placeholder="مثال:ما هي اسباب تكون حب الشباب؟"
                     class="form-control" id="q-title">
                 <span class=" fg p-1"> حرفا {{GetTitle.value?.length}}/50</span>
@@ -37,10 +37,10 @@
                 <p-selectButton class="dire" [options]="stateOptions1" formControlName="gender" optionLabel="label" optionValue="value"></p-selectButton>
             </div>
             <div class="form-group mb-2">
-                <label for="q-age" class="col-form-label parent"><span class="cs">(عام) </span>
+                <label for="q-age" class="col-form-label parent">
                     كم <span *ngIf="GetType.value == 'لشخص أخر'">العمر؟</span>
                     <span *ngIf="GetType.value == 'لنفسي'  || GetType.value == null">عمرك؟</span>
-
+                    <span class="cs"> (عام) </span>
                 </label>
                 <input type="number" min="0" formControlName="age" class="form-control" id="q-title">
                 <ng-container *ngIf="GetAge.touched">

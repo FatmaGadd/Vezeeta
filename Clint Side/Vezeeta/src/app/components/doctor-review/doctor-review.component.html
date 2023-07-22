@@ -1,0 +1,54 @@
+<div *ngIf="!hasappoinment" class="container mt-5">
+    <div class="div-err parent">
+        <div>
+            <i class="fa-solid fa-heart-crack text-danger fs-1 mb-3"></i>
+        </div>
+        نأسف لا يمكنك تقييم طبيب ليس لك مواعيد مسبقة معه 
+    </div>
+
+</div>
+<div *ngIf="hasappoinment && dr" class="container mt-5">
+    <div class="div-con">
+        <div class="row">
+            <div class="col-md-3">
+                <img [src]="dr.image" >
+            </div>
+            
+            <div class="col-md-6">
+                <div id="parent">تقييم</div>
+                <div class="pt-3 pb-1 parent">
+                    <span class="fg" *ngIf="dr.gender == 'f'">دكتورة</span>
+                    <span class="fg" *ngIf="dr.gender == 'm'">دكتور</span>
+                    {{dr.name}}
+                </div>
+                <div class="parent fg pb-3">
+                    <span *ngIf="dr.gender == 'f'">دكتورة</span>
+                    <span *ngIf="dr.gender == 'm'">دكتور</span>
+                    {{dr.id_specializeNavigation.name}}
+                </div>
+                <div class="desc">
+                    {{dr.description}}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <form [formGroup]="addreviewform" (submit)="addreview($event)">
+            <div  class="text-center mb-2">
+                <p-rating formControlName="value" [cancel]="false"></p-rating>
+            </div>
+            <div class="form-group mb-2">
+                <input type="text" formControlName="comment" maxlength="150" placeholder=" أضف تعليقك" class="form-control" id="name">
+                <span class=" fg2 p-1"> حرفا {{GetComment.value?.length}}/150</span>
+                <ng-container *ngIf="GetComment.touched">
+                    <span *ngIf="GetComment.hasError('required')" class="form-text text-danger">
+                        هذا الحقل مطلوب
+                    </span>
+                </ng-container>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="أضف تقييمك" class="btn btn-blue">
+            </div>
+        </form>
+    </div>
+
+</div>

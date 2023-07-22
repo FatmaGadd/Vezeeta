@@ -1,0 +1,67 @@
+.root{
+    --background:#E2E6EA;
+    --bluecolor:#0070CD;
+    --lightblue:#E6F1FF;
+}
+body{
+    background-color: var(--background);
+    margin: auto;
+    text-align: right;
+}
+.div-con{
+    width: 50%;
+ background-color: white;
+ margin: auto;
+ padding: 3%;
+ text-align: right;
+ border-radius: 10px;
+}
+input{
+    direction: rtl;
+}
+.div-err{
+    width: 50%;
+ background-color: white;
+ margin: auto;
+ margin-top: 10%;
+ padding: 5%;
+ text-align: center;
+ border-radius: 10px;
+}
+.parent {
+    font-size: 1.5rem;
+    color: rgb(74, 73, 73);
+    font-weight: bold;
+} 
+img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid rgb(190, 189, 189);
+    position:relative;
+    bottom: 15px;
+}
+.fg{
+    color: rgb(97, 96, 96);
+    font-size: 1.1rem;
+
+}
+.fg2{
+    color: rgb(97, 96, 96);
+    font-size: 0.8rem;
+
+}
+.desc{
+    color: rgb(93, 92, 92);
+    font-size: 1.4rem;
+}
+#parent {
+    font-size: 1.7rem;
+    color:#015da8;
+    font-weight: bold;
+} 
+.btn-blue{
+background-color:#0070CD;
+color: white;
+border-radius: 10px;
+}

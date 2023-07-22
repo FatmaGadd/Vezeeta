@@ -1,4 +1,5 @@
-﻿using Vezeeta.Models;
+﻿using Vezeeta.DTO.ReviewDTO;
+using Vezeeta.Models;
 
 namespace Vezeeta.IEntities
 {
@@ -9,6 +10,7 @@ namespace Vezeeta.IEntities
         public Task<Review> GetById(int Dr_id, int patient_id);
         public Task<Review> Update(int Dr_id, int patient_id, Review entity);
         public Task<Review> DeleteById(int Dr_id, int patient_id);
+        public Task<bool> HasAppoinment(int Dr_id, int patient_id);
         public Task<Review> Add(Review entity);
 
     }
