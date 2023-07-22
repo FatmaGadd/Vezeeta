@@ -70,6 +70,9 @@ import { AddreigonComponent } from './components/admin-page/Components/addreigon
 import { AddcityComponent } from './components/admin-page/Components/addcity/addcity.component';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { ContactComponent } from './components/contact/contact.component';
+import { DoctorReviewComponent } from './components/doctor-review/doctor-review.component';
+import { RatingModule } from 'primeng/rating';
+
 
 @NgModule({
   declarations: [
@@ -115,6 +118,7 @@ import { ContactComponent } from './components/contact/contact.component';
     AddreigonComponent,
     AddcityComponent,
     ContactComponent,
+    DoctorReviewComponent,
 
   ],
   imports: [
@@ -141,11 +145,13 @@ import { ContactComponent } from './components/contact/contact.component';
     FieldsetModule,
     DataViewModule,
     TabViewModule,
-    ButtonModule
-    , ImageModule
-    , OverlayPanelModule,
-    ToastModule
-    , BadgeModule, CascadeSelectModule
+    ButtonModule, 
+    ImageModule, 
+    OverlayPanelModule,
+    ToastModule, 
+    BadgeModule, 
+    CascadeSelectModule,
+    RatingModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

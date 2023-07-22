@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Vezeeta.DTO.ReviewDTO;
 using Vezeeta.IEntities;
 using Vezeeta.Models;
 
@@ -49,18 +50,14 @@ namespace Vezeeta.Controllers
         // PUT: api/Reviews/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{Dr_id},{patient_id}")]
-        public async Task<IActionResult> PutReview(int dr_id, int patient_id, Review review)
+        public async Task<ActionResult> PutReview(int dr_id, int patient_id, ReviewDTO review)
         {
             Review r = await _context.GetById(dr_id, patient_id);
-            if (r == null) return NotFound();
-            if (dr_id != review.Dr_id || patient_id != review.patient_id) return BadRequest();
 
             try
             {
                 r.value = review.value;
                 r.comment = review.comment;
-                r.created_at = review.created_at;
-                r.updated_at = review.updated_at;
 
                 await _context.Update(dr_id, patient_id, r);
             }
@@ -78,17 +75,20 @@ namespace Vezeeta.Controllers
         // POST: api/Reviews
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Review>> PostReview(Review review)
+        public async Task<ActionResult<Review>> PostReview(ReviewDTO review)
         {
             if (review == null) return BadRequest();
+            var existed = await _context.GetById(review.Dr_id,review.patient_id);
+            if (existed != null) return await PutReview(review.Dr_id,review.patient_id,review);
+
             try
             {
                 Review r = new Review()
                 {
+                    Dr_id = review.Dr_id,
+                    patient_id = review.patient_id,
                     value = review.value,
                     comment = review.comment,
-                    created_at = review.created_at,
-                    updated_at = review.updated_at
 
                 };
                 await _context.Add(r);
@@ -121,6 +121,12 @@ namespace Vezeeta.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+        [HttpGet]
+        [Route("hasAppoinment/{Dr_id},{patient_id}")]
+        public async Task<bool> HasAppoinment(int Dr_id, int patient_id)
+        {
+            return await _context.HasAppoinment(Dr_id, patient_id); 
         }
     }
 }
