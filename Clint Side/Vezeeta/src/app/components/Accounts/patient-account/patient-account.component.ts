@@ -47,7 +47,6 @@ initialFormValues:any;
       patientPassword :new FormControl(),
        patientGender :new FormControl(),
       });
-
       // change pass
       this.formChangePass =   new FormGroup({
         patientPassword :new FormControl('',Validators.required ),
@@ -55,7 +54,9 @@ initialFormValues:any;
         patientName: new FormControl(),
         patientEmail :new FormControl(),
         patientPhone :new FormControl(),
+        patientBirth_date :new FormControl( Validators.required), 
          patientAddress :new FormControl(),
+         patientCode :new FormControl(),
           patientGender :new FormControl(),
       });
 
@@ -64,7 +65,9 @@ initialFormValues:any;
         this.temp = a.body;
         this.patient = await this.temp;
 
-        if (this.patient != undefined) {
+        if (this.patient != undefined) { 
+        console.log(this.patient.birth_date);
+        
           this.oldPassfromServer = this.patient.password;
           this.initialFormValues = {
             patientName: this.patient.name,
@@ -74,7 +77,7 @@ initialFormValues:any;
             patientAddress: this.patient.address,
             patientPassword: this.patient.password,
             patientGender: this.patient.gender,
-          };
+          }; 
 
           this.formProfile.setValue(this.initialFormValues);
           // set value to user who change pass
@@ -83,6 +86,8 @@ initialFormValues:any;
           this.formChangePass.controls["patientPhone"].setValue(this.patient.phone);  
           this.formChangePass.controls["patientAddress"].setValue(this.patient.address);
           this.formChangePass.controls["patientGender"].setValue(this.patient.gender);
+          this.formChangePass.controls["patientCode"].setValue(this.patient.code);
+          this.formChangePass.controls["patientBirth_date"].setValue(this.patient.birth_date);
          
 
         }
@@ -136,15 +141,7 @@ get getNewPass(){
       this.showSpinner = false;
     }
   }
-forgetPass(){
-  this.forgetPassActivate=true;
-  this.passDiv = document.getElementById('Forgetpass');
-  this.passDiv.classList.add('linkActive');
-  this.profileDiv.classList.remove('linkActive');
-this.profileActiviate=false;
-console.log(this.formChangePass);
 
-}
 ///////////////////////////////patientProfile
 
 get getName(){
@@ -163,9 +160,6 @@ get getBirth(){
 get getAddress(){
   return this.formProfile.controls["patientAddress"]
 }
-
-
-
 
 updateInfo(e:any){
   e.preventDefault();  
@@ -191,7 +185,7 @@ updateInfo(e:any){
 }
 
 resetForm() :void{
-  this.formProfile.setValue(this.formProfile.value);
+  this.formProfile.setValue(this.initialFormValues);
 }
 
 getProfile(){
@@ -200,6 +194,15 @@ getProfile(){
 this.profileDiv.classList.add('linkActive');
 this.passDiv.classList.remove('linkActive');
 this.profileActiviate=true;
+
+}
+
+forgetPass(){
+  this.forgetPassActivate=true;
+  this.passDiv = document.getElementById('Forgetpass');
+  this.passDiv.classList.add('linkActive');
+  this.profileDiv.classList.remove('linkActive');
+this.profileActiviate=false;
 
 }
 }

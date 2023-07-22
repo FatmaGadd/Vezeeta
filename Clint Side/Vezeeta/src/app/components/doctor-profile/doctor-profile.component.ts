@@ -204,10 +204,10 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
     floor: new FormControl('', [Validators.required]),
     region: new FormControl('', [Validators.required]),
     clinicName: new FormControl('', [Validators.required]),
-    sq: new FormControl('', [Validators.required]),
+    sq: new FormControl('0', [Validators.required]),
     appart: new FormControl('', [Validators.required]),
     descr: new FormControl(''),
-    fees: new FormControl(''),
+    fees: new FormControl('', [Validators.min(0)]),
   });
 
   // end of form group creation
@@ -475,7 +475,7 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
       };
       console.log(model);
       this.clinicSer.addNewClinic(model).subscribe((res) => {
-        if (res.status == 200) {
+        if (res.status >= 200) {
           console.log(res);
           this.updateClinicFlag = true;
         }
@@ -484,4 +484,9 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
   }
 
   updateClinic() {}
+  scrollToElement(): void {
+    const element = document.getElementById('updateClinic');
+    if(element !=null)
+              element.scrollIntoView({ behavior: 'smooth' });
+  }
 }

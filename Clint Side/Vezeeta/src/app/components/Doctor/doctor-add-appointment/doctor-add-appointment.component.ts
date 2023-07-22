@@ -91,7 +91,9 @@ export class DoctorAddAppointmentComponent implements OnInit {
     // console.log(val.value);
     if (confirm('هل انت متأكد ')) {
       this.appointServ.Delete(val.value, this.id).subscribe((res) => {
-        e.target.parentElement.parentElement.remove();
+        e.target.parentElement.parentElement.parentElement.remove();
+        console.log(     e.target.parentElement.parentElement);
+        
       });
     }
   }
