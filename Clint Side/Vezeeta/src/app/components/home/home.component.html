@@ -20,7 +20,7 @@
           <i class="fa fa-phone-alt text-danger"></i>16676
         </h3>
       </div>
-      <app-search style="z-index: 11000; position: relative;"></app-search>*
+      <app-search style="z-index: 0; position: relative;"></app-search>
     </div>
   </div>
 </div>
@@ -30,15 +30,15 @@
     حلول جديدة لرعاية أفضل ليك
   </div>
 
-  <div class="card mb-5 p-4 pb-2">
-    <div class="card-body row">
-      <div class="col-1 ms-3">
+  <div class="card mb-5 p-4 pb-2 " style="z-index: -1;">
+    <div class="card-body row d-flex flex-wrap">
+      <div class=" col-1 ms-3">
         <img style="width: 100px; height: 100px; border-radius: 80px"
           src="https://d1aovdz1i2nnak.cloudfront.net/vezeeta-web-reactjs/55283/_next/static/images/qnaDoctor.jpg"
           alt="" />
       </div>
       <div class="col-8">
-        <h2 class="card-title" style="font-weight: bold; font-size: 25px;z-index: 0;">
+        <h2 class="card-title" style="font-weight: bold; font-size: 25px">
           لديك سؤال طبي؟
         </h2>
         <h2 class="card-text">
@@ -46,6 +46,7 @@
         </h2>
       </div>
       <div class="col-2 d-flex align-items-center justify-content-end">
+        <!-- <a class="btn btn-primary text-white px-5 py-3" [routerLink]="['/questions/ask']">اسأل اللأن</a> -->
         <a class="btn btn-primary text-white px-5 py-3" [routerLink]="['/questions/ask']">اسأل اللأن</a>
       </div>
     </div>

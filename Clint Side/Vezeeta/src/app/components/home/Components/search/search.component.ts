@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
   // fildes
+
   specializationList: any = []
   cityList: any = []
 
@@ -24,6 +25,15 @@ export class SearchComponent implements OnInit {
   special: any = 0;
   citys: any = 0;
   reigons: any = 0;
+
+
+  Form = new FormGroup({
+    special: new FormControl(0)
+    , city: new FormControl(0)
+    , reigon: new FormControl(0)
+    , name: new FormControl('', [Validators.pattern("^[a-zA-Z]{1,30}$")])
+  })
+
   // constructor
   constructor(private specialization: SpecializationService, private city: CityService, private reigon: ReigonService, private activatedrot: ActivatedRoute, private router: Router) {
 
@@ -31,7 +41,12 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.specialization.GetAll().subscribe(response => {
       this.specializationList = response.body;
+    })
 
+
+
+    this.reigon.GetAll().subscribe(response => {
+      this.regionList = response.body;
 
     })
 
@@ -40,56 +55,24 @@ export class SearchComponent implements OnInit {
     //   this.cityListholder = res.body
     // })
 
-
-    this.reigon.GetAll().subscribe(response => {
-      this.regionList = response.body;
-
-    })
-
-
-
   }
-
   // selectReigon(id: any) {
   //   let selectedreigon = this.regionList.find((element: any) => element.id == id);
   //   console.log(id)
   //   this.cityList = this.cityListholder.filter((a: any) => a["region_id"] == selectedreigon.id);
   // }
 
+
   selectReigon2(id: any) {
     this.list = [{ id: 0, name: 'الكل' }];
     this.Form.controls["city"].setValue(0)
-
-    console.log(id)
-    // this.list = id["cities"]
     this.list = id?.cities
   }
 
-  Form = new FormGroup({
-    special: new FormControl(0)
-    , city: new FormControl(0)
-    , reigon: new FormControl(0)
-    , name: new FormControl('', [Validators.pattern("^[a-zA-Z]{1,30}$")])
-  })
+
   get fvalues() {
     return this.Form.value;
   }
-
-  // onSubmit() {
-  //   if (this.Form.invalid) alert("invalid")
-  //   else {
-  //     console.log(this.fvalues["special"])
-
-
-  //     this.router.navigate(
-  //       ['/search'],
-  //       { queryParams: { type: "b", city: this.fvalues["city"], reigon: this.fvalues["reigon"], name: (this.fvalues["name"]), special: this.fvalues["special"] } }
-  //     );
-  //   }
-  // }
-
-
-  // -----------------------------------------------------
   onSubmit() {
     if (this.Form.invalid) alert("invalid")
     else {
@@ -119,4 +102,20 @@ export class SearchComponent implements OnInit {
       );
     }
   }
+  // onSubmit() {
+  //   if (this.Form.invalid) alert("invalid")
+  //   else {
+  //     console.log(this.fvalues["special"])
+
+
+  //     this.router.navigate(
+  //       ['/search'],
+  //       { queryParams: { type: "b", city: this.fvalues["city"], reigon: this.fvalues["reigon"], name: (this.fvalues["name"]), special: this.fvalues["special"] } }
+  //     );
+  //   }
+  // }
+
+
+  // -----------------------------------------------------
+
 }

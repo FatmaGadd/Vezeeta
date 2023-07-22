@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -34,6 +35,10 @@ export class SearchTopBarComponent {
     this.reigon.GetAll().subscribe(response => {
       this.regionList = response.body;
       // console.log(this.regionList)
+
+      if ((this.fcontrol["reigon"]?.value) != 0) {
+        this.selectReigon(this.fcontrol["reigon"]?.value)
+      }
     })
     this.activatedrot.queryParams.subscribe(params => {
       // console.log(Object.keys(params))
@@ -52,7 +57,7 @@ export class SearchTopBarComponent {
   selectReigon(id: any) {
     let selectedreigon = this.regionList.find((element: any) => element.id == id);
     console.log(id)
-    this.cityList = this.cityListholder.filter((a: any) => a["region_id"] == selectedreigon?.id);
+    this.cityList = this.cityListholder?.filter((a: any) => a["region_id"] == selectedreigon?.id);
   }
 
   Form = new FormGroup({

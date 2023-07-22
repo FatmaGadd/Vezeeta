@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IAppoinment } from 'src/app/Interfaces/iappoinment';
 import { AppoinmentService } from 'src/app/Services/Entity_Services/appoinment.service';
+import { ClinicDoctorService } from './../../../Services/Entity_Services/clinic-doctor.service';
+import { IclinicDoctor } from './../../../Interfaces/iclinic-doctor';
 
 @Component({
   selector: 'app-doctor-add-appointment',
@@ -9,15 +11,30 @@ import { AppoinmentService } from 'src/app/Services/Entity_Services/appoinment.s
   styleUrls: ['./doctor-add-appointment.component.css'],
 })
 export class DoctorAddAppointmentComponent implements OnInit {
-  constructor(private appointServ: AppoinmentService) {}
+  constructor(private appointServ: AppoinmentService, private clinic: ClinicDoctorService) { }
   ngOnInit(): void {
     this.id = localStorage.getItem('UserId');
     this.id = JSON.parse(this.id);
-    console.log(this.id);
-    this.getAppointBydr();
+    // console.log(this.id);
+
+    this.clinic.getClinicsByDrId(this.id).subscribe(res => {
+      this.clinics = res.body;
+      if (this.clinics.length == 0) {
+        this.haveclinic = true;
+
+      } else {
+        this.getAppointBydr();
+
+      }
+    })
+    // this.getAppointBydr();
+
   }
 
   //fields
+  clinics: any
+  haveclinic = false;
+
   id: number | any;
   appointments: number | any;
   day: any;
@@ -30,7 +47,7 @@ export class DoctorAddAppointmentComponent implements OnInit {
   getAppointBydr() {
     this.appointServ.GetAllByDoctor(this.id).subscribe((res) => {
       this.appointments = res.body;
-      console.log(this.appointments);
+      // console.log(this.appointments);
       this.pageload = true;
       for (let i = 0; i < this.appointments.length; i++) {
         this.day = new Date(this.appointments[i].start_date)
@@ -61,17 +78,17 @@ export class DoctorAddAppointmentComponent implements OnInit {
             minute: '2-digit',
           })
         );
-        console.log(this.startTime[i]);
-        console.log(this.endTime[i]);
+        // console.log(this.startTime[i]);
+        // console.log(this.endTime[i]);
       }
 
-      console.log(this.appointments);
-      console.log(this.day);
+      // console.log(this.appointments);
+      // console.log(this.day);
     });
   }
 
   removeAppoint(val: any, e: any) {
-    console.log(val.value);
+    // console.log(val.value);
     if (confirm('هل انت متأكد ')) {
       this.appointServ.Delete(val.value, this.id).subscribe((res) => {
         e.target.parentElement.parentElement.remove();
@@ -89,7 +106,7 @@ export class DoctorAddAppointmentComponent implements OnInit {
   get endControl() {
     return this.appointForm.controls.endTime;
   }
-
+  noselectedflag = false;
   pastDateFlage = false;
   nowDateFlag = false;
   endDateFlag = false;
@@ -117,23 +134,28 @@ export class DoctorAddAppointmentComponent implements OnInit {
       id: 0,
     };
     //---------------------------------------------------
-    console.log(date.getHours());
-    console.log(endDate.getHours());
-    console.log(DateNow.getDate());
+    // console.log(date.getHours());
+    // console.log(endDate.getHours());
+    // console.log(DateNow.getDate());
     //check past date
-    if (date.getFullYear() < 2023) this.pastDateFlage = true;
+    this.notValid = true;
+
+    if (date.getTime() < DateNow.getTime()) this.pastDateFlage = true;
+
     //check day is now
     if (date.getDate() == DateNow.getDate()) this.nowDateFlag = true;
     // check if end date is not equal to the day of start date
     if (endDate.getDate() != date.getDate()) this.endDateFlag = true;
     // check if time of end date is not greater than start date
-    if (endDate.getHours() < date.getHours()) this.pastEndDateFlag = true;
+    if (endDate.getTime() < date.getTime()) this.pastEndDateFlag = true;
+
+
     if (this.appointForm.valid) {
       if (
         this.pastDateFlage ||
         this.nowDateFlag ||
         this.endDateFlag ||
-        this.pastEndDateFlag
+        this.pastEndDateFlag         // this.noselectedflag
       ) {
         this.notValid = true;
         ev.preventDefault();
