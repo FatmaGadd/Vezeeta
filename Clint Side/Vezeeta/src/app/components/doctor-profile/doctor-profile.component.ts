@@ -484,4 +484,9 @@ export class DoctorProfileComponent implements OnInit, AfterViewInit {
   }
 
   updateClinic() {}
+  scrollToElement(): void {
+    const element = document.getElementById('updateClinic');
+    if(element !=null)
+              element.scrollIntoView({ behavior: 'smooth' });
+  }
 }

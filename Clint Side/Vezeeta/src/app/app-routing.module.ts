@@ -32,7 +32,7 @@ import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'admin', component: AdminPageComponent },
+  { path: 'Admin', component: AdminPageComponent },
 
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },

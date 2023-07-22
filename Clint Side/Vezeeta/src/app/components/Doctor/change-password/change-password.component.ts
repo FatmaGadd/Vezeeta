@@ -12,6 +12,7 @@ export class ChangePasswordComponent implements OnInit {
   id: number | any;
   doctor: any;
   succFlag = false;
+isValid=false;
   ngOnInit(): void {
     this.id = localStorage.getItem('UserId');
     this.id = JSON.parse(this.id);
@@ -76,6 +77,8 @@ export class ChangePasswordComponent implements OnInit {
         console.log(this.passwordController.value);
         this.passwordFlag = false;
       }
+    }else{
+      this.isValid=true;
     }
   }
 }
