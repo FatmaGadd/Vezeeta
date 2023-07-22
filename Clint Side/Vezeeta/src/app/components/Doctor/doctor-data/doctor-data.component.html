@@ -18,11 +18,9 @@
             </h3>
             <div class="row col-12">
               <div>
-                <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-                <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-                <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-                <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-                <span class="col-6 me-5">التقييم العام من 3</span>
+                <span *ngFor="let star of ratesNgFor" class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+
+                <span class="col-6 me-5">التقييم العام من {{this.reviews?.length}} </span>
               </div>
             </div>
           </div>
@@ -58,6 +56,71 @@
       </div>
     </div>
 
+    <h1 class="text-center">تقييمات المرضي </h1>
+    <div *ngFor="let rev of this.reviews ; let i =index" class="card  me-5 col-12">
+
+      <div class="row">
+        <div class="col-sm-4 text-center my-auto">
+          {{this.reviews[i]?.value}}
+          <p>doctor Rating</p>
+        </div>
+
+        <div class="col-sm-8 text-start">
+
+          <div class="my-2">
+            <ng-container *ngIf="this.reviews[i]?.value==1">
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+            </ng-container>
+
+            <ng-container *ngIf="this.reviews[i]?.value==2">
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+            </ng-container>
+
+            <ng-container *ngIf="this.reviews[i]?.value==3">
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+            </ng-container>
+
+            <ng-container *ngIf="this.reviews[i]?.value==4">
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
+            </ng-container>
+            <ng-container *ngIf="this.reviews[i]?.value==5">
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
+            </ng-container>
+          </div>
+
+          <div class="my-2">
+            '{{ this.reviews[i].comment }}'
+          </div>
+
+          <div class="my-2">
+            {{ this.reviews[i].patient?.name }} <br>
+            {{this.reviews[i].created_at}}
+          </div>
+        </div>
+
+
+      </div>
+    </div>
   </div>
 
   <div class="col-4 mx-4">
@@ -111,5 +174,6 @@
     </div>
 
   </div>
+
 
 </div>
