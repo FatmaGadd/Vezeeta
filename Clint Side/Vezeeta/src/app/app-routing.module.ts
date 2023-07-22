@@ -34,7 +34,7 @@ import { adminGaurd } from './Guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'admin', component: AdminPageComponent ,canActivate:[adminGaurd]},
+  { path: 'Admin', component: AdminPageComponent },
 
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
