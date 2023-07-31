@@ -2,10 +2,9 @@
         <div class="d-flex flex-wrap">
             <div class="col-md-3"></div>
         <div class="col-md-6">
-            <div class="parent px-5">
-                <div class="head-img">
-                </div>
-                <div class=" col-12 ">
+            <div class="parent ">
+                <div class="head-img "></div>
+                <div class=" col-12 px-5">
                     <div class="d-flex  flex-column  p-4 mt-2">
                         <div class="text ">
                                 <span class="icon"><i class="fa-regular fa-envelope"></i></span>
@@ -28,33 +27,35 @@
                                 <span> تفاصيل الحجز <i style=" color: rgb(0, 112, 205);"></i></span>
                         </div>
                         <hr>
-                        <table  class="table table-hover ">
-                            <tbody>
-                                <tr>
-                                    <td>  اسم المريض </td>
-                                    <td>{{patientname}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="w-25"> تاريخ  الحجز</td>
-                                    <td>
-                                        {{appoinment.start_date | date:'dd/MM/yyyy (hh:mm)'}}
-                                        ، الدخول بميعاد محدد</td>
-                                 </tr>
-                                 <tr>
-                                    <td> اسم الدكتور</td>
-                                    <td>{{appoinment.dr.name}}</td>
-                                 </tr>   
-                                 <tr>
-                                    <td> مدة الانتظار</td>
-                                    <td>{{appoinment.dr.waiting_time}} دقيقة</td>
-                                 </tr>
-                                 <tr>
-                                    <td>   عنوان العيادة</td>
-                                    <td> مدينة {{clinicaddress.city.name}} ,{{clinicaddress.street}}, {{clinicaddress.square}}, مبنى رقم {{clinicaddress.building}}, الدور رقم {{clinicaddress.floor_num}}, شقة رقم {{clinicaddress.flat_num}}, {{clinicaddress.notes}}</td>
-                                 </tr>       
-                               
-                            </tbody>
-                        </table>
+                        <div class="table-responsive  p-3 bg-light">
+                            <table  class="table table-hover  ">
+                                <tbody>
+                                    <tr>
+                                        <td>  اسم المريض </td>
+                                        <td>{{patientname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="w-25"> تاريخ  الحجز</td>
+                                        <td>
+                                            {{appoinment.start_date | date:'dd/MM/yyyy (hh:mm)'}}
+                                            ، الدخول بميعاد محدد</td>
+                                     </tr>
+                                     <tr>
+                                        <td> اسم الدكتور</td>
+                                        <td>{{appoinment.dr.name}}</td>
+                                     </tr>   
+                                     <tr>
+                                        <td> مدة الانتظار</td>
+                                        <td>{{appoinment.dr.waiting_time}} دقيقة</td>
+                                     </tr>
+                                     <tr>
+                                        <td>   عنوان العيادة</td>
+                                        <td> مدينة {{clinicaddress.city.name}} ,{{clinicaddress.street}}, {{clinicaddress.square}}, مبنى رقم {{clinicaddress.building}}, الدور رقم {{clinicaddress.floor_num}}, شقة رقم {{clinicaddress.flat_num}}, {{clinicaddress.notes}}</td>
+                                     </tr>       
+                                   
+                                </tbody>
+                            </table>
+                        </div>
                         <button [routerLink]="['/patientAppoint']" class="btn btn-primary d-block m-auto fs-4">مواعيدي </button>
             </div>
                   </div>

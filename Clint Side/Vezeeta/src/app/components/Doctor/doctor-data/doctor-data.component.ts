@@ -54,10 +54,11 @@ export class DoctorDataComponent implements OnInit {
     this.reviewServ.GetAllByDoctor(this.id).subscribe({
       next: (res) => {
         this.reviews = res.body;
-        console.log(this.reviews);
         if (this.reviews.length !== 0)
           for (let i = 0; i < this.reviews?.length; i++) {
             this.rates += parseInt(this.reviews[i].value);
+            this.reviews[i].created_at =   new Date(this.reviews[i].created_at).toLocaleDateString();
+            
           }
         if (this.reviews.length !== 0)
           this.ratesNgFor = Array(this.rates / this.reviews.length);

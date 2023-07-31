@@ -1,7 +1,7 @@
 <div *ngIf="appoinment" class="container d-flex mx-5 mt-3 justify-content-around pb-5 row">
     <div  class="bg-light rounded-2 h-50 mt-5  col-md-5 mb-5 ">
-        <div class="row">
-            <div class="col-3">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-3 image">
                 <img [src]="appoinment.dr.image" >
             </div>
             <div class="col-8">
@@ -20,11 +20,11 @@
             ، الدخول بميعاد محدد
         </div>
     </div>
-    <div class="bg-light rounded-2  col-md-5 pt-1 mt-5">
-        <div class="mb-3 py-2 text-light bg-blue text-center ">
+    <div class=" col-md-5   mt-5">
+        <div class="joinNow">
             ادخــــل بـــيــــانـــات الــحــجــز
         </div>
-        <div class="px-5">
+        <div class="p-5 bg-light  ">
             <form class="fg" (submit)="submit($event)" [formGroup]="reservationForm">
                 <div class="form-group mb-2 d-flex">
                     <i class="fs-5 pt-2 px-2 fa-regular fa-user blue"></i>

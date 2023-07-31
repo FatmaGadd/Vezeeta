@@ -1,179 +1,202 @@
-<div id="mainwrap" class="row" *ngIf="doctorLoad && clinicLoad">
-  <div id="cardParent" class="col-6 mx-5">
-    <div class="card  cardStyle col-12">
-      <div class="">
+<div class="container">
+  <div id="mainwrap" class="row my-5" *ngIf="doctorLoad && clinicLoad">
+    <div id="cardParent" class="col-6 mx-5">
+      <div class="card col-12">
         <div class="row">
-          <div class="profile-img col-4">
-            <img src={{doctor?.image}} alt="" />
-          </div>
-          <div class="col-12 col-md-8 row">
-            <h2 class="col-8 col-md--8">
-              دكتور {{doctor?.name}}
-            </h2>
-            <h2 class="col-4 col-md-4">
-              مشاهدات
-            </h2>
-            <h3 class="col-12">
-              تخصص : {{this.doctor?.id_specializeNavigation?.name}}
-            </h3>
-            <div class="row col-12">
-              <div>
-                <span *ngFor="let star of ratesNgFor" class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-
-                <span class="col-6 me-5">التقييم العام من {{this.reviews?.length}} </span>
-              </div>
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="profile-img col-md-4">
+              <img src="{{ doctor?.image }}" alt="" />
             </div>
+            <div class="col-12 col-md-8 row">
+              <h1 class="">دكتور {{ doctor?.name }}</h1>
+              <h1 class="">
+                تخصص : {{ this.doctor?.id_specializeNavigation?.name }}
+              </h1>
+              <div class="row col-12">
+                <div>
+                  <span *ngFor="let star of ratesNgFor" class="col-1"
+                    ><i class="fa-solid fa-star text-warning"></i
+                  ></span>
+                  <p class="col-6 me-5">
+                    التقييم العام من {{ this.reviews?.length }} زاروا الدكتور
+                  </p>
+                </div>
+                <button class="btn btn-primary col-5 fs-4  d-block"routerLink="/reviews/{{id}}">اضف تقيمك  </button>
+              </div>
+             </div>
           </div>
         </div>
-
-        <div class="card-body">
-
-        </div>
       </div>
-    </div>
 
-    <div class="card  cardStyle col-12">
-      <div class="">
+      <div class="card py-4 col-12">
         <div class="row">
-
-          <div class="col-4 me-4"> <i class="fa-solid fa-info text-primary"></i></div>
-          <h2 class="col-7 col-md--6">
-            معلومات عن الدكتور
-          </h2>
-        </div>
-
-      </div>
-
-      <div class="card-body">
-        <p>
-          {{doctor?.description}}
-          ماجستير و دكتوراة أمراض النساء و التوليد - جامعة القاهرة . عضو الجمعية الاوروبية للتكاثر البشري و علوم الاجنة
-          عضو
-          الجمعية الامريكية لجراحي مناظير امراض النساء زميل مستشفي جايز و سان توماس-لندن… ملحوظة: يوجد بالعيادة دفع
-          بالڤيزا
-          كارت.
-        </p>
-      </div>
-    </div>
-
-    <h1 class="text-center">تقييمات المرضي </h1>
-    <div *ngFor="let rev of this.reviews ; let i =index" class="card  me-5 col-12">
-
-      <div class="row">
-        <div class="col-sm-4 text-center my-auto">
-          {{this.reviews[i]?.value}}
-          <p>doctor Rating</p>
-        </div>
-
-        <div class="col-sm-8 text-start">
-
-          <div class="my-2">
-            <ng-container *ngIf="this.reviews[i]?.value==1">
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-            </ng-container>
-
-            <ng-container *ngIf="this.reviews[i]?.value==2">
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-            </ng-container>
-
-            <ng-container *ngIf="this.reviews[i]?.value==3">
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-            </ng-container>
-
-            <ng-container *ngIf="this.reviews[i]?.value==4">
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-regular fa-star text-warning"></i></span>
-            </ng-container>
-            <ng-container *ngIf="this.reviews[i]?.value==5">
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-              <span class="col-1"><i class="fa-solid fa-star text-warning"></i></span>
-            </ng-container>
+          <div class="col-4 me-4">
+            <i class="fa-solid fa-info text-primary"></i>
           </div>
-
-          <div class="my-2">
-            '{{ this.reviews[i].comment }}'
-          </div>
-
-          <div class="my-2">
-            {{ this.reviews[i].patient?.name }} <br>
-            {{this.reviews[i].created_at}}
-          </div>
+          <h2 class="col-7 col-md--6 fs-3">معلومات عن الدكتور</h2>
         </div>
-
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col-4 mx-4">
-
-
-
-    <div class="card  cardStyle col-12">
-      <div class="joinNow "></div>
-      <div class="card-header bg-white">
-        <div class="m-auto text-center">
-          <h2 class="">
-            احجـــز<br>
-            كشف طبي
-          </h2>
-          <h3>
-
-          </h3>
-        </div>
-
-      </div>
-
-      <div class="card-body row">
-        <div class="col-5">
-          <i class="fa-regular fa-money-bill-1 text-primary"><span class="m-2">الكشف</span></i>
-          <div>{{Dr_clinic?.fees}}.00 جنيه</div>
-        </div>
-        <div class="col-5">
-          <i class="fa-regular fa-clock text-success"><span class="m-2">مده الانتظار</span></i>
-          <div class="text-success">{{doctor?.waiting_time}} </div>
-        </div>
-
-        <div class="col-12 row my-4">
-          <div class="col-3">
-            <i class="fa-solid fa-location-dot text-primary">العنوان</i>
-          </div>
-          <p class="col-8">
-            {{Dr_clinic?.clinic?.address?.city.name}} :
-            شارع :
-            {{Dr_clinic?.clinic?.address?.street}}\
-            مربع :
-            {{Dr_clinic?.clinic?.address?.square}}\
-            عمارة :
-            {{Dr_clinic?.clinic?.address?.building}}\
-            الدور :
-            {{Dr_clinic?.clinic?.address?.floor_num}}\
-            شقة :
-            {{Dr_clinic?.clinic?.address?.flat_num}}\
+        <div class="card-body">
+          <p style="line-height: 35px">
+            {{ doctor?.description }}
+            ماجستير و دكتوراة أمراض النساء و التوليد - جامعة القاهرة . عضو
+            الجمعية الاوروبية للتكاثر البشري و علوم الاجنة عضو الجمعية الامريكية
+            لجراحي مناظير امراض النساء زميل مستشفي جايز و سان توماس-لندن…
+            ملحوظة: يوجد بالعيادة دفع بالڤيزا كارت.
           </p>
         </div>
       </div>
+
+      <h1 class="text-center p-2 ">تقييمات المرضي</h1>
+      <div
+        *ngFor="let rev of this.reviews; let i = index"
+        class="card  col-12"
+      >
+        <div class="row d-flex align-items-center justify-content-between" >
+          <div class="col-sm-8 review">
+            <div class="my-2 d-flex align-items-center justify-content-between">
+              <p class=" ">    التقييم العام</p>
+              <div class="">
+              <ng-container *ngIf="this.reviews[i]?.value == 1">
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+              </ng-container>
+
+              <ng-container *ngIf="this.reviews[i]?.value == 2">
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+              </ng-container>
+
+              <ng-container *ngIf="this.reviews[i]?.value == 3">
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+              </ng-container>
+
+              <ng-container *ngIf="this.reviews[i]?.value == 4">
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-regular fa-star text-warning"></i
+                ></span>
+              </ng-container>
+              <ng-container *ngIf="this.reviews[i]?.value == 5">
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+                <span class="col-1"
+                  ><i class="fa-solid fa-star text-warning"></i
+                ></span>
+              </ng-container>
+            </div>
+            </div>
+
+            <div class="my-2"> <sup class="fa-solid fa-quote-right "></sup> {{ this.reviews[i].comment }} <sup class="fa-solid fa-quote-left"></sup></div>
+
+            <div class="my-2">
+           <p>   {{ this.reviews[i].patient?.name }} </p>
+          <p> {{ this.reviews[i].created_at }} </p>
+            </div>
+          </div>
+          <div class="col-sm-4 text-center my-auto p-2">
+            <span class="rating">    {{ this.reviews[i]?.value }}</span>
+            <p style="  color: rgb(116, 116, 112);">تقييم الدكتور</p>
+          </div>
+
+        </div>
+      </div>
     </div>
 
+    <div class="col-4">
+      <div class="card p-0 rounded-4 col-12">
+        <div class="joinNow">احجـــز كشف طبي</div>
+        <div class="card-body row">
+          <div class="d-flex align-items-center mb-3">
+            <i class="fa-regular fa-money-bill-1 text-primary"
+              ><span class="m-2">الكشف</span></i
+            >
+            <div>{{ Dr_clinic?.fees }}.00 جنيه</div>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <i class="fa-regular fa-clock text-success"
+              ><span class="m-2">مده الانتظار</span></i
+            >
+            <div class="text-success">{{ doctor?.waiting_time }}</div>
+          </div>
+
+          <div class="col-12 row mb-2">
+            <div class="col-3">
+              <i class="fa-solid fa-location-dot text-primary">العنوان</i>
+            </div>
+            <p class="col-8">
+              {{ Dr_clinic?.clinic?.address?.city.name }} : شارع :
+              {{ Dr_clinic?.clinic?.address?.street }}\ مربع :
+              {{ Dr_clinic?.clinic?.address?.square }}\ عمارة :
+              {{ Dr_clinic?.clinic?.address?.building }}\ الدور :
+              {{ Dr_clinic?.clinic?.address?.floor_num }}\ شقة :
+              {{ Dr_clinic?.clinic?.address?.flat_num }}\
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-
 </div>
+
+

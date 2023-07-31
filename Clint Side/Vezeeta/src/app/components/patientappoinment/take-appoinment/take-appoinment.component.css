@@ -16,6 +16,16 @@ img{
     position:relative;
     bottom: 15px;
 }
+.image{position: relative;padding: 10px 0px;}
+.image::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0px;
+    height: 50%;
+    width: 60%;
+    background-color:  rgb(226, 230, 234);
+}
 .bg-bieg{
     background-color: #F5F5F5;
 }
@@ -33,3 +43,11 @@ img{
     color: rgb(93, 92, 92);
     font-size: 1.4rem;
 }
+.joinNow {
+    border-radius: 11px 11px 0px 0px;
+    padding: 8px 0px;
+    font-size: 20px;
+    background-color: rgb(0, 112, 205);
+    color: rgb(255, 255, 255);
+    text-align: center;
+  }
