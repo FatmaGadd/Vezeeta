@@ -11,28 +11,28 @@ import { IclinicDoctor } from './../../../Interfaces/iclinic-doctor';
   styleUrls: ['./doctor-add-appointment.component.css'],
 })
 export class DoctorAddAppointmentComponent implements OnInit {
-  constructor(private appointServ: AppoinmentService, private clinic: ClinicDoctorService) { }
+  constructor(
+    private appointServ: AppoinmentService,
+    private clinic: ClinicDoctorService
+  ) {}
   ngOnInit(): void {
     this.id = localStorage.getItem('UserId');
     this.id = JSON.parse(this.id);
     // console.log(this.id);
 
-    this.clinic.getClinicsByDrId(this.id).subscribe(res => {
+    this.clinic.getClinicsByDrId(this.id).subscribe((res) => {
       this.clinics = res.body;
       if (this.clinics.length == 0) {
         this.haveclinic = true;
-
       } else {
         this.getAppointBydr();
-
       }
-    })
+    });
     // this.getAppointBydr();
-
   }
 
   //fields
-  clinics: any
+  clinics: any;
   haveclinic = false;
 
   id: number | any;
@@ -59,21 +59,21 @@ export class DoctorAddAppointmentComponent implements OnInit {
             weekday: 'long',
           })
         );
+        const SdateIso =
+          +new Date(this.appointments[i].start_date).getTime() + 10800000;
+
+        const EdateIso =
+          +new Date(this.appointments[i].end_date).getTime() + 10800000;
         this.startTime.push(
           //new Date(this.appointments[i].start_date).getHours()
-          new Date(this.appointments[i].start_date).toLocaleString('en-EG', {
+          new Date(SdateIso).toLocaleString('en-GB', {
             hour: '2-digit',
             minute: '2-digit',
           })
         );
-        console.log(
-          new Date(this.appointments[i].end_date).toLocaleString('en-EG', {
-            hour: '2-digit',
-            minute: '2-digit',
-          })
-        );
+        console.log(new Date(this.appointments[i].end_date));
         this.endTime.push(
-          new Date(this.appointments[i].end_date).toLocaleString('en-EG', {
+          new Date(EdateIso).toLocaleString('en-GB', {
             hour: '2-digit',
             minute: '2-digit',
           })
@@ -92,8 +92,7 @@ export class DoctorAddAppointmentComponent implements OnInit {
     if (confirm('هل انت متأكد ')) {
       this.appointServ.Delete(val.value, this.id).subscribe((res) => {
         e.target.parentElement.parentElement.parentElement.remove();
-        console.log(     e.target.parentElement.parentElement);
-        
+        console.log(e.target.parentElement.parentElement);
       });
     }
   }
@@ -121,7 +120,11 @@ export class DoctorAddAppointmentComponent implements OnInit {
     this.pastDateFlage = false;
     this.endDateFlag = false;
     this.pastEndDateFlag = false;
-    const date = new Date(start.value);
+    const dateIso = new Date(start.value).getTime() + 180;
+    const date = new Date(dateIso);
+    console.log(date);
+    console.log(dateIso);
+
     let endDate = new Date(end.value);
     const DateNow = new Date(Date.now());
     //---------------------------------------------------------
@@ -140,7 +143,7 @@ export class DoctorAddAppointmentComponent implements OnInit {
     // console.log(endDate.getHours());
     // console.log(DateNow.getDate());
     //check past date
-    this.notValid = true;
+    //this.notValid = true;
 
     if (date.getTime() < DateNow.getTime()) this.pastDateFlage = true;
 
@@ -151,13 +154,12 @@ export class DoctorAddAppointmentComponent implements OnInit {
     // check if time of end date is not greater than start date
     if (endDate.getTime() < date.getTime()) this.pastEndDateFlag = true;
 
-
     if (this.appointForm.valid) {
       if (
         this.pastDateFlage ||
         this.nowDateFlag ||
         this.endDateFlag ||
-        this.pastEndDateFlag         // this.noselectedflag
+        this.pastEndDateFlag // this.noselectedflag
       ) {
         this.notValid = true;
         ev.preventDefault();
@@ -166,6 +168,12 @@ export class DoctorAddAppointmentComponent implements OnInit {
           next: (res) => {
             alert('تم الاضافة بنجاح');
             this.appointments.push(model);
+            console.log(model);
+            this.daysForNgfor.push(
+              date.toLocaleString('ar-eg', {
+                weekday: 'long',
+              })
+            );
             this.getAppointBydr();
             console.log(res);
           },
